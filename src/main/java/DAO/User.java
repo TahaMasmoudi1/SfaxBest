@@ -1,9 +1,7 @@
 package DAO;
 
-import entities.User;
-
-public class UserDAO extends GenericDAO{
-    public void save(User user){
+public class User extends Generic {
+    public void save(entities.User user){
         try{
         begin();
         em.persist(user);
@@ -12,7 +10,7 @@ public class UserDAO extends GenericDAO{
             rollback();
         }
     }
-    public void delete(User user){
+    public void delete(entities.User user){
         try{
         begin();
         em.remove(user);
@@ -22,7 +20,7 @@ public class UserDAO extends GenericDAO{
             rollback();
         }
     }
-    public void update(User user){
+    public void update(entities.User user){
         try{
         begin();
         em.merge(user);
