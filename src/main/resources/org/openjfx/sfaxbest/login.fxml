@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.loginController">
+    <children>
+        <VBox alignment="CENTER" minWidth="400.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);; -fx-background-radius: 10;">
+            <padding>
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+            </padding>
+            <children>
+                <ImageView fitHeight="86.0" fitWidth="253.0">
+                    <image>
+                        <Image url="@../../../images/logo_app.png" />
+                    </image>
+                </ImageView>
+                <Label maxWidth="1.7976931348623157E308" text="UserName:" textFill="WHITE">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="tfUsername" style="-fx-background-color: #333333; -fx-text-fill: white;">
+                    <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="-10.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="Password:" textFill="WHITE">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                    </VBox.margin>
+                </Label>
+                <PasswordField fx:id="pfPassword" style="-fx-background-color: #333333;-fx-text-fill: white;">
+                    <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="-10.0" />
+                    </VBox.margin>
+                </PasswordField>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #e50914; -fx-font-weight: bold;" text="Log In" textFill="WHITE">
+                    <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="10.0" />
+                    </VBox.margin>
+                </Button>
+                <Hyperlink onAction="#switchToSecondary" text="New to SfaxBest ? Sign In" textFill="#b3b3b3" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>

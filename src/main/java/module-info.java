@@ -13,7 +13,6 @@ module org.openjfx.sfaxbest {
     requires java.sql;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
-    requires org.openjfx.sfaxbest;
 
 
     opens entities to org.hibernate.orm.core, jakarta.persistence;
