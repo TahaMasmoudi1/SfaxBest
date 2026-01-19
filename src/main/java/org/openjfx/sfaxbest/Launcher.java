@@ -1,24 +1,40 @@
 package org.openjfx.sfaxbest;
 
-import javafx.application.Application;
-import utils.ConxDB;
+import entities.User;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import utils.JPAUtil;
 
 import java.sql.Connection;
 
 public class Launcher {
     public static void main(String[] args) {
-        try {
-            Connection c = ConxDB.getInstance();
+        EntityManager em = JPAUtil.emf().createEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
-            if (c != null && !c.isClosed()) {
-                System.out.println("✅ DATABASE CONNECTED SUCCESSFULLY");
-                System.out.println("Connected to: " + c.getMetaData().getURL());
-            } else {
-                System.out.println("❌ CONNECTION IS NULL OR CLOSED");
-            }
+        try {
+            tx.begin();
+
+            User user = new User(
+                    "taha",
+                    "taha@email.com",
+                    "$2a$10$hashedPasswordExample"
+            );
+
+            em.persist(user);
+
+            tx.commit();
+
+            System.out.println("✅ User inserted with ID = " + user.getId());
+
         } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
             e.printStackTrace();
+        } finally {
+            em.close();
+            JPAUtil.shutdown();
         }
+
 
 
 
