@@ -1,6 +1,8 @@
 package DAO;
 
-public class Season extends Generic {
+import entities.Season;
+
+public class SeasonDAO extends GenericDAO {
     public void save(entities.Season season){
         try{
             begin();
@@ -29,5 +31,14 @@ public class Season extends Generic {
         catch(Exception ex){
             rollback();
         }
+    }
+    public Season findById(Integer id){
+        try{
+            begin();
+            return em.find(Season.class, id);
+        }catch(Exception ex){
+            rollback();
+        }
+        return null;
     }
 }

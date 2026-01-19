@@ -3,9 +3,9 @@ package DAO;
 import jakarta.persistence.EntityManager;
 import utils.JPAUtil;
 
-public  class Generic {
+public  class GenericDAO {
     protected EntityManager em;
-    protected Generic(){
+    protected GenericDAO(){
         this.em= JPAUtil.emf().createEntityManager();
     }
     protected void begin(){
