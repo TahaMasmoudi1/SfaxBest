@@ -27,9 +27,12 @@ public class signupController {
     Label lblPassError;
     @FXML
     Label lblConfirmPassError;
+    @FXML
+    TextField tfVerifCode;
     private static String patternEmail = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private static final String patternPassword = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$";
     UserService userService = new UserService();
+    static String  email;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -45,7 +48,7 @@ public class signupController {
         hidelabel(lblConfirmPassError);
         boolean test = true;
         String username = tfUsername.getText();
-        String email = tfEmail.getText();
+        email = tfEmail.getText();
         String password = pfPassword.getText();
         String confPassword = pfConfirmPassword.getText();
         if (email.isEmpty()) {
@@ -73,10 +76,16 @@ public class signupController {
         }
         if (test) {
 
-            userService.register(username, email, password);
-            //App.setRoot("verificationCode");
+            //userService.register(username, password, email);
+            App.setRoot("verificationCode");
         }
 
+
+    }
+    @FXML
+    public void verficationCode() throws IOException {
+        String code = tfVerifCode.getText();
+        userService.emailVerification(email, code);
 
     }
 

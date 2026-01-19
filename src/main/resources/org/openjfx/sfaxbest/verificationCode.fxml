@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="287.0" maxWidth="600.0" minWidth="500.0" prefHeight="287.0" prefWidth="600.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 20; -fx-border-color: #444444; -fx-border-radius: 20; -fx-border-width: 5;">
          <StackPane.margin>
@@ -31,7 +31,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextField alignment="CENTER" focusTraversable="false" prefHeight="77.0" prefWidth="388.0" promptText=" * * * * * * " style="-fx-background-radius: 15; -fx-border-width: 3; -fx-border-color: grey; -fx-border-radius: 15;">
+            <TextField fx:id="tfVerifCode" alignment="CENTER" focusTraversable="false" prefHeight="77.0" prefWidth="388.0" promptText=" * * * * * * " style="-fx-background-radius: 15; -fx-border-width: 3; -fx-border-color: grey; -fx-border-radius: 15;">
                <VBox.margin>
                   <Insets left="150.0" right="150.0" top="10.0" />
                </VBox.margin>
@@ -39,7 +39,7 @@
                   <Font size="34.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="verify">
+            <Button fx:id="btnVerify" mnemonicParsing="false" onAction="#verficationCode" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="verify">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
