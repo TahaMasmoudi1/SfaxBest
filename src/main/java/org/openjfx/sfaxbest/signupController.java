@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import Services.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,6 +29,7 @@ public class signupController {
     Label lblConfirmPassError;
     private static String patternEmail = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private static final String patternPassword = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$";
+    UserService userService = new UserService();
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -70,7 +72,9 @@ public class signupController {
             showlabel(lblPassError, "Passwords do not match");
         }
         if (test) {
-                App.setRoot("verificationCode");
+
+            userService.register(username, email, password);
+            //App.setRoot("verificationCode");
         }
 
 

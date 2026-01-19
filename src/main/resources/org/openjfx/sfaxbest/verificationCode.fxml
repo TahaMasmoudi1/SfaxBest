@@ -8,17 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="287.0" maxWidth="600.0" minWidth="500.0" prefHeight="287.0" prefWidth="600.0" style="-fx-background-color: #404040; -fx-background-radius: 20; -fx-border-color: grey; -fx-border-radius: 20; -fx-border-width: 5;">
+      <VBox alignment="TOP_CENTER" maxHeight="287.0" maxWidth="600.0" minWidth="500.0" prefHeight="287.0" prefWidth="600.0" style="-fx-background-color: #1E1E1E; -fx-background-radius: 20; -fx-border-color: #444444; -fx-border-radius: 20; -fx-border-width: 5;">
          <StackPane.margin>
             <Insets bottom="330.0" left="140.0" right="140.0" top="330.0" />
          </StackPane.margin>
          <children>
             <Label text="verify your email address" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="50.0" />
+                  <Insets bottom="5.0" top="40.0" />
                </VBox.margin>
                <font>
                   <Font name="Arial Black" size="31.0" />
