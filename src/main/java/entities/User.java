@@ -27,6 +27,14 @@ public class User {
     private UserRole role= UserRole.USER;
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private Instant createdAt;
+    @Column(name="email_verified", nullable=false)
+    private boolean emailVerified;
+
+    @Column(name="email_verification_hash")
+    private String emailVerificationHash;
+
+    @Column(name="email_verification_expires_at")
+    private Instant emailVerificationExpiresAt;
 
     public User() {
     }
@@ -35,6 +43,30 @@ public class User {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+    }
+
+    public boolean isEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public String getEmailVerificationHash() {
+        return emailVerificationHash;
+    }
+
+    public void setEmailVerificationHash(String emailVerificationHash) {
+        this.emailVerificationHash = emailVerificationHash;
+    }
+
+    public Instant getEmailVerificationExpiresAt() {
+        return emailVerificationExpiresAt;
+    }
+
+    public void setEmailVerificationExpiresAt(Instant emailVerificationExpiresAt) {
+        this.emailVerificationExpiresAt = emailVerificationExpiresAt;
     }
 
     public Long getId() {
