@@ -40,6 +40,7 @@ public class UserService {
     public void emailVerification(String email, String code){
         email=email.trim().toLowerCase();
         User user=userDAO.findByEmail(email);
+        System.out.println(user);
         if(user==null){
             throw new ValidationException("User not found");
         }
@@ -49,19 +50,20 @@ public class UserService {
         if(user.getEmailVerificationExpiresAt().isBefore(Instant.now())||user.getEmailVerificationExpiresAt()==null){
             throw new ValidationException("Code expired");
         }
-        if(!Encoder.encode(code).equals(user.getEmailVerificationHash())){
+        if(!Encoder.matches(code,user.getEmailVerificationHash())){
             throw new ValidationException("Invalid verification code");
         }
         user.setEmailVerified(true);
         user.setEmailVerificationExpiresAt(null);
         user.setEmailVerificationHash(null);
+        userDAO.update(user);
     }
     public User login(String username, String password) {
         User user=userDAO.findByUsername(username);
         if(user==null){
             throw new AuthException("Invalid Credentials");
         }
-        if(!user.getPasswordHash().equals(Encoder.encode(password))){
+        if(!Encoder.matches(password,user.getPasswordHash())){
             throw new AuthException("Invalid Credentials");
         }
         if(!user.isEmailVerified()){

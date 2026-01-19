@@ -41,7 +41,6 @@ public class signupController {
 
     @FXML
     private void signUp() throws IOException {
-        //na3mlou verif
         hidelabel(lblUsernameError);
         hidelabel(lblPassError);
         hidelabel(lblEmailError);
@@ -76,7 +75,7 @@ public class signupController {
         }
         if (test) {
 
-            //userService.register(username, password, email);
+            userService.register(username, password, email);
             App.setRoot("verificationCode");
         }
 
