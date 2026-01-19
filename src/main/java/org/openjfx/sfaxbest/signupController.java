@@ -76,7 +76,7 @@ public class signupController {
         }
         if (test) {
 
-            //userService.register(username, password, email);
+            userService.register(username, password, email);
             App.setRoot("verificationCode");
         }
 
