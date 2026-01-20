@@ -67,6 +67,15 @@ public class UserDAO extends GenericDAO {
         } catch (NoResultException exception) {
             return false;
         }
+
+        }
+        public boolean checkUsername(String username) {
+        try {
+            long count =em.createQuery("select count(u.id) from User u where u.username=:username ",Long.class).setParameter("username", username).getSingleResult();
+            return count > 0;
+        }catch (NoResultException exception){
+            return false;
+        }
     }
 
 

@@ -31,7 +31,7 @@ public class VideoCast {
     private CastMember castMember;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false, length = 50)
+    @Column(name = "role", nullable = false)
     private VideoCastRole role;
 
     protected VideoCast() {}

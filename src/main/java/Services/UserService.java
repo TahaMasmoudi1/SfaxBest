@@ -11,15 +11,21 @@ import java.time.Instant;
 
 public class UserService {
     private UserDAO userDAO;
+    EmailSender emailSender;
+
 
     public UserService() {
         this.userDAO = new UserDAO();
+        this.emailSender = new EmailSender();
     }
 
     public void register(String username, String password, String email) {
         email = email.trim().toLowerCase();
         if(userDAO.checkEmail(email)){
             throw new ValidationException("Email already exists");
+        }
+        if(userDAO.checkUsername(username)){
+            throw new ValidationException("Username already exists");
         }
         User user=new User();
         user.setUsername(username);
@@ -30,7 +36,6 @@ public class UserService {
         user.setEmailVerificationHash(Encoder.encode(code));
         user.setEmailVerificationExpiresAt(Instant.now().plusSeconds(600));
         userDAO.save(user);
-        EmailSender emailSender=new EmailSender();
         try {
             emailSender.sendVerificationCode(email,code);
         }catch (Exception e){
@@ -70,6 +75,20 @@ public class UserService {
             throw new AuthException("Please verify your email");
         }
         return user;
+    }
+    public void resendVerificationCode(String email){
+        email=email.trim().toLowerCase();
+        User user=userDAO.findByEmail(email);
+        String code= VerificationCode.generateVerificationCode();
+        user.setEmailVerificationHash(Encoder.encode(code));
+        user.setEmailVerificationExpiresAt(Instant.now().plusSeconds(600));
+        try {
+            emailSender.sendVerificationCode(email,code);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
     public void delete(User user) {

@@ -3,7 +3,7 @@ package DAO;
 import entities.Season;
 
 public class SeasonDAO extends GenericDAO {
-    public void save(entities.Season season){
+    public void save(Season season){
         try{
             begin();
             em.persist(season);
@@ -12,7 +12,7 @@ public class SeasonDAO extends GenericDAO {
             rollback();
         }
     }
-    public void delete(entities.Season season){
+    public void delete(Season season){
         try{
             begin();
             em.remove(season);
@@ -22,7 +22,7 @@ public class SeasonDAO extends GenericDAO {
             rollback();
         }
     }
-    public void update(entities.Season season){
+    public void update(Season season){
         try{
             begin();
             em.merge(season);

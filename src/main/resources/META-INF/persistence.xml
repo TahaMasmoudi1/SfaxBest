@@ -13,9 +13,10 @@
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class,hbm"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.type.prefer_native_enum_types" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/sfaxbest?useSSL=false&amp;serverTimezone=UTC"/>
+                      value="jdbc:mysql://100.123.177.65:3306/sfaxbest?useSSL=false&amp;serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="Taha"/>
             <property name="jakarta.persistence.jdbc.password" value="admin123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
