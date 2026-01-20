@@ -19,7 +19,7 @@ public class UserService {
         this.emailSender = new EmailSender();
     }
 
-    public void register(String username, String password, String email) {
+    public void register(String username, String password, String email) throws ValidationException, AuthException {
         email = email.trim().toLowerCase();
         if(userDAO.checkEmail(email)){
             throw new ValidationException("Email already exists");
@@ -42,7 +42,7 @@ public class UserService {
             e.printStackTrace();
         }
     }
-    public void emailVerification(String email, String code){
+    public void emailVerification(String email, String code)throws ValidationException{
         email=email.trim().toLowerCase();
         User user=userDAO.findByEmail(email);
         System.out.println(user);
@@ -63,7 +63,7 @@ public class UserService {
         user.setEmailVerificationHash(null);
         userDAO.update(user);
     }
-    public User login(String username, String password) {
+    public User login(String username, String password) throws AuthException{
         User user=userDAO.findByUsername(username);
         if(user==null){
             throw new AuthException("Invalid Credentials");
