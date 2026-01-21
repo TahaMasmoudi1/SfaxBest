@@ -2,6 +2,7 @@ package org.openjfx.sfaxbest;
 
 import Services.FilmService;
 import Services.UserService;
+import exceptions.ValidationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -30,6 +31,8 @@ public class signupController {
     Label lblConfirmPassError;
     @FXML
     TextField tfVerifCode;
+    @FXML
+    Label lblVerifCodeError;
     private static String patternEmail = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private static final String patternPassword = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$";
     UserService userService = new UserService();
@@ -82,11 +85,19 @@ public class signupController {
 
 
     }
+@FXML
+    public void resendVerificationCode() throws IOException {
+        userService.resendVerificationCode(email);
+    }
     @FXML
     public void verficationCode() throws IOException {
         String code = tfVerifCode.getText();
-        userService.emailVerification(email, code);
-
+        try{userService.emailVerification(email, code);}
+        catch (ValidationException e){
+            showlabel(lblVerifCodeError, "Invalid verification code");
+            return;
+        }
+        App.setRoot("login");
     }
 
     private void showlabel(Label label, String message) throws IOException {
