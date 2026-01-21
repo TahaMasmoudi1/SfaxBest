@@ -9,15 +9,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "multimedia")
-public class Multimedia {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Multimedia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private MultimediaType type;
 
     @Column(name = "title", nullable = false, length = 150)
     private String title;
@@ -28,12 +25,6 @@ public class Multimedia {
 
     @Column(name = "release_year")
     private Integer releaseYear;
-
-    @Column(name = "duration_seconds")
-    private Integer durationSeconds;
-
-    @Column(name = "path_video")
-    private String pathVideo;
 
     @Column(name = "path_trailer")
     private String pathTrailer;
@@ -54,13 +45,10 @@ public class Multimedia {
     public Multimedia() {
     }
 
-    public Multimedia(MultimediaType type, String title, String description, Integer releaseYear, Integer durationSeconds, String pathVideo, String pathTrailer, String pathBanner) {
-        this.type = type;
+    public Multimedia( String title, String description, Integer releaseYear, String pathTrailer, String pathBanner) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
-        this.durationSeconds = durationSeconds;
-        this.pathVideo = pathVideo;
         this.pathTrailer = pathTrailer;
         this.pathBanner = pathBanner;
     }
@@ -79,14 +67,6 @@ public class Multimedia {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public MultimediaType getType() {
-        return type;
-    }
-
-    public void setType(MultimediaType type) {
-        this.type = type;
     }
 
     public String getTitle() {
@@ -111,22 +91,6 @@ public class Multimedia {
 
     public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
-    }
-
-    public Integer getDurationSeconds() {
-        return durationSeconds;
-    }
-
-    public void setDurationSeconds(Integer durationSeconds) {
-        this.durationSeconds = durationSeconds;
-    }
-
-    public String getPathVideo() {
-        return pathVideo;
-    }
-
-    public void setPathVideo(String pathVideo) {
-        this.pathVideo = pathVideo;
     }
 
     public String getPathTrailer() {
@@ -169,12 +133,9 @@ public class Multimedia {
     public String toString() {
         return "Multimedia{" +
                 "id=" + id +
-                ", type='" + type + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", releaseYear=" + releaseYear +
-                ", durationSeconds=" + durationSeconds +
-                ", pathVideo='" + pathVideo + '\'' +
                 ", pathTrailer='" + pathTrailer + '\'' +
                 ", pathBanner='" + pathBanner + '\'' +
                 ", createdAt=" + createdAt +

@@ -1,24 +1,30 @@
 package Services;
 
+import DAO.EpisodeDAO;
 import DAO.SeasonDAO;
+import entities.Episode;
 import entities.Season;
+import utils.TraHelper;
 
 public class SeasonService {
-    private SeasonDAO seasonDAO;
-
-    public SeasonService() {
-        this.seasonDAO = new SeasonDAO();
-    }
-
     public void save(Season season) {
-        seasonDAO.save(season);
+        TraHelper.write(em -> {
+            SeasonDAO seasonDAO = new SeasonDAO(em);
+            seasonDAO.save(season);
+        });
     }
 
     public void delete(Season season) {
-        seasonDAO.delete(season);
+        TraHelper.write(em -> {
+            SeasonDAO seasonDAO = new SeasonDAO(em);
+            seasonDAO.delete(season);
+        });
+    }
+    public void edit(Season season) {
+        TraHelper.write(em -> {
+            SeasonDAO seasonDAO = new SeasonDAO(em);
+            seasonDAO.update(season);
+        });
     }
 
-    public void update(Season season) {
-        seasonDAO.update(season);
-    }
 }

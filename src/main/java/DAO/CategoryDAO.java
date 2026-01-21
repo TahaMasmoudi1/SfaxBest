@@ -2,44 +2,32 @@ package DAO;
 
 import entities.Category;
 import entities.Season;
+import entities.User;
+import jakarta.persistence.EntityManager;
 
-public class CategoryDAO extends GenericDAO {
-    public void save(Category category){
-        try{
-            begin();
-            em.persist(category);
-            commit();}
-        catch(Exception ex){
-            rollback();
-        }
+import java.util.List;
+
+public class CategoryDAO {
+    private final EntityManager em;
+
+    public CategoryDAO(EntityManager em) {
+        this.em = em;
     }
-    public void delete(Category category){
-        try{
-            begin();
-            em.remove(category);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void save(Category category) {
+        em.persist(category);
     }
-    public void update(Category category){
-        try{
-            begin();
-            em.merge(category);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void delete(Category category) {
+        em.remove(category);
     }
-    public Category findById(Integer id){
-        try{
-            begin();
-            return em.find(Category.class, id);
-        }catch(Exception ex){
-            rollback();
-        }
-        return null;
+
+    public void update(Category category) {
+        em.merge(category);
+    }
+
+    public List<Category> findById(List<Long> ids) {
+        return em.createQuery("select c from Category c where c.id in:ids"
+                , Category.class).setParameter("ids", ids).getResultList();
     }
 }

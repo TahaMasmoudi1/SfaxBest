@@ -2,44 +2,29 @@ package DAO;
 
 import entities.Episode;
 import entities.Season;
+import entities.User;
+import jakarta.persistence.EntityManager;
 
-public class EpisodeDAO extends GenericDAO {
-    public void save(Episode episode){
-        try{
-            begin();
-            em.persist(episode);
-            commit();}
-        catch(Exception ex){
-            rollback();
-        }
+public class EpisodeDAO  {
+    private final EntityManager em;
+
+    public EpisodeDAO(EntityManager em) {
+        this.em = em;
     }
-    public void delete(Episode episode){
-        try{
-            begin();
-            em.remove(episode);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void save(Episode episode) {
+        em.persist(episode);
     }
-    public void update(Episode episode){
-        try{
-            begin();
-            em.merge(episode);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void delete(Episode episode) {
+        em.remove(episode);
+    }
+
+    public void update(Episode episode) {
+        em.merge(episode);
     }
     public Episode findById(Integer id){
-        try{
-            begin();
             return em.find(Episode.class, id);
-        }catch(Exception ex){
-            rollback();
-        }
-        return null;
+
     }
 }

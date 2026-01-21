@@ -1,44 +1,29 @@
 package DAO;
 
 import entities.Season;
+import entities.User;
+import jakarta.persistence.EntityManager;
 
-public class SeasonDAO extends GenericDAO {
-    public void save(Season season){
-        try{
-            begin();
-            em.persist(season);
-            commit();}
-        catch(Exception ex){
-            rollback();
-        }
+public class SeasonDAO {
+    private final EntityManager em;
+
+    public SeasonDAO(EntityManager em) {
+        this.em = em;
     }
-    public void delete(Season season){
-        try{
-            begin();
-            em.remove(season);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void save(Season season) {
+        em.persist(season);
     }
-    public void update(Season season){
-        try{
-            begin();
-            em.merge(season);
-            commit();
-        }
-        catch(Exception ex){
-            rollback();
-        }
+
+    public void delete(Season season) {
+        em.remove(season);
     }
-    public Season findById(Integer id){
-        try{
-            begin();
-            return em.find(Season.class, id);
-        }catch(Exception ex){
-            rollback();
-        }
-        return null;
+
+    public void update(Season season) {
+        em.merge(season);
     }
+    public Season findById(Integer id) {
+        return em.find(Season.class, id);
+    }
+
 }

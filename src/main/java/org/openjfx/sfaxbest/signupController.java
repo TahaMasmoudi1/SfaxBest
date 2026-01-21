@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import Services.FilmService;
 import Services.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -98,6 +99,7 @@ public class signupController {
         label.setVisible(false);
         label.setManaged(false);
     }
+
 
 
 }

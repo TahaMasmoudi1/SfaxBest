@@ -1,37 +1,26 @@
 package DAO;
 
 import entities.User;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
-public class UserDAO extends GenericDAO {
+public class UserDAO  {
+    private final EntityManager em;
+
+    public UserDAO(EntityManager em) {
+        this.em = em;
+    }
+
     public void save(User user) {
-        try {
-            begin();
-            em.persist(user);
-            commit();
-        } catch (Exception ex) {
-            rollback();
-        }
+        em.persist(user);
     }
 
     public void delete(User user) {
-        try {
-            begin();
-            em.remove(user);
-            commit();
-        } catch (Exception ex) {
-            rollback();
-        }
+        em.remove(user);
     }
 
     public void update(User user) {
-        try {
-            begin();
             em.merge(user);
-            commit();
-        } catch (Exception ex) {
-            rollback();
-        }
     }
 
     public User findByUsername(String username) {
@@ -68,12 +57,13 @@ public class UserDAO extends GenericDAO {
             return false;
         }
 
-        }
-        public boolean checkUsername(String username) {
+    }
+
+    public boolean checkUsername(String username) {
         try {
-            long count =em.createQuery("select count(u.id) from User u where u.username=:username ",Long.class).setParameter("username", username).getSingleResult();
+            long count = em.createQuery("select count(u.id) from User u where u.username=:username ", Long.class).setParameter("username", username).getSingleResult();
             return count > 0;
-        }catch (NoResultException exception){
+        } catch (NoResultException exception) {
             return false;
         }
     }

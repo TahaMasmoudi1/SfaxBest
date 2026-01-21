@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 @Entity
-@Table(name = "season")
+@Table(
+        name = "season",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"series_id", "n_season"})
+)
 public class Season {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +19,8 @@ public class Season {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_multimedia", nullable = false)
-    private Multimedia multimedia;
+    @JoinColumn(name = "series_id", nullable = false)
+    private Series series;
 
     @Column(name = "n_season", nullable = false)
     private Integer nSeason;
@@ -29,11 +33,18 @@ public class Season {
     @OneToMany(mappedBy = "season", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Episode> episodes = new ArrayList<>();
 
-    public Season(Multimedia multimedia, Integer nSeason, String pathBannerSeason, String pathTrailerSeason) {
-        this.multimedia = multimedia;
+    public Season( Integer nSeason, String pathBannerSeason, String pathTrailerSeason) {
         this.nSeason = nSeason;
         this.pathBannerSeason = pathBannerSeason;
         this.pathTrailerSeason = pathTrailerSeason;
+    }
+
+    public Series getSeries() {
+        return series;
+    }
+
+    public void setSeries(Series series) {
+        this.series = series;
     }
 
     public Integer getnSeason() {
@@ -63,21 +74,6 @@ public class Season {
         this.id = id;
     }
 
-    public Multimedia getMultimedia() {
-        return multimedia;
-    }
-
-    public void setMultimedia(Multimedia idMultimedia) {
-        this.multimedia = idMultimedia;
-    }
-
-    public Integer getNSaison() {
-        return nSeason;
-    }
-
-    public void setNSaison(Integer nSaison) {
-        this.nSeason = nSaison;
-    }
 
     public String getPathBannerSeason() {
         return pathBannerSeason;
