@@ -5,7 +5,9 @@ import entities.Season;
 import entities.User;
 import jakarta.persistence.EntityManager;
 
-public class EpisodeDAO  {
+import java.util.List;
+
+public class EpisodeDAO {
     private final EntityManager em;
 
     public EpisodeDAO(EntityManager em) {
@@ -23,8 +25,14 @@ public class EpisodeDAO  {
     public void update(Episode episode) {
         em.merge(episode);
     }
-    public Episode findById(Integer id){
-            return em.find(Episode.class, id);
 
+    public Episode findById(long id) {
+        return em.find(Episode.class, id);
+    }
+
+    public List<Episode> listAll(long idSeason, int offset, int limit) {
+        return em.createQuery("select distinct e from Episode e where e.season.id=:idSeason" +
+                        " order by e.nEpisode ", Episode.class).setParameter("idSeason", idSeason)
+                .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 }

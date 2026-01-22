@@ -1,8 +1,11 @@
 package DAO;
 
 import entities.Season;
+import entities.Serie;
 import entities.User;
 import jakarta.persistence.EntityManager;
+
+import java.util.List;
 
 public class SeasonDAO {
     private final EntityManager em;
@@ -22,8 +25,15 @@ public class SeasonDAO {
     public void update(Season season) {
         em.merge(season);
     }
-    public Season findById(Integer id) {
+
+    public Season findById(long id) {
         return em.find(Season.class, id);
+    }
+
+    public List<Season> listAll(long idSerie, int offset, int limit) {
+        return em.createQuery("select distinct s from Season s where" +
+                        " s.serie.id=:idSerie order by s.nSeason desc", Season.class).setParameter("idSerie", idSerie)
+                .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 
 }

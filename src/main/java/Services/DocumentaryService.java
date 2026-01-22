@@ -2,9 +2,7 @@ package Services;
 
 import DAO.CategoryDAO;
 import DAO.DocumentaryDAO;
-import DAO.FilmDAO;
 import entities.Documentary;
-import entities.Film;
 import jakarta.persistence.NoResultException;
 import utils.TraHelper;
 
@@ -17,7 +15,7 @@ public class DocumentaryService {
             DocumentaryDAO documentaryDAO=new DocumentaryDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
             Documentary documentary = new Documentary(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video);
-            documentary.getCategories().addAll(categoryDAO.findById(categorieIds));
+            documentary.getCategories().addAll(categoryDAO.listByIds(categorieIds));
             documentaryDAO.save(documentary);
         });
 
@@ -50,7 +48,7 @@ public class DocumentaryService {
             documentary.setDurationSeconds(duration_seconds);
             documentary.setPathVideo(path_video);
             documentary.getCategories().clear();
-            documentary.getCategories().addAll(categoryDAO.findById(categorieIds));
+            documentary.getCategories().addAll(categoryDAO.listByIds(categorieIds));
         });
     }
     public List<Documentary> findAll(int offset, int limit) throws NoResultException {

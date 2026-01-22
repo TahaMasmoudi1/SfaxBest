@@ -1,8 +1,6 @@
 package DAO;
 
 import entities.Category;
-import entities.Season;
-import entities.User;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public class CategoryDAO {
         em.merge(category);
     }
 
-    public List<Category> findById(List<Long> ids) {
+    public List<Category> listByIds(List<Long> ids) {
         return em.createQuery("select c from Category c where c.id in:ids"
                 , Category.class).setParameter("ids", ids).getResultList();
     }

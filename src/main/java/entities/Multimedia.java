@@ -42,15 +42,26 @@ public abstract class Multimedia {
     )
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "multimedia", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<VideoCast> videoCasts = new HashSet<>();
+
     public Multimedia() {
     }
 
-    public Multimedia( String title, String description, Integer releaseYear, String pathTrailer, String pathBanner) {
+    public Multimedia(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
         this.pathTrailer = pathTrailer;
         this.pathBanner = pathBanner;
+    }
+
+    public Set<VideoCast> getVideoCasts() {
+        return videoCasts;
+    }
+
+    public void setVideoCasts(Set<VideoCast> videoCasts) {
+        this.videoCasts = videoCasts;
     }
 
     public Set<Category> getCategories() {
@@ -121,7 +132,7 @@ public abstract class Multimedia {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Multimedia that = (Multimedia) o;
-        return Objects.equals(id, that.id) ;
+        return Objects.equals(id, that.id);
     }
 
     @Override

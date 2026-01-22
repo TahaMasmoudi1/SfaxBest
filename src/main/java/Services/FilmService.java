@@ -17,7 +17,7 @@ public class FilmService {
             FilmDAO filmDAO = new FilmDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
             Film film = new Film(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video);
-            film.getCategories().addAll(categoryDAO.findById(categorieIds));
+            film.getCategories().addAll(categoryDAO.listByIds(categorieIds));
             filmDAO.save(film);
         });
 
@@ -50,7 +50,7 @@ public class FilmService {
             film.setDurationSeconds(duration_seconds);
             film.setPathVideo(path_video);
             film.getCategories().clear();
-            film.getCategories().addAll(categoryDAO.findById(categorieIds));
+            film.getCategories().addAll(categoryDAO.listByIds(categorieIds));
         });
     }
 }

@@ -20,7 +20,7 @@ public class Season {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "series_id", nullable = false)
-    private Series series;
+    private Serie serie;
 
     @Column(name = "n_season", nullable = false)
     private Integer nSeason;
@@ -33,18 +33,19 @@ public class Season {
     @OneToMany(mappedBy = "season", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Episode> episodes = new ArrayList<>();
 
-    public Season( Integer nSeason, String pathBannerSeason, String pathTrailerSeason) {
+    public Season(Serie serie, Integer nSeason, String pathBannerSeason, String pathTrailerSeason) {
         this.nSeason = nSeason;
+        this.serie=serie;
         this.pathBannerSeason = pathBannerSeason;
         this.pathTrailerSeason = pathTrailerSeason;
     }
 
-    public Series getSeries() {
-        return series;
+    public Serie getSeries() {
+        return serie;
     }
 
-    public void setSeries(Series series) {
-        this.series = series;
+    public void setSeries(Serie serie) {
+        this.serie = serie;
     }
 
     public Integer getnSeason() {
