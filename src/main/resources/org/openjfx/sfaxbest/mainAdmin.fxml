@@ -2,19 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -36,19 +35,48 @@
                </font>
             </Label>
             <Separator prefHeight="2.0" prefWidth="200.0" style="-fx-background-color: white;" />
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="0.0" style="-fx-background-color: black;" styleClass="sidebar-button" text="dashboard" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="0.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="dashboard" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+               <VBox.margin>
+                  <Insets bottom="-10.0" />
+               </VBox.margin></Button>
+             <VBox alignment="TOP_CENTER" prefHeight="101.0" prefWidth="168.0" spacing="3.0" styleClass="submenu">
+                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="168.0" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Films">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+                  <font>
+                     <Font size="14.0" />
+                  </font></Button>
+                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Series">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding></Button>
+                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Documentary">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding></Button>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+             </VBox>
+            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="106.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Multimedia" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="106.0" style="-fx-background-color: black;" styleClass="sidebar-button" text="Multimedia" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+            <Button contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Comments" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Button>
-            <Button contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-background-color: blavk;" styleClass="sidebar-button" text="Comments" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-background-color: black;" styleClass="sidebar-button" text="Button" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+            <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Button" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <VBox.margin>
                   <Insets />
                </VBox.margin></Button>
@@ -70,34 +98,16 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="545.0" spacing="10.0" styleClass="content" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="770.0" spacing="50.0">
-               <children>
-                  <Button maxWidth="120.0" minWidth="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="films">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button maxWidth="120.0" minWidth="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="series">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button maxWidth="120.0" minWidth="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="documantary" textAlignment="CENTER">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
              <TableView fx:id="movieTable" fixedCellSize="50.0" styleClass="movie-table" VBox.vgrow="ALWAYS">
                  <columns>
-                     <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
-                     <TableColumn fx:id="colName" prefWidth="150" text="Name" />
-                     <TableColumn fx:id="colGenre" prefWidth="120" text="Genre" />
-                     <TableColumn fx:id="colDuration" prefWidth="120" text="Duration (min)" />
+                     <TableColumn fx:id="colId" text="ID" />
+                     <TableColumn fx:id="colTitle" text="Title" />
+                     <TableColumn fx:id="colDescription" text="Description" />
+                     <TableColumn fx:id="colReleaseDate" text="Release Date" />
+                     <TableColumn fx:id="colTrailer" text="Trailer" />
+                     <TableColumn fx:id="colBanner" text="Banner" />
+                     <TableColumn fx:id="colDuration" text="Duration" />
+                     <TableColumn fx:id="colVideo" text="Video" />
                  </columns>
                <VBox.margin>
                   <Insets />
@@ -115,81 +125,37 @@
                   <Insets />
                </VBox.margin>
              </HBox>
-            <GridPane alignment="CENTER" maxWidth="500.0" prefHeight="49.0" prefWidth="470.0" vgap="20.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="ID:">
-                           <padding>
-                              <Insets right="22.0" />
-                           </padding>
-                        </Label>
-                        <TextField />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                     <children>
-                        <Label text="Name">
-                           <padding>
-                              <Insets right="22.0" />
-                           </padding>
-                        </Label>
-                        <TextField />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <children>
-                        <Label text="Label:">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <TextField>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label text="Duration:">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                        <TextField>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <Button mnemonicParsing="false" text="ADD" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets right="10.0" top="10.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" text="CANCEL" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                     <GridPane.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </GridPane.margin>
-                  </Button>
-               </children>
-            </GridPane>
+             <VBox alignment="TOP_CENTER" spacing="8">
+
+                 <TextField fx:id="titleField" promptText="Title" />
+
+                 <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Description" style="-fx-background-color: black;" />
+
+                 <DatePicker fx:id="releaseDatePicker" />
+
+                 <TextField fx:id="durationField" promptText="Duration (minutes)" />
+
+                 <HBox alignment="TOP_CENTER" spacing="5">
+                     <TextField fx:id="trailerField" editable="false" promptText="Trailer path" />
+                     <Button text="Browse" />
+                 </HBox>
+
+                 <HBox alignment="TOP_CENTER" spacing="5">
+                     <TextField fx:id="bannerField" editable="false" promptText="Banner path" />
+                     <Button text="Browse" />
+                 </HBox>
+
+                 <HBox alignment="TOP_CENTER" spacing="5">
+                     <TextField fx:id="videoField" editable="false" promptText="Video path" />
+                     <Button text="Browse" />
+                 </HBox>
+
+             </VBox>
          </children>
          <padding>
             <Insets bottom="40.0" top="10.0" />
          </padding>
+
       </VBox>
    </center>
 </BorderPane>

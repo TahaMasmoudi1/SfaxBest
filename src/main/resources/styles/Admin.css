@@ -78,6 +78,18 @@
     -fx-background-radius: 6;
     -fx-border-radius: 6;
 }
+.text-area{
+    -fx-control-inner-background: #2a2a2a;
+    -fx-background-color: #2a2a2a;
+    -fx-text-fill: white;
+    -fx-highlight-fill: #f5c400; /* selection color */
+    -fx-highlight-text-fill: black;
+    -fx-prompt-text-fill: #777;
+    -fx-border-color: #333;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
 
 .label {
     -fx-text-fill: #cccccc;
@@ -106,5 +118,33 @@
     -fx-text-fill: white;
     -fx-background-radius: 6;
     -fx-padding: 8 18;
+}
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 20 10 20;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #222;
+}
+
+.submenu {
+    -fx-opacity: 0.9;
+}
+
+.submenu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 6 20 6 20;
+}
+
+.submenu-button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #333;
 }
 
