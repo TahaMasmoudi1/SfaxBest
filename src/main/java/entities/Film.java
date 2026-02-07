@@ -16,8 +16,8 @@ public class Film extends Multimedia {
     public Film() {
     }
 
-    public Film(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, Integer durationSeconds, String pathVideo) {
-        super(title, description, releaseYear, pathTrailer, pathBanner);
+    public Film(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, Integer durationSeconds, String pathVideo,String pathPoster) {
+        super(title, description, releaseYear, pathTrailer, pathBanner,pathPoster);
         this.durationSeconds = durationSeconds;
         this.pathVideo = pathVideo;
     }

@@ -15,8 +15,8 @@ public class Serie extends Multimedia {
     public Serie() {
     }
 
-    public Serie(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner) {
-        super(title, description, releaseYear, pathTrailer, pathBanner);
+    public Serie(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner,String pathPoster) {
+        super(title, description, releaseYear, pathTrailer, pathBanner, pathPoster);
     }
 
 

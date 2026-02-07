@@ -10,11 +10,11 @@ import java.util.List;
 
 public class DocumentaryService {
     public void save(String title, String description, String path_trailer
-            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds) {
+            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds,String pathPoster) {
         TraHelper.write(em ->{
             DocumentaryDAO documentaryDAO=new DocumentaryDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
-            Documentary documentary = new Documentary(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video);
+            Documentary documentary = new Documentary(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video,pathPoster);
             documentary.getCategories().addAll(categoryDAO.listByIds(categorieIds));
             documentaryDAO.save(documentary);
         });
@@ -32,7 +32,7 @@ public class DocumentaryService {
         });
     }
     public void update(Long documentaryId,String title, String description, String path_trailer
-            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds) throws NoResultException {
+            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds,String pathPoster) throws NoResultException {
         TraHelper.write(em ->{
             DocumentaryDAO documentaryDAO=new DocumentaryDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
@@ -49,6 +49,7 @@ public class DocumentaryService {
             documentary.setPathVideo(path_video);
             documentary.getCategories().clear();
             documentary.getCategories().addAll(categoryDAO.listByIds(categorieIds));
+            documentary.setPathPoster(pathPoster);
         });
     }
     public List<Documentary> findAll() throws NoResultException {
