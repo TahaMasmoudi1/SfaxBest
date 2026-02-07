@@ -27,10 +27,9 @@ public class FilmDAO {
         return em.find(Film.class, id);
     }
 
-    public List<Film> listAllWithCategories(int offset, int limit) {
+    public List<Film> listAllWithCategories() {
             return em.createQuery("select distinct f from Film f left join fetch f.categories " +
-                            " order by f.releaseYear desc", Film.class)
-                    .setFirstResult(offset).setMaxResults(limit).getResultList();
+                            " order by f.releaseYear desc", Film.class).getResultList();
     }
 
     public List<Film> listbyManyCategory(List<Long> ids,int offset,int limit) {
@@ -58,12 +57,23 @@ public class FilmDAO {
     }
     public List<Film> listFilmsSearch(String search, int offset, int limit) {
         String text=(search==null)?"":search.trim().toLowerCase();
-        return em.createQuery("select f from Film f where (:text)=''" +
-                " or lower(f.title) like:text or lower(f.description)like:text" +
+        return em.createQuery("select f from Film f where (:text=''" +
+                " or lower(f.title) like:text or lower(f.description)like:text)" +
                 " order by f.releaseYear desc ",Film.class).setParameter("text",text).setParameter("text","%"+text+"%").setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    //public List<Film> listFilmsSearchWithCategory(String search,List<Long> ids,int offset,int limit) {
-      //  String text=(search==null)?"":search.trim().toLowerCase();
-      //  return em.createQuery("select f from Film f left join fetch ")
-    //}
+    public List<Film> listFilmsSearchWithCategory(String search,List<Long> categoryIds,int offset,int limit) {
+       String text=(search==null)?"":search.trim().toLowerCase();
+        return em.createQuery(
+                        "select distinct f from Film f " +
+                                "left join f.categories c " +
+                                "where (:text = '' or lower(f.title) like :text or lower(f.description) like :text) " +
+                                "and (:idsEmpty = true or c.id in :ids) " +
+                                "order by f.releaseYear desc",Film.class)
+                .setParameter("text", text)
+                .setParameter("text", "%" + text + "%")
+                .setParameter("ids", categoryIds)
+                .setParameter("idsEmpty", categoryIds == null || categoryIds.isEmpty()).setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }

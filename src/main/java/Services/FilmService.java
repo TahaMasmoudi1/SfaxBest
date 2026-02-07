@@ -53,4 +53,10 @@ public class FilmService {
             film.getCategories().addAll(categoryDAO.listByIds(categorieIds));
         });
     }
+    public List<Film> listAllWithCategories() {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listAllWithCategories();
+        });
+    }
 }

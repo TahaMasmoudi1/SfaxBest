@@ -51,10 +51,10 @@ public class DocumentaryService {
             documentary.getCategories().addAll(categoryDAO.listByIds(categorieIds));
         });
     }
-    public List<Documentary> findAll(int offset, int limit) throws NoResultException {
+    public List<Documentary> findAll() throws NoResultException {
         return TraHelper.read(em -> {
             DocumentaryDAO documentaryDAO=new DocumentaryDAO(em);
-                return documentaryDAO.findAll(offset, limit);
+                return documentaryDAO.listAllWithCategories();
         });
     }
 }

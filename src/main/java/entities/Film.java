@@ -38,4 +38,12 @@ public class Film extends Multimedia {
         this.pathVideo = pathVideo;
     }
 
+    @Override
+    public String toString() {
+        return "Film{" +
+                super.toString()+
+                "durationSeconds=" + durationSeconds +
+                ", pathVideo='" + pathVideo + '\'' +
+                '}';
+    }
 }
