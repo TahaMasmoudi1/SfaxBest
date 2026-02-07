@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#switchToPrimary">
                <image>
-                  <Image url="@../../../icon/arrowBack_icon.png" />
+                  <Image url="@../../../icons/arrowBack_icon.png" />
                </image>
                <VBox.margin>
                   <Insets right="525.0" top="20.0" />
