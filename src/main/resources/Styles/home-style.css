@@ -1,0 +1,404 @@
+/* ================= ROOT ================= */
+
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+    -fx-background-color: #121720;
+}
+
+/* Remove ScrollPane white background */
+.scroll-pane {
+    -fx-background: #121720;
+    -fx-background-color: #121720;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #121720;
+}
+
+/* scroll bar style*/
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px; /* Controls how wide the scrollbar is */
+}
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 12px;
+}
+
+/* The Thumb (The moving handle - make it dark grey and rounded) */
+.scroll-bar .thumb {
+    -fx-background-color: #40444b; /* Dark Grey */
+    -fx-background-radius: 10px;    /* Fully rounded edges */
+    -fx-border-width: 2px;          /* Creates a gap around the thumb */
+    -fx-border-color: transparent;  /* Ensures the gap is see-through */
+    -fx-background-insets: 2px;     /* Shrinks thumb slightly to show the gap */
+}
+
+/* Hover Effect */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #72767d; /* Lighter Grey */
+}
+
+/*  The Track (The lane behind the handle - make it invisible) */
+.scroll-bar .track {
+    -fx-background-color: transparent; /* Or a very dark color like #0f111a */
+    -fx-border-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+/* The Arrows (Hide them completely) */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+}
+
+/* Remove the "Corner" where horizontal and vertical bars meet */
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+/* ================= TOP BAR ================= */
+
+.top-bar {
+    -fx-background-color: #0f141d;
+    -fx-border-color: #1e2633;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Logo image (ImageView) */
+.logo {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
+}
+
+/* Top bar icons */
+.top-icon {
+    -fx-opacity: 0.85;
+}
+
+.top-icon:hover {
+    -fx-opacity: 1.0;
+    -fx-cursor: hand;
+}
+
+/* ================= SECTION TITLES ================= */
+
+.section-title {
+    -fx-text-fill: #e6e6e6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* ================= FEATURED SECTION ================= */
+
+.featured-title {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.featured-banner {
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 20, 0.4, 0, 6);
+}
+
+/* ================= BUTTONS ================= */
+
+.button {
+    -fx-background-radius: 4;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+/* Primary (Watch Trailer) */
+.primary-button {
+    -fx-background-color: #c62828;
+    -fx-text-fill: white;
+    -fx-padding: 8 18 8 18;
+}
+
+.primary-button:hover {
+    -fx-background-color: #e53935;
+}
+
+/* Secondary (My List, etc.) */
+.secondary-button {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-text-fill: white;
+    -fx-padding: 8 18 8 18;
+}
+
+.secondary-button:hover {
+    -fx-background-color: rgba(255,255,255,0.25);
+}
+
+/* ================= MOVIE CARDS ================= */
+
+.movie-card {
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 12, 0.3, 0, 4);
+}
+
+.movie-card:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 18, 0.4, 0, 6);
+    -fx-cursor: hand;
+}
+
+/* Overlay label (ACTION, SERIES, etc.) */
+.card-badge {
+    -fx-background-color: rgba(0,0,0,0.65);
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 0 6 0 0;
+}
+
+/* ================= SCROLLBARS ================= */
+
+/* Horizontal scrollbar only */
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #2a3446;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #3b4861;
+}
+
+/* Hide vertical scrollbar styling noise */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+.menu-icon:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 0.85;
+}
+.side-menu {
+    -fx-background-color: linear-gradient(
+            to right,
+            #0f141d,
+            #121720
+    );
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 2, 0);
+}
+/* ===== Hero Banner Container ===== */
+
+.hero-banner {
+    -fx-pref-height: 260px;
+    -fx-max-height: 260px;
+    -fx-background-color: #0f141d;
+    -fx-background-radius: 12;
+    -fx-overflow: hidden;
+}
+/* ===== Carousel container ===== */
+
+.hero-carousel {
+    -fx-background-color: transparent;
+}
+
+/* ===== Active hero ===== */
+
+.hero-active {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
+}
+
+/* Main image */
+.hero-main {
+    -fx-opacity: 1;
+}
+
+/* Side banners */
+.hero-side {
+    -fx-opacity: 0.4;
+}
+
+/* ===== Arrows ===== */
+
+.hero-arrow-left {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 16;
+    -fx-cursor: hand;
+
+    -fx-opacity: 0.2;
+    -fx-transition: opacity 0.2 ease;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 6, 0.3, 0, 1);
+    -fx-alignment: center-left;
+    -fx-translate-x: -220;
+}
+
+.hero-arrow-right {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 16;
+    -fx-cursor: hand;
+
+    -fx-opacity: 0.2;
+    -fx-transition: opacity 0.2 ease;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 6, 0.3, 0, 1);
+    -fx-alignment: center-right;
+    -fx-translate-x: 130;
+}
+.hero-arrow-right:hover {
+    -fx-opacity:1;
+    -fx-text-fill: #ffffff;
+}
+.hero-arrow-left:hover {
+    -fx-opacity:1;
+    -fx-text-fill: #ffffff;
+}
+
+
+
+/* ===== Text ===== */
+
+.hero-content {
+    -fx-padding: 32;
+    -fx-spacing: 10;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+/* ==== hero button ====*/
+
+.hero-button {
+    -fx-background-color: rgba(0,0,0,0.45);
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-background-radius: 50%;
+    -fx-min-width: 64px;
+    -fx-max-height: 64px;
+    -fx-cursor: hand;
+
+    -fx-opacity:0.25 ;
+    -fx-transition : opacity 0.25s ease,background-color 0.25s ease;
+}
+.hero-button:hover {
+    -fx-opacity: 1;
+    -fx-background-color: rgba(0,0,0,0.65);
+}
+
+
+/* Image fills container but keeps ratio */
+.hero-image {
+    -fx-max-height: 260;
+    -fx-fit-width: 100%;
+    -fx-fit-height: 100%;
+}
+
+/* Content */
+.hero-content {
+    -fx-padding: 28;
+    -fx-spacing: 10;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.hero-button {
+    -fx-background-color: #c62828;
+    -fx-text-fill: white;
+    -fx-background-radius: 18;
+}
+
+
+/* ===== Featured Poster ===== */
+
+.featured-poster {
+    -fx-cursor: hand;
+}
+
+.featured-hover-overlay {
+    -fx-background-color: rgba(0,0,0,0.15);
+}
+
+
+/* Hover effect */
+.featured-poster:hover .featured-poster-image {
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.6),
+            25,
+            0.3,
+            0,
+            8
+    );
+}
+.featured-poster:hover .featured-hover-overlay {
+    visibility: true;
+
+}
+/* ===== Info Overlay ===== */
+
+.featured-info-overlay {
+    -fx-opacity: 0;
+    -fx-background-color: linear-gradient(
+            to top,
+            rgba(0,0,0,0.9),
+            rgba(0,0,0,0.0)
+    );
+    -fx-padding: 16;
+    -fx-spacing: 8;
+    -fx-pref-width: 100%;
+    -fx-max-width: Infinity;
+
+    -fx-transition: opacity 0.25s ease-in-out;
+}
+
+/* Reveal on hover */
+.featured-poster:hover .featured-info-overlay {
+    -fx-opacity: 1;
+
+}
+
+/* ===== Overlay Text ===== */
+
+.featured-title {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.featured-description {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 11px;
+}
+
+.featured-rating {
+    -fx-text-fill: #ffcc00;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
+
+
+/* ================= MISC ================= */
+
+.label {
+    -fx-text-fill: #e6e6e6;
+}
