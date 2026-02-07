@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #141414;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
     <children>
-        <VBox alignment="CENTER" minWidth="400.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);; -fx-background-radius: 10;">
+        <VBox alignment="CENTER" maxWidth="800.0" minWidth="600.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: black; -fx-background-radius: 10;">
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
-                <ImageView fitHeight="90.0" fitWidth="288.0">
+                <ImageView fitHeight="90.0" fitWidth="250.0">
                     <image>
-                        <Image url="@../../../images/logo_app.png" />
+                        <Image url="@../../../../../../../sabrina/src/main/resources/org/example/logo_app.png" />
                     </image>
                 </ImageView>
-                <Label maxWidth="1.7976931348623157E308" text="e-mail:" textFill="WHITE">
+                <Label maxWidth="1.7976931348623157E308" text="E-mail:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
                     </font>
@@ -38,7 +38,7 @@
                     </VBox.margin>
                 </TextField>
                 <Label fx:id="lblEmailError" managed="false" textFill="RED" visible="false" />
-                <Label maxWidth="1.7976931348623157E308" text="username:" textFill="WHITE">
+                <Label maxWidth="1.7976931348623157E308" text="Username:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
                     </font>
@@ -66,7 +66,7 @@
                     </VBox.margin>
                 </PasswordField>
                 <Label fx:id="lblPassError" managed="false" textFill="RED" visible="false" />
-                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="confirm password:" textFill="WHITE">
+                <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="Confirm password:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
                     </font>
@@ -87,6 +87,9 @@
                 </Button>
             <Hyperlink onAction="#switchToPrimary" text="do you already have an account ?" textFill="#b3b3b3" />
             </children>
+         <StackPane.margin>
+            <Insets left="100.0" right="100.0" />
+         </StackPane.margin>
         </VBox>
     </children>
 </StackPane>
