@@ -159,9 +159,11 @@ public abstract class Multimedia {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", releaseYear=" + releaseYear +
+                ", pathPoster='" + pathPoster + '\'' +
                 ", pathTrailer='" + pathTrailer + '\'' +
                 ", pathBanner='" + pathBanner + '\'' +
                 ", createdAt=" + createdAt +
+                ", categories=" + categories +
                 '}';
     }
 }
