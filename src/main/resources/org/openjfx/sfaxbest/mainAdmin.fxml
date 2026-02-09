@@ -17,13 +17,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/Admin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../Styles/Admin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="129.0" prefHeight="530.0" prefWidth="218.0" spacing="2.0" style="-fx-background-color: black;" styleClass="sidebar" BorderPane.alignment="TOP_RIGHT">
          <children>
             <ImageView fitHeight="60.0" fitWidth="66.0">
                <image>
-                  <Image url="@../../../icon/avatar_icon.png" />
+                  <Image url="@../../../icons/avatar_icon.png" />
                </image>
                <VBox.margin>
                   <Insets />

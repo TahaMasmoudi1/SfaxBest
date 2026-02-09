@@ -19,7 +19,7 @@
             <children>
                 <ImageView>
                     <image>
-                        <Image url="@../../../icon/avatar_icon.png" />
+                        <Image url="@../../../icons/avatar_icon.png" />
                     </image>
                     <VBox.margin>
                         <Insets />

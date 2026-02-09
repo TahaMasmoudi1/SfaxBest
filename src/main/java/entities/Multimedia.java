@@ -26,6 +26,9 @@ public abstract class Multimedia {
     @Column(name = "release_year")
     private Integer releaseYear;
 
+    @Column(name = "path_poster")
+    private String pathPoster;
+
     @Column(name = "path_trailer")
     private String pathTrailer;
 
@@ -48,12 +51,13 @@ public abstract class Multimedia {
     public Multimedia() {
     }
 
-    public Multimedia(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner) {
+    public Multimedia(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner,String pathPoster) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
         this.pathTrailer = pathTrailer;
         this.pathBanner = pathBanner;
+        this.pathPoster = pathPoster;
     }
 
     public Set<VideoCast> getVideoCasts() {
@@ -126,6 +130,14 @@ public abstract class Multimedia {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPathPoster() {
+        return pathPoster;
+    }
+
+    public void setPathPoster(String pathPoster) {
+        this.pathPoster = pathPoster;
     }
 
     @Override

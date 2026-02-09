@@ -12,11 +12,11 @@ public class FilmService {
 
 
     public void save(String title, String description, String path_trailer
-            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds) {
+            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds,String path_poster) {
         TraHelper.write(em ->{
             FilmDAO filmDAO = new FilmDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
-            Film film = new Film(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video);
+            Film film = new Film(title,description,release_year,path_trailer,path_banner,duration_seconds,path_video,path_poster);
             film.getCategories().addAll(categoryDAO.listByIds(categorieIds));
             filmDAO.save(film);
         });
@@ -34,7 +34,7 @@ public class FilmService {
         });
     }
     public void update(Long filmId,String title, String description, String path_trailer
-            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds) throws NoResultException {
+            , String path_banner, int release_year, int duration_seconds, String path_video, List<Long> categorieIds,String path_Poster) throws NoResultException {
         TraHelper.write(em ->{
             FilmDAO filmDAO = new FilmDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
@@ -51,6 +51,13 @@ public class FilmService {
             film.setPathVideo(path_video);
             film.getCategories().clear();
             film.getCategories().addAll(categoryDAO.listByIds(categorieIds));
+            film.setPathPoster(path_Poster);
+        });
+    }
+    public List<Film> listAllWithCategories() {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listAllWithCategories();
         });
     }
 }
