@@ -4,6 +4,8 @@ import entities.Comment;
 import entities.User;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
+
 public class CommentDAO {
     private final EntityManager em;
 
@@ -22,4 +24,13 @@ public class CommentDAO {
     public void update(Comment comment) {
         em.merge(comment);
     }
+    public Comment findById(Long id) {
+        return em.find(Comment.class, id);
+    }
+    public List<Comment> findAll(Long idMultimedia) {
+        return  em.createQuery("select c from Comment c where c.multimedia.id=:id " +
+                "order by c.commentDate", Comment.class)
+                .setParameter("id", idMultimedia).getResultList();
+    }
+
 }
