@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -89,15 +88,12 @@
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
-         <effect>
-            <Bloom threshold="0.0" />
-         </effect>
       </VBox>
    </left>
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="545.0" spacing="10.0" styleClass="content" BorderPane.alignment="CENTER">
          <children>
-             <TableView fx:id="movieTable" fixedCellSize="50.0" styleClass="movie-table" VBox.vgrow="ALWAYS">
+             <TableView fx:id="movieTable" fixedCellSize="30" maxHeight="500.0" prefHeight="90.0" prefWidth="382.0" styleClass="movie-table" VBox.vgrow="ALWAYS">
                  <columns>
                      <TableColumn fx:id="colId" text="ID" />
                      <TableColumn fx:id="colTitle" text="Title" />
@@ -116,50 +112,57 @@
                </columnResizePolicy>
              </TableView>
              <HBox alignment="CENTER" prefHeight="62.0" prefWidth="470.0" spacing="15">
-                 <Button styleClass="primary-button" text="Add" textFill="#232222" />
-                 <Button styleClass="secondary-button" text="Edit" />
+                 <Button onAction="#addFilms" styleClass="primary-button" text="Add" textFill="#232222" />
+                 <Button onAction="#editFilms" styleClass="secondary-button" text="Edit" />
                  <Button styleClass="danger-button" text="Delete" />
 
                  <VBox.margin>
                   <Insets />
                </VBox.margin>
              </HBox>
-             <VBox alignment="TOP_CENTER" spacing="8">
+             <VBox fx:id="form" alignment="TOP_CENTER" spacing="8" visible="false">
 
-                 <TextField fx:id="titleField" alignment="CENTER" maxWidth="500.0" promptText="Title">
+                 <TextField fx:id="tfTitle" alignment="CENTER" maxWidth="500.0" promptText="Title">
                   <font>
                      <Font size="14.0" />
                   </font></TextField>
 
-                 <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Description" style="-fx-background-color: black;">
+                 <TextArea fx:id="taDescription" prefRowCount="3" promptText="Description" style="-fx-background-color: black;">
                   <font>
                      <Font size="14.0" />
                   </font></TextArea>
-               <TextField fx:id="releaseDateField" alignment="CENTER" maxWidth="200.0" promptText="ReleaseDate(Year)">
+               <TextField fx:id="tfReleaseYear" alignment="CENTER" maxWidth="200.0" promptText="ReleaseDate(Year)">
                   <font>
                      <Font size="13.0" />
                   </font>
                </TextField>
 
-                 <TextField fx:id="durationField" alignment="CENTER" promptText="Duration (minutes)">
+                 <TextField fx:id="tfDuration" alignment="CENTER" promptText="Duration (minutes)">
                   <font>
                      <Font size="14.0" />
                   </font></TextField>
 
                  <HBox alignment="TOP_CENTER" spacing="5">
-                     <TextField fx:id="trailerField" editable="false" promptText="Trailer path" />
+                     <TextField fx:id="tfTrailer" editable="false" promptText="Trailer path" />
                      <Button text="Browse" />
                  </HBox>
 
                  <HBox alignment="TOP_CENTER" spacing="5">
-                     <TextField fx:id="bannerField" editable="false" promptText="Banner path" />
+                     <TextField fx:id="tfBanner" editable="false" promptText="Banner path" />
                      <Button text="Browse" />
                  </HBox>
 
                  <HBox alignment="TOP_CENTER" spacing="5">
-                     <TextField fx:id="videoField" editable="false" promptText="Video path" />
+                     <TextField fx:id="tfVideo" editable="false" promptText="Video path" />
                      <Button text="Browse" />
                  </HBox>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <children>
+                     <Button fx:id="edit2btn" onAction="#editFilms" styleClass="secondary-button" text="Edit" visible="false" />
+                     <Button fx:id="add2btn" styleClass="primary-button" text="Add" textFill="#232222" visible="false" />
+                     <Button styleClass="danger-button" text="Delete" />
+                  </children>
+               </HBox>
 
              </VBox>
          </children>
