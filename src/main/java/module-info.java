@@ -17,7 +17,8 @@ module org.openjfx.sfaxbest {
     requires jakarta.mail;
 
 
-    opens entities to org.hibernate.orm.core, jakarta.persistence;
+    opens entities to org.hibernate.orm.core, jakarta.persistence,javafx.base;
     opens org.openjfx.sfaxbest to javafx.fxml;
+
     exports org.openjfx.sfaxbest;
 }
