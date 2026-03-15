@@ -21,7 +21,7 @@
             <children>
             <ImageView fitHeight="133.0" fitWidth="200.0">
                <image>
-                  <Image url="@../../../images/logo_app.png" />
+                  <Image url="@../../../Images/logo_app.png" />
                </image>
             </ImageView>
                 <Label maxWidth="1.7976931348623157E308" text="E-mail:" textFill="WHITE">

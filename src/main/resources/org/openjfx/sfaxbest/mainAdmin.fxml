@@ -33,12 +33,12 @@
                </font>
             </Label>
             <Separator prefHeight="2.0" prefWidth="200.0" style="-fx-background-color: white;" />
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="0.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="dashboard" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
+            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" onAction="#goToDashbaord" opacity="0.85" prefHeight="50.0" prefWidth="0.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="dashboard" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
                <VBox.margin>
                   <Insets bottom="-10.0" />
                </VBox.margin></Button>
              <VBox alignment="TOP_CENTER" prefHeight="101.0" prefWidth="168.0" spacing="3.0" styleClass="submenu">
-                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="168.0" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Films">
+                 <Button fx:id="filmbtn" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="168.0" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Films">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
@@ -55,7 +55,7 @@
                   <padding>
                      <Insets left="20.0" />
                   </padding></Button>
-                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Documentary">
+                 <Button fx:id="documentarybtn" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#goToDocumantary" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Documentary">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
