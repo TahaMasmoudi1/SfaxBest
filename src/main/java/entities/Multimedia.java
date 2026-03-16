@@ -36,8 +36,11 @@ public abstract class Multimedia {
     private String pathBanner;
 
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
+
     private Instant createdAt;
+
     @ManyToMany(fetch = FetchType.LAZY)
+
     @JoinTable(
             name = "multimedia_category",
             joinColumns = @JoinColumn(name = "id_multimedia"),
