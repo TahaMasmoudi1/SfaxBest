@@ -14,29 +14,31 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane stylesheets="@../../../Styles/home-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.HomeViewController">
+<StackPane stylesheets="@../../../Styles/home-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.testuifx.HomeViewController">
 
     <!-- ================= MAIN APP ================= -->
 
-    <BorderPane prefHeight="800" prefWidth="1280" style="-fx-background-color: #121720;">
+    <BorderPane prefHeight="800" prefWidth="1280" style="-fx-background-color: #101010;">
 
         <!-- ================= TOP BAR ================= -->
 
         <top>
             <HBox alignment="CENTER_LEFT" prefHeight="60" spacing="20" styleClass="top-bar">
                 <padding>
-                    <Insets left="30" right="30" />
+                    <Insets left="20" right="30" />
                 </padding>
 
                 <!-- MENU ICON -->
-                <ImageView fitHeight="24" fitWidth="24" onMouseClicked="#toggleMenu" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
-                    <image>
-                        <Image url="@../../../Images/menu_icon.png" />
-                    </image>
-                </ImageView>
+                <StackPane onMouseClicked="#toggleMenu" pickOnBounds="true" styleClass="menu-icon">
+                    <ImageView fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                        <image>
+                            <Image url="@../../../icons/menu_icon.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
 
                 <!-- LOGO -->
-                <ImageView fitHeight="50" preserveRatio="true" styleClass="logo">
+                <ImageView fitHeight="40" preserveRatio="true" styleClass="logo">
                     <image>
                         <Image url="@../../../Images/logo_app.png" />
                     </image>
@@ -45,22 +47,28 @@
                 <Region HBox.hgrow="ALWAYS" />
 
                 <!-- RIGHT ICONS -->
-                <HBox alignment="CENTER_RIGHT" spacing="20">
-                    <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
-                        <image>
-                            <Image url="@../../../Images/search_icon.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
-                        <image>
-                            <Image url="@../../../Images/notifications_icon.png" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
-                        <image>
-                            <Image url="@../../../Images/account_circle_icon.png" />
-                        </image>
-                    </ImageView>
+                <HBox alignment="CENTER_RIGHT" spacing="10" >
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/search_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/notifications_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/account_circle_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
                 </HBox>
             </HBox>
         </top>
@@ -68,22 +76,22 @@
         <!-- ================= CENTER CONTENT ================= -->
 
         <center>
-            <ScrollPane fx:id="MainScrollPane" fitToWidth="true" style="-fx-background: #121720;" vbarPolicy="AS_NEEDED">
-      
+            <ScrollPane fx:id="MainScrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #101010;" vbarPolicy="AS_NEEDED">
+
                 <content>
-                    <VBox spacing="25" style="-fx-background-color: #121720;">
+                    <VBox spacing="50" style="-fx-background-color: #101010;">
                         <padding>
                             <Insets bottom="40" left="30" right="30" top="20" />
                         </padding>
-      
+
                         <!-- ========== FEATURED MOVIE ========== -->
-      
+
                         <VBox spacing="10">
-      
+
                             <Label styleClass="section-title" text="Featured Movie" />
-      
+
                             <HBox prefHeight="260" spacing="20">
-      
+
                                 <!-- Poster -->
                                 <StackPane styleClass="featured-poster">
                                     <ImageView fitHeight="260" fitWidth="180" preserveRatio="false" styleClass="featured-poster-image">
@@ -105,34 +113,24 @@
                                     </VBox>
 
                                 </StackPane>
-      
+                                <Pane minWidth="340"/>
                                 <!-- Banner -->
                                 <StackPane prefHeight="260" styleClass="hero-carousel">
 
-                                    <!-- Carousel content -->
-                                    <HBox fx:id="heroRow" alignment="CENTER" spacing="20">
 
-                                        <!-- Previous banner -->
-                                        <ImageView fx:id="prevHero" fitHeight="220" preserveRatio="true" styleClass="hero-side">
-                                            <image>
-                                                <Image url="@../../../Images/Gladiator_hero.jpg" />
-                                            </image>
-                                        </ImageView>
+
+                                    <!-- Carousel content -->
+                                    <HBox fx:id="heroRow" alignment="CENTER" prefWidth="Infinity" StackPane.alignment="CENTER" >
 
                                         <!-- Active banner -->
-                                        <StackPane styleClass="hero-active">
+
+                                        <StackPane fx:id="activeSlot" alignment="CENTER" StackPane.alignment="CENTER" styleClass="hero-active">
 
                                             <ImageView fx:id="activeHero" fitHeight="260" preserveRatio="true" styleClass="hero-main">
                                                 <image>
                                                     <Image url="@../../../Images/galacticwar_panel.png" />
                                                 </image>
                                             </ImageView>
-
-                                            <VBox alignment="TOP_LEFT" styleClass="hero-content" StackPane.alignment="TOP_LEFT">
-
-                                                <Label fx:id="heroTitle" styleClass="hero-title" text="Galactic War" />
-
-                                            </VBox>
 
                                             <VBox alignment="CENTER" StackPane.alignment="CENTER">
 
@@ -142,72 +140,62 @@
 
                                         </StackPane>
 
-                                        <!-- Next banner -->
-                                        <ImageView fx:id="nextHero" fitHeight="220" preserveRatio="true" styleClass="hero-side">
-                                            <image>
-                                                <Image url="@../../../Images/Venom_hero.jpg" />
-                                            </image>
-                                        </ImageView>
-                              <StackPane.margin>
-                                 <Insets left="20.0" />
-                              </StackPane.margin>
-
                                     </HBox>
 
 
-                                    <!-- Left arrow -->
-                                    <Button onAction="#previousHero" styleClass="hero-arrow-left" text="❮" />
-
-                                    <!-- Right arrow -->
-                                    <Button onAction="#nextHero" styleClass="hero-arrow-right" text="❯" />
 
                                 </StackPane>
+                                <Pane minWidth="100"/>
                             </HBox>
                         </VBox>
-      
-                        <!-- ========== POPULAR MOVIES ========== -->
-      
-                        <VBox spacing="10">
-      
-                            <Label styleClass="section-title" text="Popular Movies" />
-      
-                            <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" styleClass="popular-movie-carousel" vbarPolicy="NEVER">
-      
-                                <content>
 
-                                </content>
+                        <!-- ========== POPULAR MOVIES ========== -->
+
+                        <VBox spacing="10">
+
+                            <Label styleClass="section-title" text="Popular Movies" />
+
+                            <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" styleClass="popular-movie-carousel" vbarPolicy="NEVER">
+
+                                <HBox fx:id="PopularPosterRow" prefHeight="240" spacing="20">
+
+                                    <!-- the content is allocated dynamically-->
+
+                                </HBox>
                             </ScrollPane>
                         </VBox>
-      
+
                         <!-- ========== TRENDING SERIES ========== -->
-      
+
                         <VBox spacing="10">
-      
+
                             <Label styleClass="section-title" text="Trending Series" />
 
                             <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
-      
-                                <content>
 
-                                </content>
+                                <HBox fx:id="TrendingPosterRow" prefHeight="240" spacing="20">
+
+                                    <!-- the content is allocated dynamically-->
+
+                                </HBox>
                             </ScrollPane>
                         </VBox>
-      
+
                     </VBox>
                 </content>
-            <padding>
-               <Insets top="20.0" />
-            </padding>
+                <padding>
+                    <Insets top="20.0" />
+                </padding>
             </ScrollPane>
         </center>
     </BorderPane>
 
     <!-- ================= SIDE MENU (DASHBOARD) ================= -->
 
-    <VBox fx:id="VBsideMenu" alignment="TOP_LEFT" maxWidth="260" mouseTransparent="true" prefWidth="880" spacing="20" styleClass="side-menu" translateX="-880">
+    <VBox fx:id="VBsideMenu" alignment="TOP_LEFT" maxWidth="260" mouseTransparent="true" prefWidth="880" spacing="20" styleClass="side-menu" translateX="-900">
 
         <padding>
-            <Insets left="20" right="20" top="30" />
+            <Insets bottom="10" left="20" right="20" top="30" />
         </padding>
 
         <!-- USER INFO -->
@@ -220,13 +208,34 @@
         <Separator />
 
         <!-- MENU ITEMS -->
-        <Button styleClass="menu-button" text="🏠 Home" />
-        <Button styleClass="menu-button" text="⭐ Favorites" />
-        <Button styleClass="menu-button" text="🕒 Watch History" />
-        <Button styleClass="menu-button" text="🆕 New Releases" />
-        <Button styleClass="menu-button" text="⚙ Settings" />
+        <Button styleClass="menu-button" text="🏠  Home" />
+        <Button styleClass="menu-button" text="⭐  Favorites" />
+        <Button styleClass="menu-button" text="🕒  Watch History" />
+        <Button styleClass="menu-button" text="🆕  New Releases" />
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <Separator />
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/settings_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Settings"/>
+        </HBox>
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/logout_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Log out"/>
+        </HBox>
 
     </VBox>
-   <Pane fx:id="SideMenuPane" maxWidth="-Infinity" onMouseClicked="#InitializeMenu" opacity="0.7" prefHeight="200.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false" StackPane.alignment="CENTER_RIGHT" />
+    <Pane fx:id="SideMenuPane" maxWidth="-Infinity" onMouseClicked="#toggleMenu" opacity="0.7" prefHeight="200.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false" StackPane.alignment="CENTER_RIGHT" />
 
 </StackPane>
