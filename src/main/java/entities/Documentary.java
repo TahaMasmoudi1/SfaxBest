@@ -17,8 +17,8 @@ public class Documentary extends Multimedia {
     public Documentary() {
     }
 
-    public Documentary(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, Integer durationSeconds, String pathVideo) {
-        super(title, description, releaseYear, pathTrailer, pathBanner);
+    public Documentary(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, Integer durationSeconds, String pathVideo,String pathPoster) {
+        super(title, description, releaseYear, pathTrailer, pathBanner,pathPoster);
         this.durationSeconds = durationSeconds;
         this.pathVideo = pathVideo;
     }

@@ -19,11 +19,11 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
-                <ImageView fitHeight="90.0" fitWidth="250.0">
-                    <image>
-                        <Image url="@../../../../../../../sabrina/src/main/resources/org/example/logo_app.png" />
-                    </image>
-                </ImageView>
+            <ImageView fitHeight="133.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../../../Images/logo_app.png" />
+               </image>
+            </ImageView>
                 <Label maxWidth="1.7976931348623157E308" text="E-mail:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />

@@ -22,6 +22,9 @@ public class UserDAO  {
     public void update(User user) {
             em.merge(user);
     }
+    public User findById(Long id) {
+        return em.find(User.class, id);
+    }
 
     public User findByUsername(String username) {
         try {

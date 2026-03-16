@@ -11,11 +11,11 @@ import java.util.List;
 public class SerieService {
 
 
-    public void save(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, List<Long> categorieIds) {
+    public void save(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner, List<Long> categorieIds,String pathPoster) {
         TraHelper.write(em -> {
             SerieDAO serieDAO = new SerieDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
-            Serie serie = new Serie(title, description, releaseYear, pathTrailer, pathBanner);
+            Serie serie = new Serie(title, description, releaseYear, pathTrailer, pathBanner,pathPoster);
             serie.getCategories().addAll(categoryDAO.listByIds(categorieIds));
             serieDAO.save(serie);
         });
@@ -33,7 +33,7 @@ public class SerieService {
         });
     }
 
-    public void update(Long serieId, String title, String description, String path_trailer, String path_banner, int release_year, List<Long> categorieIds) throws NoResultException {
+    public void update(Long serieId, String title, String description, String path_trailer, String path_banner, int release_year, List<Long> categorieIds,String pathPoster) throws NoResultException {
         TraHelper.write(em -> {
             SerieDAO serieDAO = new SerieDAO(em);
             CategoryDAO categoryDAO = new CategoryDAO(em);
@@ -48,6 +48,7 @@ public class SerieService {
             serie.setReleaseYear(release_year);
             serie.getCategories().clear();
             serie.getCategories().addAll(categoryDAO.listByIds(categorieIds));
+            serie.setPathPoster(pathPoster);
         });
     }
 }

@@ -19,11 +19,11 @@
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
             <children>
-                <ImageView fitHeight="90.0" fitWidth="250.0">
-                    <image>
-                        <Image url="@../../../../../../../sabrina/src/main/resources/org/example/logo_app.png" />
-                    </image>
-                </ImageView>
+            <ImageView fitHeight="78.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../../../Images/logo_app.png" />
+               </image>
+            </ImageView>
             <Label fx:id="lblLoginError" textFill="RED" visible="false" />
                 <Label maxWidth="1.7976931348623157E308" text="Username:" textFill="WHITE">
                     <font>
