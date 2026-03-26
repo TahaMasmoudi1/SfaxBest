@@ -8,18 +8,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("mainAdmin" ), 740, 580);
-        stage.setMinHeight(580);
-        stage.setMinWidth(740);
+        scene = new Scene(loadFXML("dashboardAdmin" ), 900, 600);
+        stage.setMinHeight(600);
+        stage.setMinWidth(900);
         stage.setScene(scene);
         stage.show();
     }

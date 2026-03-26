@@ -1,20 +1,18 @@
 package org.openjfx.sfaxbest;
 
-import Services.FilmService;
+import Services.DocumentaryService;
 import entities.Category;
 import entities.Film;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
-public class AdminController {
+public class SerieController {
     @FXML private TableView<Film> movieTable;
     @FXML private TableColumn<Film, Integer> colId;
     @FXML private TableColumn<Film, String> colTitle;
@@ -38,17 +36,21 @@ public class AdminController {
     @FXML private Button edit2btn;
 
 
-    FilmService filmService= new FilmService();
+    DocumentaryService documentaryService = new DocumentaryService();
     @FXML
-    public void goToSeries() throws IOException {
-        App.setRoot("seriesAdmin");
+    public void goToFilms() throws IOException {
+        App.setRoot("mainAdmin");
+    }
+    @FXML
+    public void goToComments() throws IOException{
+        App.setRoot("commentAdmin");
     }
     @FXML
     public void goToDocumantary() throws IOException {
         App.setRoot("documantaryAdmin");
     }
     @FXML
-    public void goToDashbaord() throws IOException{
+    public void gotoDashboard()throws IOException{
         App.setRoot("dashboardAdmin");
     }
     @FXML
@@ -67,10 +69,10 @@ public class AdminController {
         colDuration.prefWidthProperty().bind(movieTable.widthProperty().multiply(0.07));
         colVideo.prefWidthProperty().bind(movieTable.widthProperty().multiply(0.07));
 
-        loadFilms();
+        loadSerie();
     }
 
-    public void loadFilms() {
+    public void loadSerie() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -108,7 +110,7 @@ public class AdminController {
 
                 new Film(
                         "The Matrix",
-                        "A hacker discovers reality is a simulation.",
+                        "wiiiiiw",
                         1999,
                         "trailer/matrix.mp4",
                         "banner/matrix.jpg",
@@ -130,7 +132,7 @@ public class AdminController {
         )));
     }
     @FXML
-    public void editFilms() {
+    public void editSerie() {
         form.setManaged(true);
         form.setVisible(true);
         edit2btn.setVisible(true);
@@ -162,12 +164,12 @@ public class AdminController {
 
             }
         });
-        loadFilms();
+        loadSerie();
 
 
     }
     @FXML
-    public void addFilms() {
+    public void addSerie() {
         movieTable.setOnMouseClicked(event->{});
         tfTitle.setText(null);
         tfBanner.setText(null);
@@ -191,15 +193,15 @@ public class AdminController {
         int duration = Integer.parseInt(tfDuration.getText());
         String video = tfVideo.getText();*/
         //filmService.save(title,description,trailer,banner,releaseDate,duration,video,1,2);
-        loadFilms();
+        loadSerie();
     }
-    public void deleteFilms() {
+    public void deleteSerie() {
         movieTable.setOnMouseClicked(event->{
             Film newSelection = movieTable.getSelectionModel().getSelectedItem();
             if(newSelection!=null){
                 Long id = newSelection.getId();
-                filmService.delete(id);
-                loadFilms();
+                documentaryService.delete(id);
+                loadSerie();
             }
         });
 

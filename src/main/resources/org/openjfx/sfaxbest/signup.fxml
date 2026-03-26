@@ -12,27 +12,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../Styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
     <children>
-        <VBox alignment="CENTER" maxWidth="800.0" minWidth="600.0" prefHeight="200.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: black; -fx-background-radius: 10;">
+        <VBox alignment="CENTER" maxWidth="800.0" minWidth="600.0" prefHeight="200.0" prefWidth="400.0" spacing="20.0">
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
             <children>
-            <ImageView fitHeight="133.0" fitWidth="200.0">
+            <ImageView fitHeight="78.0" fitWidth="200.0">
                <image>
                   <Image url="@../../../Images/logo_app.png" />
                </image>
             </ImageView>
                 <Label maxWidth="1.7976931348623157E308" text="E-mail:" textFill="WHITE">
                     <font>
-                        <Font size="22.0" />
+                        <Font size="24.0" />
                     </font>
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
                 </Label>
-                <TextField fx:id="tfEmail" style="-fx-background-color: #333333;-fx-text-fill: white;">
+                <TextField fx:id="tfEmail">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="-10.0" />
                     </VBox.margin>
@@ -40,13 +43,13 @@
                 <Label fx:id="lblEmailError" managed="false" textFill="RED" visible="false" />
                 <Label maxWidth="1.7976931348623157E308" text="Username:" textFill="WHITE">
                     <font>
-                        <Font size="22.0" />
+                        <Font size="24.0" />
                     </font>
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="tfUsername" style="-fx-background-color: #333333;-fx-text-fill: white;">
+                <TextField fx:id="tfUsername">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
@@ -54,13 +57,13 @@
                 <Label fx:id="lblUsernameError" managed="false" textFill="RED" visible="false" />
                 <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="Password:" textFill="WHITE">
                     <font>
-                        <Font size="22.0" />
+                        <Font size="24.0" />
                     </font>
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <PasswordField fx:id="pfPassword" style="-fx-background-color: #333333;-fx-text-fill: white;">
+                <PasswordField fx:id="pfPassword">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="-10.0" />
                     </VBox.margin>
@@ -68,19 +71,19 @@
                 <Label fx:id="lblPassError" managed="false" textFill="RED" visible="false" />
                 <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="Confirm password:" textFill="WHITE">
                     <font>
-                        <Font size="22.0" />
+                        <Font size="24.0" />
                     </font>
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <PasswordField fx:id="pfConfirmPassword" style="-fx-background-color: #333333;-fx-text-fill: white;">
+                <PasswordField fx:id="pfConfirmPassword">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </PasswordField>
                 <Label fx:id="lblConfirmPassError" managed="false" textFill="RED" visible="false" />
-                <Button fx:id="btnSign" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: #e50914; -fx-font-weight: bold;" text="Sign up" textFill="WHITE">
+                <Button fx:id="btnSign" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signUp" text="Sign In">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="10.0" />
                     </VBox.margin>

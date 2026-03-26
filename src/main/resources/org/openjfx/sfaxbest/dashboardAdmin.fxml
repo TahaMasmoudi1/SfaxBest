@@ -12,109 +12,148 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!--
+    SfaxBest — Dashboard
+    CSS  : Admin.css  (same folder, shared with Admin panel)
+    All fx:id and fx:controller values are UNCHANGED.
+-->
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="738.0" stylesheets="@../../../Styles/Admin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.DashboardController">
+
+    <!-- ════════════════════════════════════════════
+         LEFT — SIDEBAR  (mirrors Admin layout)
+    ════════════════════════════════════════════ -->
     <left>
-        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="129.0" prefHeight="530.0" prefWidth="218.0" spacing="2.0" styleClass="sidebar" BorderPane.alignment="TOP_RIGHT">
-            <children>
-                <ImageView fitHeight="60.0" fitWidth="66.0">
-                    <image>
-                        <Image url="@../../../icons/avatar_icon.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </ImageView>
-                <Label prefHeight="34.0" prefWidth="53.0" text="Admin" textFill="WHITE">
-                    <font>
-                        <Font size="17.0" />
-                    </font>
-                </Label>
-                <Separator prefHeight="2.0" prefWidth="200.0" style="-fx-background-color: white;" />
-                <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="0.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="dashboard" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-                    <VBox.margin>
-                        <Insets bottom="-10.0" />
-                    </VBox.margin></Button>
-                <VBox alignment="TOP_CENTER" prefHeight="101.0" prefWidth="168.0" spacing="3.0" styleClass="submenu">
-                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#goToFilms" prefHeight="38.0" prefWidth="168.0" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Films">
-                        <VBox.margin>
-                            <Insets />
-                        </VBox.margin>
-                        <padding>
-                            <Insets left="20.0" />
-                        </padding>
-                        <font>
-                            <Font size="14.0" />
-                        </font></Button>
-                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onAction="#goToSeries" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Series">
-                        <VBox.margin>
-                            <Insets />
-                        </VBox.margin>
-                        <padding>
-                            <Insets left="20.0" />
-                        </padding></Button>
-                    <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 13; -fx-font-weight: bold;" styleClass="submenu-button" text="       Documentary">
-                        <VBox.margin>
-                            <Insets />
-                        </VBox.margin>
-                        <padding>
-                            <Insets left="20.0" />
-                        </padding></Button>
-                    <VBox.margin>
-                        <Insets left="20.0" />
-                    </VBox.margin>
-                </VBox>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" prefWidth="106.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Multimedia" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin></Button>
-                <Button contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Comments" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin></Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" minHeight="30.0" mnemonicParsing="false" opacity="0.85" prefHeight="50.0" style="-fx-font-weight: bold;" styleClass="sidebar-button" text="Button" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="SOMETIMES">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin></Button>
-            </children>
+        <VBox alignment="TOP_CENTER" maxWidth="220.0" minWidth="238.0" prefHeight="560.0" prefWidth="238.0" spacing="0" styleClass="sidebar" BorderPane.alignment="TOP_LEFT">
+
             <padding>
-                <Insets bottom="20.0" top="10.0" />
+                <Insets bottom="24.0" top="24.0" />
             </padding>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
+
+            <!-- Divider -->
+            <Separator prefWidth="160.0" style="-fx-opacity: 0.25;">
+                <VBox.margin><Insets bottom="10.0" top="4.0" /></VBox.margin>
+            </Separator>
+         <ImageView fitHeight="90.0" fitWidth="100.0">
+            <image>
+               <Image url="@../../../icons/Adminlogo.png" />
+            </image>
+         </ImageView>
+
+            <!-- Dashboard — active page -->
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="⬛  Dashboard" textFill="WHITE" VBox.vgrow="NEVER" />
+
+            <!-- Content submenu -->
+            <VBox spacing="0.0" styleClass="submenu">
+                <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Content" textFill="WHITE" VBox.vgrow="NEVER" />
+                <VBox spacing="0">
+                    <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" onAction="#goToFilms" styleClass="submenu-button" text="Films">
+                        <font><Font size="13.0" /></font>
+                    </Button>
+                    <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" onAction="#goToSeries" styleClass="submenu-button" text="Series" />
+                    <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" onAction="#goToDocumantary" styleClass="submenu-button" text="Documentary" />
+                </VBox>
+            </VBox>
+
+            <!-- Multimedia -->
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Multimedia" textFill="WHITE" VBox.vgrow="NEVER" />
+
+            <!-- Comments -->
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToComments" styleClass="sidebar-button" text="▸  Comments" textFill="WHITE" VBox.vgrow="NEVER" />
+
+            <!-- Users -->
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Users" textFill="WHITE" VBox.vgrow="NEVER" />
+
+            <Region VBox.vgrow="ALWAYS" />
+
         </VBox>
     </left>
+
+    <!-- ════════════════════════════════════════════
+         CENTER — DASHBOARD CONTENT
+    ════════════════════════════════════════════ -->
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="545.0" spacing="10.0" styleClass="content" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_LEFT" prefWidth="538.0" spacing="14.0" styleClass="content" BorderPane.alignment="CENTER">
+
             <padding>
-                <Insets bottom="40.0" top="10.0" />
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
-         <children>
-            <PieChart fx:id="categoryPieChart" prefHeight="199.0" prefWidth="269.0" style="-fx-background-color: grey;" title="charts" />
-            <BarChart fx:id="topMoviesBarChart" prefHeight="178.0" prefWidth="320.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <LineChart fx:id="subscribersLineChart">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
-         </children>
+
+            <!-- ── Page heading ── -->
+            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                <Label styleClass="section-heading" text="Dashboard" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="section-subheading" text="Overview · SfaxBest Admin" />
+            </HBox>
+
+            <!-- ── Stat cards row ── -->
+            <HBox spacing="10.0">
+
+                <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card-accent" HBox.hgrow="ALWAYS">
+                    <Label styleClass="stat-label" text="TOTAL FILMS" />
+                    <Label styleClass="stat-number-red" text="—" />
+                </VBox>
+
+                <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <Label styleClass="stat-label" text="SERIES" />
+                    <Label styleClass="stat-number" text="—" />
+                </VBox>
+
+                <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <Label styleClass="stat-label" text="SUBSCRIBERS" />
+                    <Label styleClass="stat-number" text="—" />
+                </VBox>
+
+                <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                    <Label styleClass="stat-label" text="COMMENTS" />
+                    <Label styleClass="stat-number" text="—" />
+                </VBox>
+
+            </HBox>
+
+            <!-- ── Charts row: Bar + Pie ── -->
+            <HBox spacing="12.0" VBox.vgrow="ALWAYS">
+
+                <!-- Bar chart card -->
+                <VBox spacing="6.0" styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <Label styleClass="chart-title-label" text="TOP FILMS BY VIEWS" />
+                    <BarChart fx:id="topMoviesBarChart" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="bar-chart" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis side="LEFT" tickLabelFill="#555555" />
+                        </yAxis>
+                    </BarChart>
+                </VBox>
+
+                <!-- Pie chart card -->
+                <VBox spacing="6.0" styleClass="chart-card" HBox.hgrow="ALWAYS">
+                    <Label styleClass="chart-title-label" text="CONTENT BY CATEGORY" />
+                    <PieChart fx:id="categoryPieChart" animated="false" labelsVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pie-chart" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                </VBox>
+
+            </HBox>
+
+            <!-- ── Line chart card ── -->
+            <VBox spacing="6.0" styleClass="chart-card" VBox.vgrow="ALWAYS">
+                <Label styleClass="chart-title-label" text="SUBSCRIBERS OVER TIME" />
+                <LineChart fx:id="subscribersLineChart" animated="false" createSymbols="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="line-chart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" tickLabelFill="#555555" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
 
         </VBox>
     </center>
+
 </BorderPane>
