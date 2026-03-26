@@ -35,6 +35,10 @@ public class DashboardController {
         App.setRoot("mainAdmin");
     }
     @FXML
+    public void goToComments() throws IOException{
+        App.setRoot("commentAdmin");
+    }
+    @FXML
     public void initialize() {
 
         loadCategoryChart();

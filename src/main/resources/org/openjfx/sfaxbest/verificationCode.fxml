@@ -5,58 +5,85 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
-   <children>
-      <VBox alignment="TOP_CENTER" maxHeight="309.0" maxWidth="600.0" minWidth="600.0" prefHeight="309.0" prefWidth="600.0" style="-fx-background-color: blak; -fx-background-radius: 20; -fx-border-color: grey; -fx-border-radius: 20; -fx-border-width: 5;">
-         <StackPane.margin>
-            <Insets bottom="330.0" left="140.0" right="140.0" top="330.0" />
-         </StackPane.margin>
-         <children>
-            <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#switchToPrimary">
-               <image>
-                  <Image url="@../../../icons/arrowBack_icon.png" />
-               </image>
-               <VBox.margin>
-                  <Insets right="525.0" top="20.0" />
-               </VBox.margin>
-            </ImageView>
-            <Label prefHeight="46.0" prefWidth="347.0" text="Verify your email address" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="-25.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Ebrima" size="31.0" />
-               </font>
+<!--
+    SfaxBest — Email Verification Scene
+    CSS  : login.css  (shared with login scene)
+    All fx:id and fx:controller values are UNCHANGED.
+-->
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../Styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.signupController">
+
+    <children>
+
+        <!-- ════════════════════════════════════
+             VERIFICATION CARD
+        ════════════════════════════════════ -->
+        <VBox alignment="CENTER" maxHeight="600.0" maxWidth="480.0" minWidth="420.0" prefWidth="460.0" spacing="0" styleClass="vbox">
+
+            <padding>
+                <Insets bottom="42.0" left="52.0" right="52.0" top="42.0" />
+            </padding>
+
+            <!-- ── Back arrow row ── -->
+            <HBox alignment="CENTER_LEFT">
+                <VBox.margin><Insets bottom="18.0" /></VBox.margin>
+                <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#switchToPrimary" style="-fx-cursor: hand; -fx-opacity: 0.65;">
+                    <image>
+                        <Image url="@../../../icons/arrowBack_icon.png" />
+                    </image>
+                </ImageView>
+            </HBox>
+
+            <!-- ── Logo / envelope icon area ── -->
+            <VBox alignment="CENTER" spacing="10.0">
+                <VBox.margin><Insets bottom="24.0" /></VBox.margin>
+
+                <!-- decorative mail icon placeholder (replace with ImageView if you have an asset) -->
+                <Label style="-fx-font-size: 42px; -fx-text-fill: #e50914;                            -fx-effect: dropshadow(gaussian, rgba(229,9,20,0.55), 18, 0.3, 0, 0);" styleClass="verify-icon-label" text="✉" />
+
+                <!-- accent bar under icon -->
+                <Region styleClass="accent-bar" />
+            </VBox>
+
+            <!-- ── Heading ── -->
+            <Label maxWidth="1.7976931348623157E308" styleClass="verify-title" text="Verify your email" wrapText="true" />
+
+            <!-- ── Subtitle ── -->
+            <Label maxWidth="1.7976931348623157E308" styleClass="verify-subtitle" text="Enter the 6-digit code sent to your inbox." wrapText="true">
+                <VBox.margin><Insets bottom="28.0" top="6.0" /></VBox.margin>
             </Label>
-            <TextField fx:id="tfVerifCode" alignment="CENTER" focusTraversable="false" minHeight="60.0" prefHeight="60.0" prefWidth="290.0" promptText=" * * * * * * " style="-fx-background-radius: 15; -fx-border-width: 3; -fx-border-color: white; -fx-border-radius: 15;">
-               <VBox.margin>
-                  <Insets left="150.0" right="150.0" top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="28.0" />
-               </font>
+
+            <!-- ── Code field (fx:id preserved) ── -->
+            <TextField fx:id="tfVerifCode" alignment="CENTER" maxWidth="280.0" promptText="• • • • • •" styleClass="code-field">
+                <font><Font size="26.0" /></font>
+                <VBox.margin><Insets bottom="10.0" /></VBox.margin>
             </TextField>
-            <Label fx:id="lblVerifCodeError" textFill="RED" visible="false" />
-            <Hyperlink fx:id="hlResend" onAction="#resendVerificationCode" text="Resend verification email" textFill="#b3b3b3" />
-            <Button fx:id="btnVerify" mnemonicParsing="false" onAction="#verficationCode" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #c62820; -fx-background-radius: 12;" text="verify" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Arial Black" size="19.0" />
-               </font>
-               <effect>
-                  <Glow level="0.37" />
-               </effect>
-            </Button>
-         </children>
-      </VBox>
-   </children>
+
+            <!-- ── Error label (fx:id preserved) ── -->
+            <Label fx:id="lblVerifCodeError" maxWidth="1.7976931348623157E308" textFill="RED" visible="false">
+                <VBox.margin><Insets bottom="4.0" /></VBox.margin>
+            </Label>
+
+            <!-- ── Resend link (fx:id preserved) ── -->
+            <Hyperlink fx:id="hlResend" onAction="#resendVerificationCode" styleClass="resend-link" text="Resend verification email">
+                <VBox.margin><Insets bottom="26.0" /></VBox.margin>
+            </Hyperlink>
+
+            <!-- ── Verify button (fx:id + onAction preserved) ── -->
+            <Button fx:id="btnVerify" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verficationCode" styleClass="verify-btn" text="Verify" />
+         <StackPane.margin>
+            <Insets bottom="50.0" top="50.0" />
+         </StackPane.margin>
+
+        </VBox>
+
+    </children>
 </StackPane>
