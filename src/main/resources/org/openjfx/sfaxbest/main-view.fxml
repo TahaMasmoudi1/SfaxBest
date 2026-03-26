@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+
+<StackPane stylesheets="@../../../Styles/main-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.MainViewController">
+
+
+    <BorderPane fx:id="mainBorderPane" prefHeight="800" prefWidth="1280" style="-fx-background-color: #101010;">
+        <!-- ================= TOP BAR ================= -->
+
+        <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="60" spacing="20" styleClass="top-bar">
+                <padding>
+                    <Insets left="20" right="30" />
+                </padding>
+
+                <!-- MENU ICON -->
+                <StackPane onMouseClicked="#toggleMenu" pickOnBounds="true" styleClass="menu-icon">
+                    <ImageView fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                        <image>
+                            <Image url="@../../../icons/menu_icon.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+
+                <!-- LOGO -->
+                <ImageView onMouseClicked="#homePage" fitHeight="40" preserveRatio="true" styleClass="logo">
+                    <image>
+                        <Image url="@../../../Images/logo_app.png" />
+                    </image>
+                </ImageView>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- RIGHT ICONS -->
+                <HBox alignment="CENTER_RIGHT" spacing="10" >
+                    <StackPane pickOnBounds="true" styleClass="menu-icon" onMouseClicked="#searchMenu">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/search_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/notifications_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView onMouseClicked="#userPage" fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/account_circle_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                </HBox>
+            </HBox>
+        </top>
+        <center>
+
+        </center>
+
+
+    </BorderPane>
+
+
+
+
+    <!-- ================= SIDE MENU (DASHBOARD) ================= -->
+
+    <VBox fx:id="VBsideMenu" alignment="TOP_LEFT" maxWidth="260" mouseTransparent="true" prefWidth="880" spacing="20" styleClass="side-menu" translateX="-900">
+
+        <padding>
+            <Insets bottom="10" left="20" right="20" top="30" />
+        </padding>
+
+        <!-- USER INFO -->
+        <VBox spacing="10">
+            <ImageView fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar" >
+                <image>
+                    <Image url="@../../../Images/dummy_avatar.jpg"/>
+                </image>
+            </ImageView>
+            <Label styleClass="user-name" text="John Doe" />
+            <Label styleClass="user-role" text="Premium User" />
+        </VBox>
+
+        <Separator />
+
+        <!-- MENU ITEMS -->
+        <HBox onMouseClicked="#homePage" styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView fitHeight="20" fitWidth="20">
+                <image>
+                    <Image url="@../../../icons/home_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Home"/>
+        </HBox>
+        <HBox onMouseClicked="#userPage" styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView fitHeight="20" fitWidth="20">
+                <image>
+                    <Image url="@../../../icons/account_circle_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="User Account"/>
+        </HBox>
+
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <Separator />
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/settings_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Settings"/>
+        </HBox>
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/logout_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Log out"/>
+        </HBox>
+
+    </VBox>
+    <Pane fx:id="SideMenuPane" maxWidth="-Infinity" onMouseClicked="#toggleMenu" opacity="0.7" prefHeight="200.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false" StackPane.alignment="CENTER_RIGHT" />
+
+</StackPane>

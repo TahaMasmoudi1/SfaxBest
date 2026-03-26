@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.media.MediaView?>
+<StackPane stylesheets="@../../../Styles/media-player-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.MediaPlayerController" prefHeight="Infinity" prefWidth="Infinity">
+
+    <BorderPane style="-fx-background-color: #101010">
+
+        <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="60" spacing="20" styleClass="top-bar">
+                <padding>
+                    <Insets left="20" right="30" />
+                </padding>
+
+                <!-- MENU ICON -->
+                <StackPane onMouseClicked="#toggleMenu" pickOnBounds="true" styleClass="menu-icon">
+                    <ImageView fitHeight="24" fitWidth="24" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                        <image>
+                            <Image url="@../../../icons/menu_icon.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+
+                <!-- LOGO -->
+                <ImageView fitHeight="40" preserveRatio="true" styleClass="logo">
+                    <image>
+                        <Image url="@../../../Images/logo_app.png" />
+                    </image>
+                </ImageView>
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- RIGHT ICONS -->
+                <HBox alignment="CENTER_RIGHT" spacing="10" >
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/search_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/notifications_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                    <StackPane pickOnBounds="true" styleClass="menu-icon">
+                        <ImageView fitHeight="24" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-icon">
+                            <image>
+                                <Image url="@../../../icons/account_circle_icon.png" />
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                </HBox>
+            </HBox>
+        </top>
+        <center>
+            <StackPane fx:id="playerRoot" styleClass="player-root">
+
+                <MediaView fx:id="mediaView" preserveRatio="true" />
+
+                <VBox fx:id="upNextOverlay" styleClass="up-next-box" visible="false" alignment="CENTER" spacing="15" StackPane.alignment="CENTER" maxWidth="400" maxHeight="250">
+                    <Label text="Up Next" styleClass="up-next-header" />
+                    <Label fx:id="nextEpisodeTitle" text="S1:E5 - The Awakening" styleClass="up-next-title" />
+                    <Label fx:id="countdownLabel" text="Starting in 10..." styleClass="up-next-timer" />
+                    <HBox spacing="20" alignment="CENTER">
+                        <Button text="Play Now" onAction="#playNextEpisode" styleClass="primary-btn" />
+                        <Button text="Cancel" onAction="#cancelBingeWatch" styleClass="secondary-btn" />
+                    </HBox>
+                </VBox>
+
+                <BorderPane fx:id="controlsOverlay" pickOnBounds="false">
+
+
+                    <bottom>
+                        <VBox styleClass="bottom-bar" spacing="10">
+
+                            <HBox spacing="15" alignment="CENTER">
+                                <Label fx:id="currentTimeLabel" text="00:00" styleClass="time-label" />
+                                <Slider fx:id="timeSlider" HBox.hgrow="ALWAYS" />
+                                <Label fx:id="totalTimeLabel" text="00:00" styleClass="time-label" />
+                            </HBox>
+
+                            <HBox spacing="20" alignment="CENTER_LEFT">
+                                <Button fx:id="playPauseBtn" text="⏸"  onMouseClicked="#togglePlayPause" styleClass="icon-btn" />
+                                <Button text="↺ 10s" onAction="#seekBack" styleClass="icon-btn" />
+                                <Button text="10s ↻" onAction="#seekForward" styleClass="icon-btn" />
+
+                                <Label text="🔊" styleClass="icon-label" />
+                                <Slider fx:id="volumeSlider" min="0.0" max="1.0" value="0.5" prefWidth="100" />
+
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <Button fx:id="nextBtn" text="⏭ Next" onAction="#playNextEpisode" styleClass="icon-btn" />
+                                <Button text="⛶ Fullscreen" onAction="#toggleFullscreen" styleClass="icon-btn" />
+                            </HBox>
+                        </VBox>
+                    </bottom>
+                </BorderPane>
+
+            </StackPane>
+        </center>
+    </BorderPane>
+
+    <!-- ================= SIDE MENU (DASHBOARD) ================= -->
+
+    <VBox fx:id="VBsideMenu" alignment="TOP_LEFT" maxWidth="260" mouseTransparent="true" prefWidth="880" spacing="20" styleClass="side-menu" translateX="-900">
+
+        <padding>
+            <Insets bottom="10" left="20" right="20" top="30" />
+        </padding>
+
+        <!-- USER INFO -->
+        <VBox spacing="10">
+            <ImageView fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar" />
+            <Label styleClass="user-name" text="John Doe" />
+            <Label styleClass="user-role" text="Premium User" />
+        </VBox>
+
+        <Separator />
+
+        <!-- MENU ITEMS -->
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView fitHeight="20" fitWidth="20">
+                <image>
+                    <Image url="@../../../icons/home_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Home"/>
+        </HBox>
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView fitHeight="20" fitWidth="20">
+                <image>
+                    <Image url="@../../../icons/account_circle_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="User Account"/>
+        </HBox>
+
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <Separator />
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/settings_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Settings"/>
+        </HBox>
+
+        <HBox styleClass="menu-button-box" prefHeight="20" spacing="8">
+            <ImageView>
+                <image>
+                    <Image url="@../../../icons/logout_icon.png" />
+                </image>
+            </ImageView>
+            <Label styleClass="menu-text" text="Log out"/>
+        </HBox>
+
+    </VBox>
+    <Pane fx:id="SideMenuPane" maxWidth="-Infinity" onMouseClicked="#toggleMenu" opacity="0.7" prefHeight="200.0" prefWidth="1280.0" style="-fx-background-color: black;" visible="false" StackPane.alignment="CENTER_RIGHT" />
+
+
+
+</StackPane>

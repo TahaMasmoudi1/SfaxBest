@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+
+<ScrollPane fitToWidth="true"  styleClass="user-root"  stylesheets="@../../../Styles/user-home-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.UserHomeController" prefHeight="Infinity" prefWidth="Infinity" >
+
+    <VBox spacing="40">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <StackPane>
+                <ImageView fx:id="avatarImage" fitWidth="120" fitHeight="120" preserveRatio="false" />
+                <Circle fx:id="avatarClip" radius="60" />
+            </StackPane>
+
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="usernameLabel" text="John Doe" styleClass="username-text" />
+                <Label fx:id="emailLabel" text="johndoe@email.com" styleClass="email-text" />
+                <Button text="Edit Profile" styleClass="edit-btn" />
+            </VBox>
+        </HBox>
+
+        <VBox spacing="15">
+            <Label text="My Favorites" styleClass="section-title" />
+
+            <ScrollPane vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" fitToHeight="true" styleClass="carousel-scroll">
+                <HBox fx:id="favoritesContainer" spacing="15">
+
+                    <StackPane styleClass="movie-card" alignment="TOP_RIGHT">
+                        <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
+                        <Button text="✕" styleClass="remove-btn">
+                            <StackPane.margin>
+                                <Insets top="5" right="5"/>
+                            </StackPane.margin>
+                        </Button>
+                    </StackPane>
+
+                </HBox>
+            </ScrollPane>
+        </VBox>
+
+        <VBox spacing="15">
+            <Label text="Watch History" styleClass="section-title" />
+
+            <ScrollPane vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" fitToHeight="true" styleClass="carousel-scroll">
+                <HBox fx:id="historyContainer" spacing="15">
+
+                    <VBox spacing="5" styleClass="movie-card">
+                        <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
+                        <ProgressBar progress="0.6" prefWidth="150" styleClass="netflix-progress" />
+                        <Label text="Interstellar" styleClass="history-title" />
+                    </VBox>
+
+                </HBox>
+            </ScrollPane>
+        </VBox>
+
+    </VBox>
+</ScrollPane>
+

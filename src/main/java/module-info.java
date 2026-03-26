@@ -15,7 +15,7 @@ module org.openjfx.sfaxbest {
     requires org.hibernate.orm.core;
     requires jbcrypt;
     requires jakarta.mail;
-    requires javafx.graphics;
+    requires javafx.media;
 
 
     opens entities to org.hibernate.orm.core, jakarta.persistence,javafx.base;

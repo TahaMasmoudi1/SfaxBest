@@ -1,0 +1,153 @@
+/* ================= ROOT ================= */
+
+.root {
+    -fx-font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+    -fx-background-color: #101010;
+}
+
+/* Remove ScrollPane white background */
+.scroll-pane {
+    -fx-background: #101010;
+    -fx-background-color: #101010;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #101010;
+}
+
+
+/* ================= TOP BAR ================= */
+
+.top-bar {
+    -fx-background-color: #202020;
+    -fx-border-color: #2D2D2D;
+    -fx-border-width: 0 0 1 0;
+}
+.menu-icon{
+    -fx-max-height: 44;
+    -fx-max-width: 44;
+    -fx-min-height: 44;
+    -fx-min-width: 44;
+
+    -fx-padding: 8;
+
+    -fx-background-radius: 50px;
+    -fx-background-color: transparent;
+
+}
+
+.menu-icon:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+    -fx-background-color: rgba(255,255,255,0.12);
+}
+.menu-icon:pressed {
+    -fx-background-color: rgba(255,255,255,0.25);
+
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+/* Logo image (ImageView) */
+.logo {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
+}
+
+/* ===== Side menu style =====*/
+.side-menu {
+    -fx-background-color: #101010;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 2, 0);
+}
+.menu-button-box{
+    -fx-background-color: transparent;
+    -fx-padding: 5 7 5 18;
+
+    -fx-cursor: hand;
+}
+.menu-text{
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+    -fx-font-family:  "segoe ui";
+}
+.menu-button-box:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #ffffff;
+}
+.menu-button-box:pressed{
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+
+
+
+/* ================= MISC ================= */
+
+.label {
+    -fx-text-fill: #e6e6e6;
+}
+/* ================= SCROLLBARS ================= */
+
+/* Horizontal scrollbar only */
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #2a3446;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #3b4861;
+}
+
+/* Hide vertical scrollbar styling noise */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+/* scroll bar style*/
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px; /* Controls how wide the scrollbar is */
+}
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 12px;
+}
+
+/* The Thumb (The moving handle - make it dark grey and rounded) */
+.scroll-bar .thumb {
+    -fx-background-color: #40444b; /* Dark Grey */
+    -fx-background-radius: 10px;    /* Fully rounded edges */
+    -fx-border-width: 2px;          /* Creates a gap around the thumb */
+    -fx-border-color: transparent;  /* Ensures the gap is see-through */
+    -fx-background-insets: 2px;     /* Shrinks thumb slightly to show the gap */
+}
+
+/* Hover Effect */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #72767d; /* Lighter Grey */
+}
+
+/*  The Track (The lane behind the handle - make it invisible) */
+.scroll-bar .track {
+    -fx-background-color: transparent; /* Or a very dark color like #0f111a */
+    -fx-border-color: transparent;
+    -fx-background-radius: 0px;
+}
+
+/* The Arrows (Hide them completely) */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+}
+
+/* Remove the "Corner" where horizontal and vertical bars meet */
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}

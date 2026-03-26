@@ -1,0 +1,36 @@
+package DAO;
+
+import entities.WatchHistoryMultimedia;
+import jakarta.persistence.EntityManager;
+
+import java.util.Optional;
+
+public class WatchHistoryMultimediaDAO {
+    private final EntityManager em;
+
+    public WatchHistoryMultimediaDAO(EntityManager em) {
+        this.em = em;
+    }
+
+    public void save(WatchHistoryMultimedia watchHistoryMultimedia) {
+        em.persist(watchHistoryMultimedia);
+    }
+
+    public void delete(WatchHistoryMultimedia watchHistoryMultimedia) {
+        em.remove(watchHistoryMultimedia);
+    }
+
+    public void update(WatchHistoryMultimedia watchHistoryMultimedia) {
+        em.merge(watchHistoryMultimedia);
+    }
+    public Optional<WatchHistoryMultimedia> findById(long idUser, long multimediaID) {
+        WatchHistoryMultimedia result = em.createQuery("select w from WatchHistoryMultimedia" +
+                " w where w.user.id=:idUser and w.multimedia.id=:idMultimedia", WatchHistoryMultimedia.class)
+                .setParameter("idUser",idUser).setParameter("idMultimedia",multimediaID).getSingleResult();
+        return Optional.of(result);
+    }
+    public WatchHistoryMultimedia find(WatchHistoryMultimedia watchHistoryMultimedia) {
+        return em.find(WatchHistoryMultimedia.class, watchHistoryMultimedia.getId());
+    }
+
+}

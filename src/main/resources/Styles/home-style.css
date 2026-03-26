@@ -2,19 +2,249 @@
 
 .root {
     -fx-font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
-    -fx-background-color: #121720;
+    -fx-background-color: #101010;
 }
 
 /* Remove ScrollPane white background */
 .scroll-pane {
-    -fx-background: #121720;
-    -fx-background-color: #121720;
+    -fx-background: #101010;
+    -fx-background-color: #101010;
 }
 
 .scroll-pane > .viewport {
-    -fx-background-color: #121720;
+    -fx-background-color: #101010;
 }
 
+
+/* ================= TOP BAR ================= */
+
+.top-bar {
+    -fx-background-color: #202020;
+    -fx-border-color: #2D2D2D;
+    -fx-border-width: 0 0 1 0;
+}
+.menu-icon{
+    -fx-max-height: 44;
+    -fx-max-width: 44;
+    -fx-min-height: 44;
+    -fx-min-width: 44;
+
+    -fx-padding: 8;
+
+    -fx-background-radius: 50px;
+    -fx-background-color: transparent;
+
+}
+
+.menu-icon:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+    -fx-background-color: rgba(255,255,255,0.12);
+}
+.menu-icon:pressed {
+    -fx-background-color: rgba(255,255,255,0.25);
+
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+/* Logo image (ImageView) */
+.logo {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
+}
+
+
+/* ================= SECTION TITLES ================= */
+
+.section-title {
+    -fx-text-fill: #e6e6e6;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* ================= TRAILER SECTION ================= */
+
+.trailer-overlay{
+    -fx-background-color:
+            linear-gradient(to bottom,
+            transparent 60%,
+            rgba(0,0,0,0.85)),
+            linear-gradient(to right,
+            rgba(0,0,0,0.6),
+            transparent 25%,
+            transparent 75%,
+            rgba(0,0,0,0.6));
+}
+.hero-blur{
+    -fx-opacity: 0.35;
+}
+.trailer-info {
+    -fx-padding: 0 0 20 50;
+}
+/* ================= MOVIE CARDS ================= */
+
+
+/* ===== Side menu style =====*/
+.side-menu {
+    -fx-background-color: #101010;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 2, 0);
+}
+.menu-button-box{
+    -fx-background-color: transparent;
+    -fx-padding: 5 7 5 18;
+
+    -fx-cursor: hand;
+}
+.menu-text{
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 15px;
+    -fx-font-weight: normal;
+    -fx-font-family:  "segoe ui";
+}
+.menu-button-box:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #ffffff;
+}
+.menu-button-box:pressed{
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ===== Carousel container ===== */
+
+.hero-carousel {
+    -fx-background-color: transparent;
+}
+.hero-carousel:hover .hero-button{
+    -fx-opacity:0.25;
+}
+.hero-carousel:hover .hero-button:hover{
+    -fx-opacity: 1;
+}
+
+/* ===== Active hero ===== */
+
+.hero-active {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
+}
+
+/* Main image */
+.hero-main {
+    -fx-opacity: 1;
+    -fx-scale-x:1.02;
+    -fx-scale-y:1.02;
+}
+
+/* ===== Text ===== */
+
+.hero-content {
+    -fx-padding: 32;
+    -fx-spacing: 10;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* Image fills container but keeps ratio */
+.hero-image {
+    -fx-max-height: 260;
+    -fx-fit-width: 100%;
+    -fx-fit-height: 100%;
+}
+
+/* Content */
+.hero-content {
+    -fx-padding: 28;
+    -fx-spacing: 10;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+/* ================= MOVIE POSTER CARDS ================= */
+
+/* Card */
+.poster-card {
+    -fx-cursor: hand;
+}
+
+/* Image */
+.poster-image {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.3, 0, 2);
+}
+
+/* Overlay (hidden by default) */
+.media-poster-overlay {
+    -fx-background-color: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.6) 40%,
+            rgba(0, 0, 0, 0.2) 70%,
+            transparent 100%
+    );
+
+    -fx-padding: 10;
+    -fx-alignment: bottom-left;
+    -fx-spacing: 4;
+
+    -fx-opacity: 0; /* hidden */
+}
+
+/* Show instantly on hover */
+.poster-card:hover .media-poster-overlay {
+    -fx-opacity: 1;
+}
+
+/* Text */
+.media-info-overlay {
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+}
+
+#titleLabel {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* Badge (bottom-left) */
+.media-badge {
+    -fx-background-color: rgba(0, 0, 0, 0.75);
+    -fx-text-fill: white;
+
+    -fx-font-size: 11px;
+    -fx-padding: 4 6;
+    -fx-background-radius: 6;
+
+    /* Position bottom-left */
+    -fx-translate-x: 6;
+    -fx-translate-y: 100;
+}
+/* ================= SCROLLBARS ================= */
+
+/* Horizontal scrollbar only */
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #2a3446;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #3b4861;
+}
+
+/* Hide vertical scrollbar styling noise */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
 /* scroll bar style*/
 
 .scroll-bar:vertical {
@@ -60,345 +290,4 @@
 /* Remove the "Corner" where horizontal and vertical bars meet */
 .scroll-pane > .corner {
     -fx-background-color: transparent;
-}
-/* ================= TOP BAR ================= */
-
-.top-bar {
-    -fx-background-color: #0f141d;
-    -fx-border-color: #1e2633;
-    -fx-border-width: 0 0 1 0;
-}
-
-/* Logo image (ImageView) */
-.logo {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
-}
-
-/* Top bar icons */
-.top-icon {
-    -fx-opacity: 0.85;
-}
-
-.top-icon:hover {
-    -fx-opacity: 1.0;
-    -fx-cursor: hand;
-}
-
-/* ================= SECTION TITLES ================= */
-
-.section-title {
-    -fx-text-fill: #e6e6e6;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-/* ================= FEATURED SECTION ================= */
-
-.featured-title {
-    -fx-text-fill: white;
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
-}
-
-.featured-banner {
-    -fx-background-radius: 6;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 20, 0.4, 0, 6);
-}
-
-/* ================= BUTTONS ================= */
-
-.button {
-    -fx-background-radius: 4;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-/* Primary (Watch Trailer) */
-.primary-button {
-    -fx-background-color: #c62828;
-    -fx-text-fill: white;
-    -fx-padding: 8 18 8 18;
-}
-
-.primary-button:hover {
-    -fx-background-color: #e53935;
-}
-
-/* Secondary (My List, etc.) */
-.secondary-button {
-    -fx-background-color: rgba(255,255,255,0.15);
-    -fx-text-fill: white;
-    -fx-padding: 8 18 8 18;
-}
-
-.secondary-button:hover {
-    -fx-background-color: rgba(255,255,255,0.25);
-}
-
-/* ================= MOVIE CARDS ================= */
-
-.movie-card {
-    -fx-background-radius: 6;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 12, 0.3, 0, 4);
-}
-
-.movie-card:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 18, 0.4, 0, 6);
-    -fx-cursor: hand;
-}
-
-/* Overlay label (ACTION, SERIES, etc.) */
-.card-badge {
-    -fx-background-color: rgba(0,0,0,0.65);
-    -fx-text-fill: white;
-    -fx-font-size: 11px;
-    -fx-font-weight: bold;
-    -fx-padding: 4 8 4 8;
-    -fx-background-radius: 0 6 0 0;
-}
-
-/* ================= SCROLLBARS ================= */
-
-/* Horizontal scrollbar only */
-.scroll-bar:horizontal {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar:horizontal .thumb {
-    -fx-background-color: #2a3446;
-    -fx-background-radius: 4;
-}
-
-.scroll-bar:horizontal .thumb:hover {
-    -fx-background-color: #3b4861;
-}
-
-/* Hide vertical scrollbar styling noise */
-.scroll-bar:vertical {
-    -fx-background-color: transparent;
-}
-.menu-icon:hover {
-    -fx-cursor: hand;
-    -fx-opacity: 0.85;
-}
-.side-menu {
-    -fx-background-color: linear-gradient(
-            to right,
-            #0f141d,
-            #121720
-    );
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0.2, 2, 0);
-}
-/* ===== Hero Banner Container ===== */
-
-.hero-banner {
-    -fx-pref-height: 260px;
-    -fx-max-height: 260px;
-    -fx-background-color: #0f141d;
-    -fx-background-radius: 12;
-    -fx-overflow: hidden;
-}
-/* ===== Carousel container ===== */
-
-.hero-carousel {
-    -fx-background-color: transparent;
-}
-
-/* ===== Active hero ===== */
-
-.hero-active {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
-}
-
-/* Main image */
-.hero-main {
-    -fx-opacity: 1;
-}
-
-/* Side banners */
-.hero-side {
-    -fx-opacity: 0.4;
-}
-
-/* ===== Arrows ===== */
-
-.hero-arrow-left {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-padding: 0 16;
-    -fx-cursor: hand;
-
-    -fx-opacity: 0.2;
-    -fx-transition: opacity 0.2 ease;
-
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 6, 0.3, 0, 1);
-    -fx-alignment: center-left;
-    -fx-translate-x: -220;
-}
-
-.hero-arrow-right {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-padding: 0 16;
-    -fx-cursor: hand;
-
-    -fx-opacity: 0.2;
-    -fx-transition: opacity 0.2 ease;
-
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 6, 0.3, 0, 1);
-    -fx-alignment: center-right;
-    -fx-translate-x: 130;
-}
-.hero-arrow-right:hover {
-    -fx-opacity:1;
-    -fx-text-fill: #ffffff;
-}
-.hero-arrow-left:hover {
-    -fx-opacity:1;
-    -fx-text-fill: #ffffff;
-}
-
-
-
-/* ===== Text ===== */
-
-.hero-content {
-    -fx-padding: 32;
-    -fx-spacing: 10;
-}
-
-.hero-title {
-    -fx-text-fill: white;
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-}
-/* ==== hero button ====*/
-
-.hero-button {
-    -fx-background-color: rgba(0,0,0,0.45);
-    -fx-text-fill: white;
-    -fx-font-size: 28px;
-    -fx-background-radius: 50%;
-    -fx-min-width: 64px;
-    -fx-max-height: 64px;
-    -fx-cursor: hand;
-
-    -fx-opacity:0.25 ;
-    -fx-transition : opacity 0.25s ease,background-color 0.25s ease;
-}
-.hero-button:hover {
-    -fx-opacity: 1;
-    -fx-background-color: rgba(0,0,0,0.65);
-}
-
-
-/* Image fills container but keeps ratio */
-.hero-image {
-    -fx-max-height: 260;
-    -fx-fit-width: 100%;
-    -fx-fit-height: 100%;
-}
-
-/* Content */
-.hero-content {
-    -fx-padding: 28;
-    -fx-spacing: 10;
-}
-
-.hero-title {
-    -fx-text-fill: white;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-.hero-button {
-    -fx-background-color: #c62828;
-    -fx-text-fill: white;
-    -fx-background-radius: 18;
-}
-
-
-/* ===== Featured Poster ===== */
-
-.featured-poster {
-    -fx-cursor: hand;
-}
-
-.featured-hover-overlay {
-    -fx-background-color: rgba(0,0,0,0.15);
-}
-
-
-/* Hover effect */
-.featured-poster:hover .featured-poster-image {
-    -fx-background-radius: 12;
-    -fx-effect: dropshadow(
-            gaussian,
-            rgba(0,0,0,0.6),
-            25,
-            0.3,
-            0,
-            8
-    );
-}
-.featured-poster:hover .featured-hover-overlay {
-    visibility: true;
-
-}
-/* ===== Info Overlay ===== */
-
-.featured-info-overlay {
-    -fx-opacity: 0;
-    -fx-background-color: linear-gradient(
-            to top,
-            rgba(0,0,0,0.9),
-            rgba(0,0,0,0.0)
-    );
-    -fx-padding: 16;
-    -fx-spacing: 8;
-    -fx-pref-width: 100%;
-    -fx-max-width: Infinity;
-
-    -fx-transition: opacity 0.25s ease-in-out;
-}
-
-/* Reveal on hover */
-.featured-poster:hover .featured-info-overlay {
-    -fx-opacity: 1;
-
-}
-
-/* ===== Overlay Text ===== */
-
-.featured-title {
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-
-.featured-description {
-    -fx-text-fill: #cccccc;
-    -fx-font-size: 11px;
-}
-
-.featured-rating {
-    -fx-text-fill: #ffcc00;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-}
-
-
-
-
-/* ================= MISC ================= */
-
-.label {
-    -fx-text-fill: #e6e6e6;
 }
