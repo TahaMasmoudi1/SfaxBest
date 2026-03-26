@@ -5,26 +5,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/25"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="org.openjfx.sfaxbest.MoviePosterController"
-           styleClass="poster-card">
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.MoviePosterController" styleClass="poster-card" onMouseClicked="#loadMovieView">
 
-    <ImageView
-            fx:id="posterImage"
-            fitWidth="160"
-            fitHeight="240"
-            preserveRatio="false"
-            styleClass="movie-card"/>
+    <ImageView fx:id="posterImage" fitWidth="160" fitHeight="240" preserveRatio="false" styleClass="poster-image"/>
 
-    <VBox fx:id="overlay"
-          styleClass="poster-overlay"
-          visible="false">
+    <VBox fx:id="overlay" styleClass="media-poster-overlay" >
 
-        <Label fx:id="titleLabel" styleClass="poster-title"/>
-        <Label fx:id="genreLabel" styleClass="poster-genre"/>
-        <Label fx:id="ratingLabel" styleClass="poster-rating"/>
+        <Label fx:id="titleLabel" styleClass="media-info-overlay"/>
+        <Label fx:id="genreLabel" styleClass="media-info-overlay"/>
+        <Label fx:id="ratingLabel" styleClass="media-info-overlay"/>
 
     </VBox>
+    <!-- badge -->
+    <Label fx:id="typeBadge" styleClass="media-badge" StackPane.alignment="BOTTOM_LEFT"/>
 
 </StackPane>

@@ -52,37 +52,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
 }
 
-
-/* ================= SECTION TITLES ================= */
-
-.section-title {
-    -fx-text-fill: #e6e6e6;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-
-/* ================= TRAILER SECTION ================= */
-
-.trailer-overlay{
-    -fx-background-color:
-            linear-gradient(to bottom,
-            transparent 60%,
-            rgba(0,0,0,0.85)),
-            linear-gradient(to right,
-            rgba(0,0,0,0.6),
-            transparent 25%,
-            transparent 75%,
-            rgba(0,0,0,0.6));
-}
-.hero-blur{
-    -fx-opacity: 0.35;
-}
-.trailer-info {
-    -fx-padding: 0 0 20 50;
-}
-/* ================= MOVIE CARDS ================= */
-
-
 /* ===== Side menu style =====*/
 .side-menu {
     -fx-background-color: #101010;
@@ -109,122 +78,116 @@
 }
 
 
-/* ===== Carousel container ===== */
+/* ROOT */
+.search-root {
+    -fx-background-color: #202020;
+}
 
-.hero-carousel {
+/* =====================================
+   SEARCH BAR & FILTERS
+   ===================================== */
+.search-input {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #888888;
+    -fx-font-size: 16px;
+    -fx-padding: 10 15 10 15;
+    -fx-background-radius: 8;
+    -fx-border-color: #444444;
+    -fx-border-radius: 8;
+}
+
+.search-input:focused {
+    -fx-border-color: #E50914; /* Netflix/Jellyfin highlight color */
+}
+
+.filter-combo {
+    -fx-background-color: #333333;
+    -fx-padding: 5;
+    -fx-background-radius: 8;
+    -fx-border-color: #444444;
+    -fx-border-radius: 8;
+}
+
+/* Fix text color inside ComboBox */
+.filter-combo .list-cell {
+    -fx-text-fill: white;
+}
+
+/* Hide the ugly default ScrollPane borders */
+.results-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+.results-scroll-pane .viewport {
     -fx-background-color: transparent;
 }
-.hero-carousel:hover .hero-button{
-    -fx-opacity:0.25;
-}
-.hero-carousel:hover .hero-button:hover{
-    -fx-opacity: 1;
-}
 
-/* ===== Active hero ===== */
-
-.hero-active {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
+/* =====================================
+   RESULT CARDS (Horizontal Layout)
+   ===================================== */
+.result-card {
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 1 0; /* Subtle bottom border between items */
+    -fx-border-color: #1A1A1A;
 }
 
-/* Main image */
-.hero-main {
-    -fx-opacity: 1;
-    -fx-scale-x:1.02;
-    -fx-scale-y:1.02;
+/* THE ALTERNATING BACKGROUNDS */
+.card-odd {
+    -fx-background-color: #202020; /* Original Dark */
 }
 
-/* ===== Text ===== */
-
-.hero-content {
-    -fx-padding: 32;
-    -fx-spacing: 10;
+.card-even {
+    -fx-background-color: #2A2A2A; /* Slightly Lighter */
 }
 
-.hero-title {
-    -fx-text-fill: white;
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
+/* Hover effect for both */
+.result-card:hover {
+    -fx-background-color: #383838;
 }
 
-/* Image fills container but keeps ratio */
-.hero-image {
-    -fx-max-height: 260;
-    -fx-fit-width: 100%;
-    -fx-fit-height: 100%;
+/* =====================================
+   CARD TYPOGRAPHY & ELEMENTS
+   ===================================== */
+.result-poster {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 5);
 }
 
-/* Content */
-.hero-content {
-    -fx-padding: 28;
-    -fx-spacing: 10;
-}
-
-.hero-title {
-    -fx-text-fill: white;
+.result-title {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-}
-
-
-/* ================= MOVIE POSTER CARDS ================= */
-
-/* Card */
-.poster-card {
-    -fx-cursor: hand;
-}
-
-/* Image */
-.poster-image {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.3, 0, 2);
-}
-
-/* Overlay (hidden by default) */
-.media-poster-overlay {
-    -fx-background-color: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.6) 40%,
-            rgba(0, 0, 0, 0.2) 70%,
-            transparent 100%
-    );
-
-    -fx-padding: 10;
-    -fx-alignment: bottom-left;
-    -fx-spacing: 4;
-
-    -fx-opacity: 0; /* hidden */
-}
-
-/* Show instantly on hover */
-.poster-card:hover .media-poster-overlay {
-    -fx-opacity: 1;
-}
-
-/* Text */
-.media-info-overlay {
     -fx-text-fill: white;
-    -fx-font-size: 11px;
 }
 
-#titleLabel {
-    -fx-font-size: 13px;
+.result-rating {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FFD700; /* Gold Star */
     -fx-font-weight: bold;
 }
 
-/* Badge (bottom-left) */
-.media-badge {
-    -fx-background-color: rgba(0, 0, 0, 0.75);
-    -fx-text-fill: white;
-
-    -fx-font-size: 11px;
-    -fx-padding: 4 6;
-    -fx-background-radius: 6;
-
-    /* Position bottom-left */
-    -fx-translate-x: 6;
-    -fx-translate-y: 100;
+.result-year, .result-duration {
+    -fx-font-size: 14px;
+    -fx-text-fill: #AAAAAA;
 }
+
+.result-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #CCCCCC;
+}
+
+/* The Category Tags */
+.category-pill {
+    -fx-background-color: #444444;
+    -fx-text-fill: white;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 15; /* Makes them look like rounded pills */
+    -fx-font-size: 12px;
+}
+
+
+
+
 /* ================= SCROLLBARS ================= */
 
 /* Horizontal scrollbar only */

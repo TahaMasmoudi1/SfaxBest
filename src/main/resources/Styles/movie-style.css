@@ -52,37 +52,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
 }
 
-
-/* ================= SECTION TITLES ================= */
-
-.section-title {
-    -fx-text-fill: #e6e6e6;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-
-/* ================= TRAILER SECTION ================= */
-
-.trailer-overlay{
-    -fx-background-color:
-            linear-gradient(to bottom,
-            transparent 60%,
-            rgba(0,0,0,0.85)),
-            linear-gradient(to right,
-            rgba(0,0,0,0.6),
-            transparent 25%,
-            transparent 75%,
-            rgba(0,0,0,0.6));
-}
-.hero-blur{
-    -fx-opacity: 0.35;
-}
-.trailer-info {
-    -fx-padding: 0 0 20 50;
-}
-/* ================= MOVIE CARDS ================= */
-
-
 /* ===== Side menu style =====*/
 .side-menu {
     -fx-background-color: #101010;
@@ -109,121 +78,12 @@
 }
 
 
-/* ===== Carousel container ===== */
-
-.hero-carousel {
-    -fx-background-color: transparent;
-}
-.hero-carousel:hover .hero-button{
-    -fx-opacity:0.25;
-}
-.hero-carousel:hover .hero-button:hover{
-    -fx-opacity: 1;
-}
-
-/* ===== Active hero ===== */
-
-.hero-active {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
-}
-
-/* Main image */
-.hero-main {
-    -fx-opacity: 1;
-    -fx-scale-x:1.02;
-    -fx-scale-y:1.02;
-}
-
-/* ===== Text ===== */
-
-.hero-content {
-    -fx-padding: 32;
-    -fx-spacing: 10;
-}
-
-.hero-title {
-    -fx-text-fill: white;
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-}
-
-/* Image fills container but keeps ratio */
-.hero-image {
-    -fx-max-height: 260;
-    -fx-fit-width: 100%;
-    -fx-fit-height: 100%;
-}
-
-/* Content */
-.hero-content {
-    -fx-padding: 28;
-    -fx-spacing: 10;
-}
-
-.hero-title {
-    -fx-text-fill: white;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
 
 
-/* ================= MOVIE POSTER CARDS ================= */
+/* ================= MISC ================= */
 
-/* Card */
-.poster-card {
-    -fx-cursor: hand;
-}
-
-/* Image */
-.poster-image {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.3, 0, 2);
-}
-
-/* Overlay (hidden by default) */
-.media-poster-overlay {
-    -fx-background-color: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.6) 40%,
-            rgba(0, 0, 0, 0.2) 70%,
-            transparent 100%
-    );
-
-    -fx-padding: 10;
-    -fx-alignment: bottom-left;
-    -fx-spacing: 4;
-
-    -fx-opacity: 0; /* hidden */
-}
-
-/* Show instantly on hover */
-.poster-card:hover .media-poster-overlay {
-    -fx-opacity: 1;
-}
-
-/* Text */
-.media-info-overlay {
-    -fx-text-fill: white;
-    -fx-font-size: 11px;
-}
-
-#titleLabel {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-}
-
-/* Badge (bottom-left) */
-.media-badge {
-    -fx-background-color: rgba(0, 0, 0, 0.75);
-    -fx-text-fill: white;
-
-    -fx-font-size: 11px;
-    -fx-padding: 4 6;
-    -fx-background-radius: 6;
-
-    /* Position bottom-left */
-    -fx-translate-x: 6;
-    -fx-translate-y: 100;
+.label {
+    -fx-text-fill: #e6e6e6;
 }
 /* ================= SCROLLBARS ================= */
 

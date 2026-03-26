@@ -52,37 +52,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 8, 0.3, 0, 2);
 }
 
-
-/* ================= SECTION TITLES ================= */
-
-.section-title {
-    -fx-text-fill: #e6e6e6;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-
-/* ================= TRAILER SECTION ================= */
-
-.trailer-overlay{
-    -fx-background-color:
-            linear-gradient(to bottom,
-            transparent 60%,
-            rgba(0,0,0,0.85)),
-            linear-gradient(to right,
-            rgba(0,0,0,0.6),
-            transparent 25%,
-            transparent 75%,
-            rgba(0,0,0,0.6));
-}
-.hero-blur{
-    -fx-opacity: 0.35;
-}
-.trailer-info {
-    -fx-padding: 0 0 20 50;
-}
-/* ================= MOVIE CARDS ================= */
-
-
 /* ===== Side menu style =====*/
 .side-menu {
     -fx-background-color: #101010;
@@ -109,122 +78,102 @@
 }
 
 
-/* ===== Carousel container ===== */
 
-.hero-carousel {
-    -fx-background-color: transparent;
-}
-.hero-carousel:hover .hero-button{
-    -fx-opacity:0.25;
-}
-.hero-carousel:hover .hero-button:hover{
-    -fx-opacity: 1;
+/* Root Background */
+.user-root, .user-root .viewport {
+    -fx-background-color: #141414; /* Deep Netflix black */
+    -fx-background: #141414;
 }
 
-/* ===== Active hero ===== */
-
-.hero-active {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 24, 0.25, 0, 6);
-}
-
-/* Main image */
-.hero-main {
-    -fx-opacity: 1;
-    -fx-scale-x:1.02;
-    -fx-scale-y:1.02;
-}
-
-/* ===== Text ===== */
-
-.hero-content {
-    -fx-padding: 32;
-    -fx-spacing: 10;
-}
-
-.hero-title {
+/* Typography */
+.username-text {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
     -fx-text-fill: white;
+}
+.email-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #AAAAAA;
+}
+.section-title {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-}
-
-/* Image fills container but keeps ratio */
-.hero-image {
-    -fx-max-height: 260;
-    -fx-fit-width: 100%;
-    -fx-fit-height: 100%;
-}
-
-/* Content */
-.hero-content {
-    -fx-padding: 28;
-    -fx-spacing: 10;
-}
-
-.hero-title {
     -fx-text-fill: white;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
 }
 
+/* Edit Button */
+.edit-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #AAAAAA;
+    -fx-border-radius: 4;
+    -fx-text-fill: white;
+    -fx-padding: 5 15 5 15;
+    -fx-cursor: hand;
+    -fx-margin-top: 10px;
+}
+.edit-btn:hover {
+    -fx-border-color: white;
+}
 
-/* ================= MOVIE POSTER CARDS ================= */
+/* Carousel Scrolling */
+.carousel-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-padding: 0;
+}
+.carousel-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 8px;
+}
+.carousel-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #555555;
+    -fx-background-radius: 4;
+}
 
-/* Card */
-.poster-card {
+/* Movie Cards */
+.movie-card {
     -fx-cursor: hand;
 }
-
-/* Image */
 .poster-image {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.3, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0, 0, 4);
 }
 
-/* Overlay (hidden by default) */
-.media-poster-overlay {
-    -fx-background-color: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.6) 40%,
-            rgba(0, 0, 0, 0.2) 70%,
-            transparent 100%
-    );
-
-    -fx-padding: 10;
-    -fx-alignment: bottom-left;
-    -fx-spacing: 4;
-
-    -fx-opacity: 0; /* hidden */
-}
-
-/* Show instantly on hover */
-.poster-card:hover .media-poster-overlay {
-    -fx-opacity: 1;
-}
-
-/* Text */
-.media-info-overlay {
+/* The Overlay "Remove" Button */
+.remove-btn {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
     -fx-text-fill: white;
-    -fx-font-size: 11px;
-}
-
-#titleLabel {
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-background-radius: 15;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-cursor: hand;
+    -fx-opacity: 0.7;
+}
+.remove-btn:hover {
+    -fx-background-color: #E50914; /* Turns red on hover */
+    -fx-opacity: 1.0;
 }
 
-/* Badge (bottom-left) */
-.media-badge {
-    -fx-background-color: rgba(0, 0, 0, 0.75);
-    -fx-text-fill: white;
-
-    -fx-font-size: 11px;
-    -fx-padding: 4 6;
-    -fx-background-radius: 6;
-
-    /* Position bottom-left */
-    -fx-translate-x: 6;
-    -fx-translate-y: 100;
+/* Watch History Progress Bar */
+.netflix-progress {
+    -fx-pref-height: 4px;
 }
+.netflix-progress .track {
+    -fx-background-color: #333333;
+    -fx-background-radius: 0;
+}
+.netflix-progress .bar {
+    -fx-background-color: #E50914; /* Red progress */
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.history-title {
+    -fx-text-fill: #CCCCCC;
+    -fx-font-size: 14px;
+}
+
+
 /* ================= SCROLLBARS ================= */
 
 /* Horizontal scrollbar only */
