@@ -53,7 +53,10 @@ public class MainViewController {
         transition.play();
     }
 
+    public static MainViewController instance;
     @FXML public void initialize() {
+
+        instance = this;
         switchView("home-view.fxml");
     }
 

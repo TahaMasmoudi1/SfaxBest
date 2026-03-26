@@ -7,7 +7,6 @@ import javafx.scene.layout.StackPane;
 
 
 public class MoviePosterController {
-    MainViewController mainViewController =  new MainViewController();
 
     @FXML private ImageView posterImage;
 
@@ -16,6 +15,7 @@ public class MoviePosterController {
     }
     @FXML
     public void loadMovieView(){
-       mainViewController.switchView("movie-view.fxml");
+        MainViewController.instance.switchView("movie-view.fxml");
+
     }
 }
