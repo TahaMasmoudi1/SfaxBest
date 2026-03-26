@@ -47,7 +47,13 @@ public class CommentService {
     public List<Comment> findAllByMultimedia(Long idMultimedia) {
          return TraHelper.read(em -> {
             CommentDAO commentDAO = new CommentDAO(em);
-            return commentDAO.findAll(idMultimedia);
+            return commentDAO.findAllById(idMultimedia);
+        });
+    }
+    public List<Comment> findAll() {
+        return TraHelper.read(em -> {
+            CommentDAO commentDAO = new CommentDAO(em);
+            return commentDAO.findAll();
         });
     }
 
