@@ -28,4 +28,8 @@ public class CategoryDAO {
         return em.createQuery("select c from Category c where c.id in:ids"
                 , Category.class).setParameter("ids", ids).getResultList();
     }
+    public List<Category> listALL() {
+        return em.createQuery("select c from Category c "
+                , Category.class).getResultList();
+    }
 }

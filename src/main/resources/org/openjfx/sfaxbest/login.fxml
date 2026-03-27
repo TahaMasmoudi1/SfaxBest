@@ -12,19 +12,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.loginController">
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="600.0" stylesheets="@../../../Styles/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.loginController">
+
+
     <children>
-        <VBox alignment="CENTER" maxWidth="800.0" minWidth="600.0" prefHeight="200.0" prefWidth="500.0" spacing="20.0" style="-fx-background-color: black; -fx-background-radius: 10;">
+        <VBox alignment="CENTER" maxWidth="800.0" minWidth="600.0" prefHeight="200.0" prefWidth="500.0" spacing="20.0">
+
             <padding>
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
+
             <children>
-            <ImageView fitHeight="78.0" fitWidth="200.0">
-               <image>
-                  <Image url="@../../../Images/logo_app.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lblLoginError" textFill="RED" visible="false" />
+
+                <!-- Logo -->
+                <ImageView fitHeight="78.0" fitWidth="200.0">
+                    <image>
+                        <Image url="@../../../Images/logo_app.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Error label -->
+                <Label fx:id="lblLoginError" textFill="RED" visible="false" />
+
+                <!-- Username label -->
                 <Label maxWidth="1.7976931348623157E308" text="Username:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
@@ -33,11 +43,15 @@
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="tfUsername" style="-fx-background-color: #333333; -fx-text-fill: white;">
+
+                <!-- Username field -->
+                <TextField fx:id="tfUsername">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="-10.0" />
                     </VBox.margin>
                 </TextField>
+
+                <!-- Password label -->
                 <Label maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="808.0" text="Password:" textFill="WHITE">
                     <font>
                         <Font size="22.0" />
@@ -46,21 +60,31 @@
                         <Insets left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <PasswordField fx:id="pfPassword" style="-fx-background-color: #333333;-fx-text-fill: white;">
+
+                <!-- Password field -->
+                <PasswordField fx:id="pfPassword">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="-10.0" />
                     </VBox.margin>
                 </PasswordField>
-                <Button fx:id="btnLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #e50914; -fx-font-weight: bold;" text="Log In" textFill="WHITE">
+
+                <!-- Log In button -->
+                <Button fx:id="btnLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Log In" textFill="WHITE">
                     <VBox.margin>
                         <Insets left="50.0" right="50.0" top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Hyperlink onAction="#switchToSecondary" text="New to SfaxBest ? Sign In" textFill="#b3b3b3" />
+
+                <!-- Sign up hyperlink -->
+                <Hyperlink onAction="#switchToSecondary" text="New to SfaxBest ? Sign In" />
+
             </children>
-         <StackPane.margin>
-            <Insets left="100.0" right="100.0" />
-         </StackPane.margin>
+
+            <StackPane.margin>
+                <Insets left="100.0" right="100.0" />
+            </StackPane.margin>
+
         </VBox>
     </children>
+
 </StackPane>

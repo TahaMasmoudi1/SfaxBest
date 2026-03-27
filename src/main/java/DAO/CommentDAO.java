@@ -27,10 +27,14 @@ public class CommentDAO {
     public Comment findById(Long id) {
         return em.find(Comment.class, id);
     }
-    public List<Comment> findAll(Long idMultimedia) {
+    public List<Comment> findAllById(Long idMultimedia) {
         return  em.createQuery("select c from Comment c where c.multimedia.id=:id " +
                 "order by c.commentDate", Comment.class)
                 .setParameter("id", idMultimedia).getResultList();
+    }
+    public List<Comment> findAll() {
+        return  em.createQuery("select c from Comment c " +
+                        "order by c.commentDate", Comment.class).getResultList();
     }
 
 }

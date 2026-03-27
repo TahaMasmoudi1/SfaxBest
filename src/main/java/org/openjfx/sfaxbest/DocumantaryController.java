@@ -42,8 +42,16 @@ public class DocumantaryController {
         App.setRoot("mainAdmin");
     }
     @FXML
+    public void goToComments() throws IOException{
+        App.setRoot("commentAdmin");
+    }
+    @FXML
     public void goToSeries() throws IOException {
         App.setRoot("seriesAdmin");
+    }
+    @FXML
+    public void gotoDashboard()throws IOException{
+        App.setRoot("dashboardAdmin");
     }
     @FXML
     public void initialize() {

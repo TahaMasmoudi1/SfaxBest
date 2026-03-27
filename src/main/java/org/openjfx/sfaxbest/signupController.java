@@ -1,6 +1,5 @@
 package org.openjfx.sfaxbest;
 
-import Services.FilmService;
 import Services.UserService;
 import exceptions.ValidationException;
 import javafx.fxml.FXML;
