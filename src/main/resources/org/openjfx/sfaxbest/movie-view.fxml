@@ -21,19 +21,25 @@
             <StackPane style="-fx-background-color: linear-gradient(to bottom, transparent 60%, #202020 100%);" />
         </StackPane>
 
-        <VBox spacing="10">
+        <VBox spacing="15">
             <padding>
                 <Insets bottom="20" left="40" right="40" top="0" />
             </padding>
 
-            <Label fx:id="titleLabel" style="-fx-font-size: 36px; -fx-text-fill: white; -fx-font-weight: bold;" text="Movie Title" />
+            <Label fx:id="titleLabel" styleClass="title" text="Movie Title"/>
 
             <HBox spacing="15">
                 <Label fx:id="ratingLabel" style="-fx-text-fill: #FFD700; -fx-font-size: 16px;" text="★ 4.5/5" />
                 <Label fx:id="durationLabel" style="-fx-text-fill: #AAAAAA; -fx-font-size: 16px;" text="120 min" />
             </HBox>
 
-            <Label fx:id="castLabel" style="-fx-text-fill: #CCCCCC; -fx-font-style: italic;" text="Cast: Actor 1, Actor 2" />
+            <HBox spacing="15">
+                <Button styleClass="primary-btn" text="▶ Watch Now" onMouseClicked="#loadMedia"/>
+                <Button  styleClass="primary-btn" text="✚ Add to Watchlist" />
+            </HBox>
+
+            <Label fx:id="castLabel" styleClass="cast-text" text="Cast: Actor 1, Actor 2" />
+
 
             <Label fx:id="descriptionLabel" style="-fx-text-fill: white; -fx-font-size: 14px;" text="Movie description goes here..." wrapText="true" />
         </VBox>
@@ -46,17 +52,17 @@
             <Label style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bold;" text="Rate &amp; Review" />
 
             <HBox fx:id="starRatingBox" spacing="5">
-                <Label text="☆" style="-fx-font-size: 30px; -fx-text-fill: #AAAAAA; -fx-cursor: hand;" />
-                <Label text="☆" style="-fx-font-size: 30px; -fx-text-fill: #AAAAAA; -fx-cursor: hand;" />
-                <Label text="☆" style="-fx-font-size: 30px; -fx-text-fill: #AAAAAA; -fx-cursor: hand;" />
-                <Label text="☆" style="-fx-font-size: 30px; -fx-text-fill: #AAAAAA; -fx-cursor: hand;" />
-                <Label text="☆" style="-fx-font-size: 30px; -fx-text-fill: #AAAAAA; -fx-cursor: hand;" />
+                <Label text="☆" styleClass="rate-star"/>
+                <Label text="☆" styleClass="rate-star"/>
+                <Label text="☆" styleClass="rate-star"/>
+                <Label text="☆" styleClass="rate-star"/>
+                <Label text="☆" styleClass="rate-star"/>
             </HBox>
 
             <TextArea fx:id="commentInput" prefHeight="80.0" prefRowCount="3" promptText="Write your review here..." wrapText="true" />
-            <Button  style="-fx-background-color: #E50914; -fx-text-fill: white; -fx-font-weight: bold;" text="Submit Review" />
+            <Button styleClass="primary-btn" text="Submit Review" />
 
-            <Label style="-fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 20 0 0 0;" text="Recent Comments" />
+            <Label styleClass="comments" text="Recent Comments" />
             <VBox fx:id="commentsList" spacing="10" />
 
         </VBox>

@@ -13,6 +13,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class MainViewController {
+
     //Side menu logic
     @FXML
     private VBox VBsideMenu;
@@ -54,9 +55,11 @@ public class MainViewController {
     }
 
     public static MainViewController instance;
+
     @FXML public void initialize() {
 
         instance = this;
+
         switchView("home-view.fxml");
     }
 
