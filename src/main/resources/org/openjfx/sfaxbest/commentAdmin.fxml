@@ -95,7 +95,7 @@
             <TableView fx:id="commentTable" fixedCellSize="36" maxHeight="1.7976931348623157E308" styleClass="comment-table" VBox.vgrow="ALWAYS">
 
                 <columns>
-                    <TableColumn fx:id="colIdFilm" text="FILM ID" />
+                    <TableColumn fx:id="colIdComment" text="FILM ID" />
                     <TableColumn fx:id="colTitleFilm" text="FILM" />
                     <TableColumn fx:id="colIDuser" text="USER ID" />
                     <TableColumn fx:id="coluserName" text="USER" />

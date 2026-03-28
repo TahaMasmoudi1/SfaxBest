@@ -2,7 +2,7 @@ package org.openjfx.sfaxbest;
 
 import Services.DocumentaryService;
 import entities.Category;
-import entities.Film;
+import entities.Documentary;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,17 +13,17 @@ import java.io.IOException;
 import java.util.List;
 
 public class DocumantaryController {
-    @FXML private TableView<Film> movieTable;
-    @FXML private TableColumn<Film, Integer> colId;
-    @FXML private TableColumn<Film, String> colTitle;
-    @FXML private TableColumn<Film, String> colDescription;
-    @FXML private TableColumn<Film, Integer> colReleaseDate;
-    @FXML private TableColumn<Film, String> colTrailer;
-    @FXML private TableColumn<Film, String> colBanner;
-    @FXML private TableColumn<Film, Integer> colDuration;
-    @FXML private TableColumn<Film, String> colVideo;
-    @FXML private TableColumn<Film, String> colPoster;
-    @FXML private TableColumn<Film, List<Category>> colCategorie;
+    @FXML private TableView<Documentary> movieTable;
+    @FXML private TableColumn<Documentary, Integer> colId;
+    @FXML private TableColumn<Documentary, String> colTitle;
+    @FXML private TableColumn<Documentary, String> colDescription;
+    @FXML private TableColumn<Documentary, Integer> colReleaseDate;
+    @FXML private TableColumn<Documentary, String> colTrailer;
+    @FXML private TableColumn<Documentary, String> colBanner;
+    @FXML private TableColumn<Documentary, Integer> colDuration;
+    @FXML private TableColumn<Documentary, String> colVideo;
+    @FXML private TableColumn<Documentary, String> colPoster;
+    @FXML private TableColumn<Documentary, List<Category>> colCategorie;
     @FXML private TextField tfTitle;
     @FXML private TextArea taDescription;
     @FXML private TextField tfReleaseYear;
@@ -85,50 +85,7 @@ public class DocumantaryController {
         //colCategorie.setCellValueFactory(new PropertyValueFactory<>("Category"));
 
         movieTable.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList(
-
-                new Film(
-                        "Inception",
-                        "A thief who steals corporate secrets through dream-sharing technology.",
-                        2010,
-                        "trailer/inception.mp4",
-                        "banner/inception.jpg",
-                        8880,
-                        "videos/inception.mp4",
-                        "poster/inception.jpg"
-                ),
-
-                new Film(
-                        "Interstellar",
-                        "Explorers travel through a wormhole in space.",
-                        2014,
-                        "trailer/interstellar.mp4",
-                        "banner/interstellar.jpg",
-                        10140,
-                        "videos/interstellar.mp4",
-                        "poster/interstellar.jpg"
-                ),
-
-                new Film(
-                        "The Matrix",
-                        "wiiiiiw",
-                        1999,
-                        "trailer/matrix.mp4",
-                        "banner/matrix.jpg",
-                        8160,
-                        "videos/matrix.mp4",
-                        "poster/matrix.jpg"
-                ),
-
-                new Film(
-                        "Avatar",
-                        "A marine on an alien planet.",
-                        2009,
-                        "trailer/avatar.mp4",
-                        "banner/avatar.jpg",
-                        9720,
-                        "videos/avatar.mp4",
-                        "poster/avatar.jpg"
-                )
+                documentaryService.findAll()
         )));
     }
     @FXML
@@ -141,7 +98,7 @@ public class DocumantaryController {
         add2btn.setManaged(false);
 
         movieTable.setOnMouseClicked(event->{
-            Film newSelection = movieTable.getSelectionModel().getSelectedItem();
+            Documentary newSelection = movieTable.getSelectionModel().getSelectedItem();
             if(newSelection!=null){
                 String id = String.valueOf(newSelection.getId());
                 String title = newSelection.getTitle();
@@ -185,19 +142,23 @@ public class DocumantaryController {
         add2btn.setManaged(true);
         edit2btn.setVisible(false);
         edit2btn.setManaged(false);
-        /*String title = tfTitle.getText();
+
+    }
+    @FXML
+    public void adding(){
+        String title = tfTitle.getText();
         String description = taDescription.getText();
         int releaseDate = Integer.parseInt(tfReleaseYear.getText());
         String trailer = tfTrailer.getText();
         String banner = tfBanner.getText();
         int duration = Integer.parseInt(tfDuration.getText());
-        String video = tfVideo.getText();*/
-        //filmService.save(title,description,trailer,banner,releaseDate,duration,video,1,2);
+        String video = tfVideo.getText();
+        //DocumentaryService.save(title,description,trailer,banner,releaseDate,duration,video,1,2);
         loadDocumantary();
     }
     public void deleteDocumantary() {
         movieTable.setOnMouseClicked(event->{
-            Film newSelection = movieTable.getSelectionModel().getSelectedItem();
+            Documentary newSelection = movieTable.getSelectionModel().getSelectedItem();
             if(newSelection!=null){
                 Long id = newSelection.getId();
                 documentaryService.delete(id);

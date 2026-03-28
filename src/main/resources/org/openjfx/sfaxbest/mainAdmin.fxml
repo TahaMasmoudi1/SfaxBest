@@ -94,6 +94,8 @@
                           <TableColumn fx:id="colBanner" prefWidth="54" text="Banner" />
                           <TableColumn fx:id="colDuration" prefWidth="59" text="Duration" />
                           <TableColumn fx:id="colVideo" prefWidth="59" text="Video" />
+                          <TableColumn fx:id="colCategorie" prefWidth="59" text="Categories" />
+                          <TableColumn fx:id="colPoster" prefWidth="59" text="Poster" />
                       </columns>
       
                       <columnResizePolicy>
@@ -156,7 +158,7 @@
                         <Insets top="8.0" />
                      </VBox.margin>
                           <Button fx:id="edit2btn" onAction="#editFilms" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
-                          <Button fx:id="add2btn" styleClass="primary-button" text="＋  Add Film" visible="false" />
+                          <Button fx:id="add2btn" onAction="#adding" styleClass="primary-button" text="＋  Add Film" visible="false" />
                           <Button styleClass="danger-button" text="✕  Delete" />
                       </HBox>
       

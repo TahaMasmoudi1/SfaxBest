@@ -55,6 +55,12 @@ public class Comment {
     public User getUser() {
         return user;
     }
+    public Long getUserid() {
+        return user.getId();
+    }
+    public String getUsername() {
+        return user.getUsername();
+    }
 
     public void setUser(User user) {
         this.user = user;
@@ -62,6 +68,9 @@ public class Comment {
 
     public Multimedia getMultimedia() {
         return multimedia;
+    }
+    public String getTitle(){
+            return multimedia.getTitle();
     }
 
     public void setMultimedia(Multimedia idMultimedia) {

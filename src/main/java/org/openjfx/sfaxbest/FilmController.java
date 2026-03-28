@@ -10,6 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +26,7 @@ public class FilmController {
     @FXML private TableColumn<Film, Integer> colDuration;
     @FXML private TableColumn<Film, String> colVideo;
     @FXML private TableColumn<Film, String> colPoster;
-    @FXML private TableColumn<Film, List<Category>> colCategorie;
+    @FXML private TableColumn<Film, List<String>> colCategorie;
     @FXML private TextField tfTitle;
     @FXML private TextArea taDescription;
     @FXML private TextField tfReleaseYear;
@@ -75,96 +77,11 @@ public class FilmController {
         colBanner.setCellValueFactory(new PropertyValueFactory<>("pathBanner"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("durationSeconds"));
         colVideo.setCellValueFactory(new PropertyValueFactory<>("pathVideo"));
-        //colPoster.setCellValueFactory(new PropertyValueFactory<>("pathPoster"));
-        //colCategorie.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        colPoster.setCellValueFactory(new PropertyValueFactory<>("pathPoster"));
+        colCategorie.setCellValueFactory(new PropertyValueFactory<>("StringCategorie"));
 
         movieTable.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList(
-                new Film(
-                        "Inception",
-                        "A thief who steals corporate secrets through dream-sharing technology.",
-                        2010,
-                        "trailer/inception.mp4",
-                        "banner/inception.jpg",
-                        8880,
-                        "videos/inception.mp4",
-                        "poster/inception.jpg"
-                ),
-
-                new Film(
-                        "Interstellar",
-                        "Explorers travel through a wormhole in space.",
-                        2014,
-                        "trailer/interstellar.mp4",
-                        "banner/interstellar.jpg",
-                        10140,
-                        "videos/interstellar.mp4",
-                        "poster/interstellar.jpg"
-                ),
-
-                new Film(
-                        "The Matrix",
-                        "A hacker discovers reality is a simulation.",
-                        1999,
-                        "trailer/matrix.mp4",
-                        "banner/matrix.jpg",
-                        8160,
-                        "videos/matrix.mp4",
-                        "poster/matrix.jpg"
-                ),
-
-                new Film(
-                        "Avatar",
-                        "A marine on an alien planet.",
-                        2009,
-                        "trailer/avatar.mp4",
-                        "banner/avatar.jpg",
-                        9720,
-                        "videos/avatar.mp4",
-                        "poster/avatar.jpg"
-                ),
-                new Film(
-                        "Inception",
-                        "A thief who steals corporate secrets through dream-sharing technology.",
-                        2010,
-                        "trailer/inception.mp4",
-                        "banner/inception.jpg",
-                        8880,
-                        "videos/inception.mp4",
-                        "poster/inception.jpg"
-                ),
-
-                new Film(
-                        "Interstellar",
-                        "Explorers travel through a wormhole in space.",
-                        2014,
-                        "trailer/interstellar.mp4",
-                        "banner/interstellar.jpg",
-                        10140,
-                        "videos/interstellar.mp4",
-                        "poster/interstellar.jpg"
-                ),
-
-                new Film(
-                        "The Matrix",
-                        "A hacker discovers reality is a simulation.",
-                        1999,
-                        "trailer/matrix.mp4",
-                        "banner/matrix.jpg",
-                        8160,
-                        "videos/matrix.mp4",
-                        "poster/matrix.jpg"
-                ),
-
-                new Film(
-                        "Avatar",
-                        "A marine on an alien planet.",
-                        2009,
-                        "trailer/avatar.mp4",
-                        "banner/avatar.jpg",
-                        9720,
-                        "videos/avatar.mp4",
-                        "poster/avatar.jpg"
-                )
+                filmService.listAllWithCategories()
         )));
     }
     @FXML
@@ -185,10 +102,9 @@ public class FilmController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            System.out.println("aaaa");
-        } else {
-            System.out.println("Deletion cancelled");
+            filmService.delete(selectedFilm.getId());
         }
+        loadFilms();
     }
     @FXML
     public void editFilms() {
@@ -244,14 +160,32 @@ public class FilmController {
         add2btn.setManaged(true);
         edit2btn.setVisible(false);
         edit2btn.setManaged(false);
-        /*String title = tfTitle.getText();
+
+    }
+    @FXML public void adding(){
+        String title = tfTitle.getText();
         String description = taDescription.getText();
         int releaseDate = Integer.parseInt(tfReleaseYear.getText());
         String trailer = tfTrailer.getText();
         String banner = tfBanner.getText();
         int duration = Integer.parseInt(tfDuration.getText());
-        String video = tfVideo.getText();*/
-        //filmService.save(title,description,trailer,banner,releaseDate,duration,video,1,2);
+        String video = tfVideo.getText();
+        List<Long> l = new ArrayList<>();
+        Long a = 100L;
+        l.add(a);
+        filmService.save(title,description,trailer,banner,releaseDate,duration,video,l,"111");
+        loadFilms();
+    }
+    @FXML public void editing(){
+        Film selectedFilm = movieTable.getSelectionModel().getSelectedItem();
+        String title = tfTitle.getText();
+        String description = taDescription.getText();
+        int releaseDate = Integer.parseInt(tfReleaseYear.getText());
+        String trailer = tfTrailer.getText();
+        String banner = tfBanner.getText();
+        int duration = Integer.parseInt(tfDuration.getText());
+        String video = tfVideo.getText();
+        //filmService.update(selectedFilm.getId(),title,description,trailer,banner,releaseDate,duration,video,1,2);
         loadFilms();
     }
 
