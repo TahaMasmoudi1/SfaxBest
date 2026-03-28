@@ -1,5 +1,7 @@
 package org.openjfx.sfaxbest;
 
+import Services.FilmService;
+import entities.Film;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,17 +40,12 @@ public class HomeViewController {
     @FXML
     public void initialize() {
 
-
-        String posterPath1 = getClass().getResource("/Images/the_matrix_poster.jpg").toExternalForm();
-        String posterPath2 = getClass().getResource("/Images/gladiator_poster.jpg").toExternalForm();
-        String posterPath3 = getClass().getResource("/Images/dark_Knight_poster.jpg").toExternalForm();
-
-        popularPosters = List.of(
-                new Image(posterPath1),
-                new Image(posterPath2),
-                new Image(posterPath3)
-        );
+        FilmService filmService = new FilmService();
+        List<Film> films = filmService.listAllWithCategories();
         //For testing
+        for (Film film : films) {
+            popularPosters.add(new Image(film.getPathPoster()));
+        }
         trendingPosters = popularPosters;
 
         loadBrowseRow();
