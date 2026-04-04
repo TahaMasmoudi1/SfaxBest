@@ -1,6 +1,8 @@
 package org.openjfx.sfaxbest;
 
 import Services.FilmService;
+import Services.RatingService;
+import entities.Category;
 import entities.Film;
 import javafx.animation.*;
 import javafx.fxml.FXML;
@@ -17,8 +19,9 @@ import javafx.scene.media.MediaView;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HomeViewController {
 
@@ -29,27 +32,22 @@ public class HomeViewController {
 
 
     private MediaPlayer mediaPlayer;
-    private List<Image> popularPosters = new ArrayList<>();
-    private List<Image> trendingPosters = new ArrayList<>();
 
     @FXML private HBox PopularPosterRow;
-    @FXML private HBox TrendingPosterRow;
+    @FXML private HBox ActionPosterRow;
 
-
-
+    RatingService ratingService = new RatingService();
     @FXML
     public void initialize() {
 
         FilmService filmService = new FilmService();
+
         List<Film> films = filmService.listAllWithCategories();
         //For testing
-        for (Film film : films) {
-            popularPosters.add(new Image(film.getPathPoster()));
-        }
-        trendingPosters = popularPosters;
 
-        loadBrowseRow();
-        loadTrendingRow();
+
+        loadBrowseRow(films);
+        loadActionRow(films);
 
         String path = getClass().getResource("/videos/gladiator_trailer.mp4").toExternalForm();
 
@@ -83,16 +81,24 @@ public class HomeViewController {
     }
 
 
-    private void loadBrowseRow() {
+    private void loadBrowseRow(List<Film> films) {
         try{
-            for (Image image : popularPosters){
+            for (Film film : films) {
+
+                Set<Category> genres = film.getCategories();
+                Set<String> categories = new HashSet<>();
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
                 Node cardNode = loader.load();
 
                 MoviePosterController cardController = loader.getController();
 
-                cardController.setData(image);
+                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(film.getPathPoster()));
 
                 PopularPosterRow.getChildren().add(cardNode);
             }
@@ -101,18 +107,27 @@ public class HomeViewController {
             System.out.println("Couldn't load browse posters");
         }
     }
-    private void loadTrendingRow() {
+    private void loadActionRow(List<Film> films) {
         try{
-            for (Image image : trendingPosters){
+            for (Film  film : films) {
+                Set<Category> genres = film.getCategories();
+                Set<String> categories = new HashSet<>();
+
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
+
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
                 Node cardNode = loader.load();
 
                 MoviePosterController cardController = loader.getController();
 
-                cardController.setData(image);
+                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(film.getPathPoster()));
 
-                TrendingPosterRow.getChildren().add(cardNode);
+                ActionPosterRow.getChildren().add(cardNode);
             }
         } catch (IOException e) {
             e.printStackTrace();

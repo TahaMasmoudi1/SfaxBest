@@ -26,8 +26,15 @@ public class MediaPlayerController {
     @FXML Button playPauseBtn;
     @FXML MediaView mediaView;
 
+    public static MediaPlayerController instance;
+
     public void initialize() {
+        instance = this;
         String pathVideo = getClass().getResource("/videos/gladiator_trailer.mp4").toExternalForm();
+        loadVideo(pathVideo);
+    }
+
+    public void loadVideo(String pathVideo) {
         Media media = new Media(pathVideo);
         mediaView.fitWidthProperty().bind(playerRoot.widthProperty());
         mediaView.fitHeightProperty().bind(playerRoot.heightProperty());
@@ -38,19 +45,16 @@ public class MediaPlayerController {
             mediaPlayer.setVolume(newVal.doubleValue());
         });
         mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
-                    timeSlider.setValue(newTime.toSeconds());
-                    currentTimeLabel.setText(formatTime(newTime));
-                });
+            timeSlider.setValue(newTime.toSeconds());
+            currentTimeLabel.setText(formatTime(newTime));
+        });
         mediaView.setMediaPlayer(mediaPlayer);
-
-
     }
-
-
 
 
     @FXML public void playNextEpisode(){}
     @FXML public void cancelBingeWatch(){}
+
     @FXML public void togglePlayPause(){
         if (isPlaying) {
             mediaPlayer.pause();
@@ -62,8 +66,18 @@ public class MediaPlayerController {
             playPauseBtn.setText("⏸");
         }
     }
-    @FXML public void seekBack(){}
-    @FXML public void seekForward(){}
+    @FXML public void seekBack(){
+        if (mediaPlayer != null) {
+            Duration currentTime = mediaPlayer.getCurrentTime();
+            mediaPlayer.seek(currentTime.subtract(Duration.seconds(10)));
+        }
+    }
+    @FXML public void seekForward(){
+        if (mediaPlayer != null) {
+            Duration currentTime = mediaPlayer.getCurrentTime();
+            mediaPlayer.seek(currentTime.add(Duration.seconds(10)));
+        }
+    }
     @FXML public void toggleFullscreen(){}
 
     private String formatTime(Duration duration) {

@@ -62,7 +62,7 @@
 
             <VBox spacing="10">
 
-                <Label styleClass="section-title" text="Popular Movies" />
+                <Label styleClass="section-title" text="Browse Movies" />
 
                 <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" styleClass="popular-movie-carousel" vbarPolicy="NEVER">
 
@@ -78,11 +78,11 @@
 
             <VBox spacing="10">
 
-                <Label styleClass="section-title" text="Trending Series" />
+                <Label styleClass="section-title" text="Action" />
 
                 <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
 
-                    <HBox fx:id="TrendingPosterRow" prefHeight="240" spacing="20">
+                    <HBox fx:id="ActionPosterRow" prefHeight="240" spacing="20">
 
                         <!-- the content is allocated dynamically-->
 
