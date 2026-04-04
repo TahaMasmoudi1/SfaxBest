@@ -16,8 +16,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
-
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -98,7 +96,7 @@ public class HomeViewController {
 
                 MoviePosterController cardController = loader.getController();
 
-                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+                cardController.setData(film.getTitle(),joinedCategories, Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
 
                 PopularPosterRow.getChildren().add(cardNode);
             }

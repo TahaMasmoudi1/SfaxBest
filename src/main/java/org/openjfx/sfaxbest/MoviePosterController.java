@@ -16,13 +16,12 @@ public class MoviePosterController {
     public void setData(String title,String genres,String rating ,Image image){
         titleLabel.setText(title);
         genreLabel.setText(genres);
-        ratingLabel.setText(rating);
+        ratingLabel.setText("★ " + rating + "/5");
         posterImage.setImage(image);
     }
     @FXML
     public void loadMovieView(){
         String title = titleLabel.getText();
-        MainViewController.instance.switchView("movie-view.fxml");
-        MovieViewController.instance.loadMovie(title);
+        MainViewController.instance.openMovieView(title);
     }
 }

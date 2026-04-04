@@ -26,10 +26,8 @@ public class MediaPlayerController {
     @FXML Button playPauseBtn;
     @FXML MediaView mediaView;
 
-    public static MediaPlayerController instance;
 
     public void initialize() {
-        instance = this;
         String pathVideo = getClass().getResource("/videos/gladiator_trailer.mp4").toExternalForm();
         loadVideo(pathVideo);
     }

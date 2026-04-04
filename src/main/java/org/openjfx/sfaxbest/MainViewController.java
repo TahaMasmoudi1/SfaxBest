@@ -89,4 +89,34 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
+    public void openMovieView(String title){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-view.fxml"));
+            Node view = loader.load();
+
+            MovieViewController movieController = loader.getController();
+
+            movieController.loadMovie(title);
+
+            mainBorderPane.setCenter(view);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void openMediaPlayerView(String path){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("media-player-view.fxml"));
+            Node view = loader.load();
+
+            MediaPlayerController mediaPlayerController = loader.getController();
+
+            mediaPlayerController.loadVideo(path);
+
+            mainBorderPane.setCenter(view);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

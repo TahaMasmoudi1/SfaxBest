@@ -25,10 +25,8 @@ import java.util.stream.Collectors;
 
 public class MovieViewController {
 
-    public static MovieViewController instance;
     @FXML
     public void initialize (){
-        instance = this;
         setInteractiveStars();
     }
 
@@ -110,7 +108,6 @@ public class MovieViewController {
     }
     @FXML
     private void loadMedia(){
-        MediaPlayerController.instance.loadVideo(getClass().getResource(currentFilm.getPathVideo()).toExternalForm());
-        MainViewController.instance.switchView("media-player-view.fxml");
+        MainViewController.instance.openMediaPlayerView(getClass().getResource(currentFilm.getPathVideo()).toExternalForm());
     }
 }
