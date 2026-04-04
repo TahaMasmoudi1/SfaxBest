@@ -98,7 +98,7 @@ public class HomeViewController {
 
                 MoviePosterController cardController = loader.getController();
 
-                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(film.getPathPoster()));
+                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
 
                 PopularPosterRow.getChildren().add(cardNode);
             }
@@ -125,7 +125,7 @@ public class HomeViewController {
 
                 MoviePosterController cardController = loader.getController();
 
-                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(film.getPathPoster()));
+                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
 
                 ActionPosterRow.getChildren().add(cardNode);
             }

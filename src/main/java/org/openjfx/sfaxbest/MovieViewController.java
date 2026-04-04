@@ -110,7 +110,7 @@ public class MovieViewController {
     }
     @FXML
     private void loadMedia(){
-        MediaPlayerController.instance.loadVideo(currentFilm.getPathVideo());
+        MediaPlayerController.instance.loadVideo(getClass().getResource(currentFilm.getPathVideo()).toExternalForm());
         MainViewController.instance.switchView("media-player-view.fxml");
     }
 }
