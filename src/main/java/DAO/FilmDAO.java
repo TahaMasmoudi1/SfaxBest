@@ -50,10 +50,10 @@ public class FilmDAO {
                         " order by f.createdAt desc", Film.class).setParameter("releaseYear",releaseYear)
                 .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    public Film listFilmDetails(long id) {
+    public List<Film> listFilmDetails() {
         return em.createQuery("select distinct f from Film f " +
                 "left join fetch  f.videoCasts vc left join fetch  vc.castMember cm" +
-                "left join fetch  f.categories c where f.id=:id ",Film.class).setParameter("id",id).getSingleResult();
+                "left join fetch  f.categories c  ",Film.class).getResultList();
     }
     public List<Film> listFilmsSearch(String search, int offset, int limit) {
         String text=(search==null)?"":search.trim().toLowerCase();

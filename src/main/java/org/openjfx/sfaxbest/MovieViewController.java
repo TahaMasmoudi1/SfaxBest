@@ -72,7 +72,7 @@ public class MovieViewController {
     public void loadMovie(String title){
         FilmService  filmService = new FilmService();
         RatingService ratingService = new RatingService();
-        List<Film> films = filmService.listAllWithCategories();
+        List<Film> films = filmService.listAllWithDetails();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
             currentFilm = film;

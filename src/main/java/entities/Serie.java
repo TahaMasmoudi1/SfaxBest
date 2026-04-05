@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "series")
+@DiscriminatorValue("SERIES")
 @PrimaryKeyJoinColumn(name = "id")
 public class Serie extends Multimedia {
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)

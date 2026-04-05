@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "film")
+@DiscriminatorValue("FILM")
 @PrimaryKeyJoinColumn(name = "id")
 public class Film extends Multimedia {
     @Column(name = "duration_seconds", nullable = false)
