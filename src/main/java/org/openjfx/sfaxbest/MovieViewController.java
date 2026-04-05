@@ -72,10 +72,10 @@ public class MovieViewController {
     public void loadMovie(String title){
         FilmService  filmService = new FilmService();
         RatingService ratingService = new RatingService();
-        List<Film> films = filmService.listAllWithDetails();
+        List<Film> films = filmService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
-            currentFilm = film;
+            currentFilm = filmService.listFilmDetails(film.getId());;
             if (film.getTitle().equals(title)) {
                 Set<CastMember> castMembers = film.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
                 for (CastMember castMember : castMembers) {
