@@ -75,14 +75,14 @@ public class MovieViewController {
         List<Film> films = filmService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
-            currentFilm = filmService.listFilmDetails(film.getId());;
+            currentFilm = filmService.listFilmDetails(film.getId());
             if (film.getTitle().equals(title)) {
                 Set<CastMember> castMembers = currentFilm.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
                 for (CastMember castMember : castMembers) {
                     fullNames.add(castMember.getName() + " " + castMember.getLastName());
                 }
                 String cast = fullNames.stream().collect(Collectors.joining(" "));
-                setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),Double.toString(ratingService.calculateRate(film.getId())),Integer.toString(film.getDurationSeconds()%60),cast, film.getDescription());
+                setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),Double.toString(ratingService.calculateRate(film.getId())),Integer.toString(film.getDurationSeconds()/60),cast, film.getDescription());
                 break;
             }
         }
