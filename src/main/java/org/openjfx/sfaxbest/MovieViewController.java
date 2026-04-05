@@ -77,7 +77,7 @@ public class MovieViewController {
         for (Film film : films) {
             currentFilm = filmService.listFilmDetails(film.getId());;
             if (film.getTitle().equals(title)) {
-                Set<CastMember> castMembers = film.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
+                Set<CastMember> castMembers = currentFilm.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
                 for (CastMember castMember : castMembers) {
                     fullNames.add(castMember.getName() + " " + castMember.getLastName());
                 }
