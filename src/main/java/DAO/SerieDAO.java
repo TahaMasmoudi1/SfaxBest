@@ -1,5 +1,6 @@
 package DAO;
 
+import entities.Film;
 import entities.Serie;
 import jakarta.persistence.EntityManager;
 
@@ -68,7 +69,7 @@ public class SerieDAO {
                 .getResultList();
     }
 
-    public Serie listFilmDetails(long id) {
+    public Serie listSerieDetails(long id) {
         return em.createQuery(
                         "select distinct s from Serie s " +
                                 "left join fetch  s.videoCasts vc left join fetch  vc.castMember cm" +
@@ -79,7 +80,7 @@ public class SerieDAO {
                 .getSingleResult();
     }
 
-    public List<Serie> listFilmsSearch(String search, int offset, int limit) {
+    public List<Serie> listSeriesSearch(String search, int offset, int limit) {
         String text = (search == null) ? "" : search.trim().toLowerCase();
         return em.createQuery(
                         "select s from Serie s where (:text=''" +
@@ -94,7 +95,7 @@ public class SerieDAO {
                 .getResultList();
     }
 
-    public List<Serie> listFilmsSearchWithCategory(
+    public List<Serie> listSeriesSearchWithCategory(
             String search,
             List<Long> categoryIds,
             int offset,
@@ -116,5 +117,17 @@ public class SerieDAO {
                 .setFirstResult(offset)
                 .setMaxResults(limit)
                 .getResultList();
+    }
+    public List<Serie> listByCategoryName(String categoryName, int offset, int limit) {
+        return em.createQuery(
+                        "select distinct s from Serie s " +
+                                "join s.categories c " +
+                                "where lower(c.categorie) = lower(:categoryName) " +
+                                "order by s.releaseYear desc",
+                        Serie.class)
+                .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
+    }
+    public double countSeries(){
+        return em.createQuery("select count (s) from Serie s", double.class).getSingleResult();
     }
 }

@@ -9,6 +9,7 @@ import exceptions.ValidationException;
 import utils.TraHelper;
 
 import java.time.Instant;
+import java.util.LinkedHashMap;
 
 public class UserService {
     private final EmailSender emailSender=new EmailSender();
@@ -115,6 +116,18 @@ public class UserService {
         TraHelper.write(em -> {
             UserDAO userDAO=new UserDAO(em);
             userDAO.update(user);
+        });
+    }
+    public LinkedHashMap<String, Long> countSubscribersByWeekDays(){
+       return TraHelper.read(em ->  {
+            UserDAO userDAO=new UserDAO(em);
+            return userDAO.countSubscribersByWeekDays();
+        });
+    }
+    public double countUsers(){
+        return TraHelper.read(em ->   {
+            UserDAO userDAO=new UserDAO(em);
+            return userDAO.countUsers();
         });
     }
 

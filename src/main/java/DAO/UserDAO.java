@@ -4,6 +4,9 @@ import entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 public class UserDAO  {
     private final EntityManager em;
 
@@ -70,6 +73,37 @@ public class UserDAO  {
             return false;
         }
     }
+
+    public LinkedHashMap<String, Long> countSubscribersByWeekDays() {
+
+        LinkedHashMap<String, Long> map = new LinkedHashMap<>();
+
+        map.put("Monday", 0L);
+        map.put("Tuesday", 0L);
+        map.put("Wednesday", 0L);
+        map.put("Thursday", 0L);
+        map.put("Friday", 0L);
+        map.put("Saturday", 0L);
+        map.put("Sunday", 0L);
+
+        List<Object[]> results = em.createQuery(
+                "select FUNCTION('DAYNAME', u.createdAt), count(u) " +
+                        "from User u " +
+                        "group by FUNCTION('DAYNAME', s.createdAt)",
+                Object[].class
+        ).getResultList();
+
+        for (Object[] row : results) {
+            map.put((String) row[0], (Long) row[1]);
+        }
+
+        return map;
+    }
+    public double countUsers(){
+        return em.createQuery("select count(u) from User u", Long.class).getSingleResult();
+    }
+
+
 
 
 }

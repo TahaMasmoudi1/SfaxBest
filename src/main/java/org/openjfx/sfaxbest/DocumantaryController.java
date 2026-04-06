@@ -117,7 +117,7 @@ public class DocumantaryController {
         colPoster.setCellValueFactory(new PropertyValueFactory<>("pathPoster"));
         colCategorie.setCellValueFactory(new PropertyValueFactory<>("StringCategorie"));
 
-        movieTable.setItems(FXCollections.observableArrayList(documentaryService.findAll()));
+        movieTable.setItems(FXCollections.observableArrayList(documentaryService.listAllWithCategories()));
     }
 
     public void populateCheckboxes(List<Category> labels) {

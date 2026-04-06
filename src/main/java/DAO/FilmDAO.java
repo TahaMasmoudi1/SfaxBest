@@ -85,5 +85,23 @@ public class FilmDAO {
                         Film.class)
                 .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
+    public double countFilms(){
+        return em.createQuery("select count (f) from Film f", double.class).getSingleResult();
+    }
+    public List<Object[]> getTopByViews(int limit){
+
+        return em.createQuery(
+                        "select f.title, count(w.multimedia.id) " +
+                                "from Film f " +
+                                "join Multimedia m on m.id = f.id " +
+                                "join WatchHistoryMultimedia w on w.multimedia.id = m.id " +
+                                "group by f.title " +
+                                "order by count(w.multimedia.id) desc",
+                        Object[].class
+                )
+                .setMaxResults(limit)
+                .getResultList();
+
+    }
 }
 

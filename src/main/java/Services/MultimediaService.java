@@ -9,6 +9,8 @@ import entities.VideoCastRole;
 import jakarta.persistence.NoResultException;
 import utils.TraHelper;
 
+import java.util.Map;
+
 public class MultimediaService {
 
     public void addCastToMultimedia(long idMultimedia, long castId, VideoCastRole role) {
@@ -28,5 +30,11 @@ public class MultimediaService {
 
         });
 
+    }
+    public Map<String, Integer> countFilmsByCategory() {
+        return TraHelper.read(em ->  {
+            MultimediaDAO multimediaDAO=new MultimediaDAO(em);
+            return multimediaDAO.countFilmsByCategory();
+        });
     }
 }

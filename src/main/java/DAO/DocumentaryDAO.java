@@ -1,6 +1,7 @@
 package DAO;
 
 import entities.Documentary;
+import entities.Film;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -53,14 +54,14 @@ public class DocumentaryDAO {
                 .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 
-    public Documentary listFilmDetails(long id) {
+    public Documentary listDocumentaryDetails(long id) {
         return em.createQuery("select distinct d from Documentary d " +
                         "left join fetch  d.videoCasts vc left join fetch  vc.castMember cm" +
                         "left join fetch  d.categories c where d.id=:id ", Documentary.class)
                 .setParameter("id", id).getSingleResult();
     }
 
-    public List<Documentary> listFilmsSearch(String search, int offset, int limit) {
+    public List<Documentary> listDocumentarySearch(String search, int offset, int limit) {
         String text = (search == null) ? "" : search.trim().toLowerCase();
         return em.createQuery("select d from Documentary d where (:text=''" +
                                 " or lower(d.title) like:text or lower(d.description)like:text)" +
@@ -70,7 +71,7 @@ public class DocumentaryDAO {
                 .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 
-    public List<Documentary> listFilmsSearchWithCategory(String search, List<Long> categoryIds, int offset, int limit) {
+    public List<Documentary> listDocumentarySearchWithCategory(String search, List<Long> categoryIds, int offset, int limit) {
         String text = (search == null) ? "" : search.trim().toLowerCase();
         return em.createQuery(
                         "select distinct d from Documentary d " +
@@ -84,5 +85,20 @@ public class DocumentaryDAO {
                 .setParameter("idsEmpty", categoryIds == null || categoryIds.isEmpty()).setFirstResult(offset)
                 .setMaxResults(limit)
                 .getResultList();
+    }
+    public double countDocumentary(){
+        return em.createQuery("select count (d) from Documentary d", double.class).getSingleResult();
+    }
+    public List<Documentary> listByCategoryName(String categoryName, int offset, int limit) {
+        return em.createQuery(
+                        "select distinct d from Documentary d " +
+                                "join d.categories c " +
+                                "where lower(c.categorie) = lower(:categoryName) " +
+                                "order by d.releaseYear desc",
+                        Documentary.class)
+                .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
+    }
+    public double countFilms(){
+        return em.createQuery("select count (f) from Film f", double.class).getSingleResult();
     }
 }

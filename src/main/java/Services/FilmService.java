@@ -107,4 +107,17 @@ public class FilmService {
             return filmDAO.listByCategoryName(category, offset, limit);
         });
     }
+    public double countFilms(){
+        return TraHelper.read(em ->  {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.countFilms();
+        });
+    }
+    public List<Object[]> getTopByViews(int limit){
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.getTopByViews(limit);
+        });
+
+    }
 }
