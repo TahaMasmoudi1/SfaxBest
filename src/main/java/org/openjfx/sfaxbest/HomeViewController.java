@@ -95,8 +95,14 @@ public class HomeViewController {
                 Node cardNode = loader.load();
 
                 MoviePosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
 
-                cardController.setData(film.getTitle(),joinedCategories, Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+                cardController.setData(film.getTitle(),joinedCategories, rate,new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
 
                 PopularPosterRow.getChildren().add(cardNode);
             }
@@ -122,8 +128,14 @@ public class HomeViewController {
                 Node cardNode = loader.load();
 
                 MoviePosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
 
-                cardController.setData(film.getTitle(),joinedCategories,Double.toString(ratingService.calculateRate(film.getId())),new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+                cardController.setData(film.getTitle(),joinedCategories,rate,new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
 
                 ActionPosterRow.getChildren().add(cardNode);
             }

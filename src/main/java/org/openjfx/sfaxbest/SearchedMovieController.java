@@ -15,7 +15,7 @@ public class SearchedMovieController {
     @FXML private Label secondaryCategoryLabel;
     @FXML private Label descriptionLabel;
 
-    private void setData (Image image,String title,String rate,String releaseDate,String duration,String mainCategory,String secondaryCategory,String description){
+    public void setData (Image image,String title,String rate,String releaseDate,String duration,String mainCategory,String secondaryCategory,String description){
 
         posterImage.setImage(image);
         titleLabel.setText(title);

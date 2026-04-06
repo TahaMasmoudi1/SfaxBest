@@ -14,22 +14,22 @@
     <ImageView fx:id="posterImage" fitWidth="100" fitHeight="150" preserveRatio="false" styleClass="result-poster"/>
 
     <VBox spacing="10" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-        <Label fx:id="titleLabel" text="Interstellar" styleClass="result-title"/>
+        <Label fx:id="titleLabel" styleClass="result-title"/>
 
         <HBox spacing="15" alignment="CENTER_LEFT">
-            <Label fx:id="rateLabel" text="★ 4.8" styleClass="result-rating"/>
-            <Label fx:id="releaseDateLabel" text="2014" styleClass="result-year"/>
-            <Label fx:id="durationLabel" text="169 min" styleClass="result-duration"/>
+            <Label fx:id="rateLabel" styleClass="result-rating"/>
+            <Label fx:id="releaseDateLabel" styleClass="result-year"/>
+            <Label fx:id="durationLabel"  styleClass="result-duration"/>
         </HBox>
 
         <HBox spacing="10">
-            <Label fx:id="mainCategoryLabel" text="Sci-Fi" styleClass="category-pill"/>
-            <Label fx:id="secondaryCategoryLabel" text="Drama" styleClass="category-pill"/>
+            <Label fx:id="mainCategoryLabel" styleClass="category-pill"/>
+            <Label fx:id="secondaryCategoryLabel"  styleClass="category-pill"/>
         </HBox>
 
         <Region VBox.vgrow="ALWAYS" />
 
-        <Label fx:id="descriptionLabel" text="A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." styleClass="result-desc" wrapText="true" />
+        <Label fx:id="descriptionLabel" styleClass="result-desc" wrapText="true" />
     </VBox>
 </HBox>
 
