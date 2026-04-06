@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "documentary")
+@DiscriminatorValue("DOCUMENTARY")
+
 @PrimaryKeyJoinColumn(name = "id")
 
 public class Documentary extends Multimedia {

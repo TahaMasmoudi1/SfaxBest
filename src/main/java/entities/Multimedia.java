@@ -9,6 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "multimedia")
+@DiscriminatorColumn(
+        name = "media_type",
+        discriminatorType = DiscriminatorType.STRING
+)
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Multimedia {
     @Id

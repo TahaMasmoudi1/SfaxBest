@@ -16,6 +16,13 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+.primary-btn:hover{
+    -fx-cursor: hand;
+}
+.primary-btn:pressed{
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
 .cast-text{
     -fx-text-fill: #CCCCCC;
     -fx-font-style: italic;

@@ -52,7 +52,7 @@ public class FilmDAO {
     }
     public Film listFilmDetails(long id) {
         return em.createQuery("select distinct f from Film f " +
-                "left join fetch  f.videoCasts vc left join fetch  vc.castMember cm" +
+                "left join fetch  f.videoCasts vc left join fetch  vc.castMember cm " +
                 "left join fetch  f.categories c where f.id=:id ",Film.class).setParameter("id",id).getSingleResult();
     }
     public List<Film> listFilmsSearch(String search, int offset, int limit) {

@@ -60,4 +60,11 @@ public class FilmService {
             return filmDAO.listAllWithCategories();
         });
     }
+
+    public Film listFilmDetails(long id) {
+        return TraHelper.read(em ->  {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listFilmDetails(id);
+        });
+    }
 }
