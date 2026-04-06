@@ -67,4 +67,38 @@ public class FilmService {
             return filmDAO.listFilmDetails(id);
         });
     }
+    public Film findById(Long id) {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.findById(id);
+        });
+    }
+
+    public List<Film> listbyManyCategory(List<Long> ids,int offset,int limit) {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listbyManyCategory(ids, offset, limit);
+        });
+    }
+
+    public List<Film> listByReleaseYear(int releaseYear, int offset,int limit) {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listByReleaseYear(releaseYear, offset, limit);
+        });
+    }
+
+    public List<Film> listFilmsSearch(String search, int offset, int limit) {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listFilmsSearch(search, offset, limit);
+        });
+    }
+
+    public List<Film> listFilmsSearchWithCategory(String search,List<Long> categoryIds,int offset,int limit){
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listFilmsSearchWithCategory(search, categoryIds, offset, limit);
+        });
+    }
 }
