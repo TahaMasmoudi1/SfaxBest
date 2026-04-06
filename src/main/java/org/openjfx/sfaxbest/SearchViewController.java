@@ -14,30 +14,51 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchViewController {
 
     @FXML private TextField searchField;
     @FXML private ComboBox<String> yearFilter;
-    @FXML private ComboBox<String> genreFilter;
+    @FXML private ComboBox<String> categoryFilter;
     @FXML private TilePane resultsGrid;
     @FXML private VBox resultsContainer;
 
 
-    RatingService ratingService;
+    RatingService ratingService = new RatingService();
 
     @FXML
     public void initialize() {
         FilmService filmService = new FilmService();
         List<Film> films = filmService.listAllWithCategories();
 
+        initComboBoxes(films);
         loadAllMovies(films);
 
+    }
+    private void initComboBoxes(List<Film> films) {
+        Set<String> categories = new HashSet<>();
+        for (Film film : films) {
+            Set<Category> genres = film.getCategories();
 
+            for(Category category : genres){
+                categories.add(category.getCategorie());
+            }
+        }
+        Set<String> uniqueYears = films.stream().map(film -> String.valueOf(film.getReleaseYear())).collect(Collectors.toSet());
+
+        List<String> listCategories = categories.stream().sorted().toList();
+
+        categoryFilter.getItems().clear();
+        categoryFilter.getItems().add("All Categories"); // Always add an "All" option!
+        categoryFilter.getItems().addAll(listCategories);
+        categoryFilter.getSelectionModel().selectFirst();
+
+        yearFilter.getItems().clear();
+        yearFilter.getItems().add("All Years");
+        yearFilter.getItems().addAll(uniqueYears.stream().sorted(Comparator.reverseOrder()).toList()); // Reverse order puts newest years at the top!
+        yearFilter.getSelectionModel().selectFirst();
     }
 
     private void loadAllMovies (List<Film> films) {

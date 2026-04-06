@@ -113,6 +113,25 @@
 .filter-combo .list-cell {
     -fx-text-fill: white;
 }
+.filter-combo .list-view {
+    -fx-background-color: #2b2b2b;
+    -fx-background-radius: 4;
+    -fx-border-color: #444444;
+    -fx-border-radius: 4;
+}
+
+
+.filter-combo .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 8 10 8 10;
+}
+
+.filter-combo .list-view .list-cell:filled:hover,
+.filter-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+}
 
 /* Hide the ugly default ScrollPane borders */
 .results-scroll-pane {
