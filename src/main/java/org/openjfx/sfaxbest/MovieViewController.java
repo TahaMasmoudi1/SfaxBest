@@ -82,7 +82,13 @@ public class MovieViewController {
                     fullNames.add(castMember.getName() + " " + castMember.getLastName());
                 }
                 String cast = fullNames.stream().collect(Collectors.joining(" "));
-                setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),Double.toString(ratingService.calculateRate(film.getId())),Integer.toString(film.getDurationSeconds()/60),cast, film.getDescription());
+                String rate;
+               try{
+                   rate = Double.toString(ratingService.calculateRate(film.getId()));
+               }catch (NullPointerException e){
+                   rate = "N/A";
+               }
+                setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),rate,Integer.toString(film.getDurationSeconds()/60),cast, film.getDescription());
                 break;
             }
         }

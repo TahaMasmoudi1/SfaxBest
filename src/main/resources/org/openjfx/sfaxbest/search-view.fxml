@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.SearchViewController" prefHeight="Infinity" prefWidth="Infinity" stylesheets="@../../../Styles/search-style.css" styleClass="search-root" spacing="20" >
@@ -23,32 +22,7 @@
     <ScrollPane fitToWidth="true" styleClass="results-scroll-pane" VBox.vgrow="ALWAYS">
 
         <VBox fx:id="resultsContainer" spacing="0">
-            <HBox styleClass="result-card, card-odd" spacing="20">
-                <padding>
-                    <Insets top="15" right="20" bottom="15" left="20"/>
-                </padding>
-
-                <ImageView fx:id="dummyPoster" fitWidth="100" fitHeight="150" preserveRatio="false" styleClass="result-poster"/>
-
-                <VBox spacing="10" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                    <Label text="Interstellar" styleClass="result-title"/>
-
-                    <HBox spacing="15" alignment="CENTER_LEFT">
-                        <Label text="★ 4.8" styleClass="result-rating"/>
-                        <Label text="2014" styleClass="result-year"/>
-                        <Label text="169 min" styleClass="result-duration"/>
-                    </HBox>
-
-                    <HBox spacing="10">
-                        <Label text="Sci-Fi" styleClass="category-pill"/>
-                        <Label text="Drama" styleClass="category-pill"/>
-                    </HBox>
-
-                    <Region VBox.vgrow="ALWAYS" />
-
-                    <Label text="A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." styleClass="result-desc" wrapText="true" />
-                </VBox>
-            </HBox>
+            <!-- this section is allocated dynamically -->
         </VBox>
 
     </ScrollPane>

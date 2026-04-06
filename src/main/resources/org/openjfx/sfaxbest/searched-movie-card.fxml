@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+
+<HBox styleClass="result-card, card-odd" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.SearchedMovieController">
+    <padding>
+        <Insets top="15" right="20" bottom="15" left="20"/>
+    </padding>
+
+    <ImageView fx:id="posterImage" fitWidth="100" fitHeight="150" preserveRatio="false" styleClass="result-poster"/>
+
+    <VBox spacing="10" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+        <Label fx:id="titleLabel" text="Interstellar" styleClass="result-title"/>
+
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Label fx:id="rateLabel" text="★ 4.8" styleClass="result-rating"/>
+            <Label fx:id="releaseDateLabel" text="2014" styleClass="result-year"/>
+            <Label fx:id="durationLabel" text="169 min" styleClass="result-duration"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label fx:id="mainCategoryLabel" text="Sci-Fi" styleClass="category-pill"/>
+            <Label fx:id="secondaryCategoryLabel" text="Drama" styleClass="category-pill"/>
+        </HBox>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <Label fx:id="descriptionLabel" text="A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." styleClass="result-desc" wrapText="true" />
+    </VBox>
+</HBox>
+
