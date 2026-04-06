@@ -83,10 +83,7 @@ public class FilmDAO {
                                 "where lower(c.categorie) = lower(:categoryName) " +
                                 "order by f.releaseYear desc",
                         Film.class)
-                .setParameter("categoryName", categoryName)
-                .setFirstResult(offset)
-                .setMaxResults(limit)
-                .getResultList();
+                .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
 }
 
