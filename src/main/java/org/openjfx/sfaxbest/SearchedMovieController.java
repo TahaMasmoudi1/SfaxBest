@@ -27,4 +27,9 @@ public class SearchedMovieController {
         descriptionLabel.setText(description);
 
     }
+    @FXML
+    public void loadMovieView(){
+        String title = titleLabel.getText();
+        MainViewController.instance.openMovieView(title);
+    }
 }

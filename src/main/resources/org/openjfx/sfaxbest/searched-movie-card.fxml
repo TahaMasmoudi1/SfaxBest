@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
 
-<HBox styleClass="result-card, card-odd" spacing="20" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.SearchedMovieController">
+<HBox styleClass="result-card, card-odd" spacing="20" onMouseClicked="#loadMovieView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.SearchedMovieController">
     <padding>
         <Insets top="15" right="20" bottom="15" left="20"/>
     </padding>

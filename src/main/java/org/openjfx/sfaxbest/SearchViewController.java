@@ -33,11 +33,12 @@ public class SearchViewController {
         FilmService filmService = new FilmService();
         List<Film> films = filmService.listAllWithCategories();
 
-        initComboBoxes(films);
-        loadAllMovies(films);
+        initFilters(films);
+
+        loadMovies(films);
 
     }
-    private void initComboBoxes(List<Film> films) {
+    private void initFilters(List<Film> films) {
         Set<String> categories = new HashSet<>();
         for (Film film : films) {
             Set<Category> genres = film.getCategories();
@@ -51,17 +52,36 @@ public class SearchViewController {
         List<String> listCategories = categories.stream().sorted().toList();
 
         categoryFilter.getItems().clear();
-        categoryFilter.getItems().add("All Categories"); // Always add an "All" option!
+        categoryFilter.getItems().add("All Categories");
         categoryFilter.getItems().addAll(listCategories);
         categoryFilter.getSelectionModel().selectFirst();
 
         yearFilter.getItems().clear();
         yearFilter.getItems().add("All Years");
-        yearFilter.getItems().addAll(uniqueYears.stream().sorted(Comparator.reverseOrder()).toList()); // Reverse order puts newest years at the top!
+        yearFilter.getItems().addAll(uniqueYears.stream().sorted(Comparator.reverseOrder()).toList());
         yearFilter.getSelectionModel().selectFirst();
+
+        categoryFilter.setOnAction(event -> applyFilters(films));
+        yearFilter.setOnAction(event -> applyFilters(films));
+
+    }
+    private void applyFilters(List<Film> films) {
+        String selectedCategory = categoryFilter.getValue();
+        String selectedYear = yearFilter.getValue();
+
+        List<Film> filteredList = films.stream()
+                .filter(film -> {
+
+                    boolean matchesCategory = selectedCategory.equals("All Categories") || film.getCategories().stream().anyMatch(category -> category.getCategorie().equals(selectedCategory));
+                    boolean matchesYear = selectedYear.equals("All Years") || String.valueOf(film.getReleaseYear()).equals(selectedYear);
+
+                    return matchesCategory && matchesYear;
+                })
+                .toList();
+        renderMovies(filteredList);
     }
 
-    private void loadAllMovies (List<Film> films) {
+    private void loadMovies (List<Film> films) {
         try {
             for (Film film : films) {
                 Set<Category> genres = film.getCategories();
@@ -97,6 +117,11 @@ public class SearchViewController {
         }
 
     }
+    private void renderMovies (List<Film> films) {
+        resultsContainer.getChildren().clear();
+        loadMovies(films);
+    }
+
     @FXML
     private void onSearchChanged() {
         filter();
