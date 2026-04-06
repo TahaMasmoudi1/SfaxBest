@@ -50,15 +50,19 @@ public class SearchViewController {
                     categories.add(category.getCategorie());
                 }
 
+                if (categories.isEmpty() || categories.size() == 1) {
+                    categories.add("None");
+                    categories.add("None");
+                }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("searched-movie-card.fxml"));
                 Node cardNode = loader.load();
 
                 SearchedMovieController cardController = loader.getController();
 
-                String rate;
-                try{
-                    rate = Double.toString(ratingService.calculateRate(film.getId()));
-                }catch (NullPointerException e){
+
+                String rate = Double.toString(ratingService.calculateRate(film.getId()));
+
+                if (rate == null) {
                     rate = "N/A";
                 }
 
@@ -67,6 +71,7 @@ public class SearchViewController {
                 resultsContainer.getChildren().add(cardNode);
             }
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("Could not load movies");
         }
 

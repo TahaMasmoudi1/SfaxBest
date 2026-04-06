@@ -19,9 +19,9 @@ public class SearchedMovieController {
 
         posterImage.setImage(image);
         titleLabel.setText(title);
-        rateLabel.setText(rate);
+        rateLabel.setText("★ " + rate + "/5");
         releaseDateLabel.setText(releaseDate);
-        durationLabel.setText(duration);
+        durationLabel.setText(duration + " min");
         mainCategoryLabel.setText(mainCategory);
         secondaryCategoryLabel.setText(secondaryCategory);
         descriptionLabel.setText(description);

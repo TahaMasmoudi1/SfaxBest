@@ -95,10 +95,10 @@ public class HomeViewController {
                 Node cardNode = loader.load();
 
                 MoviePosterController cardController = loader.getController();
-                String rate;
-                try{
-                    rate = Double.toString(ratingService.calculateRate(film.getId()));
-                }catch (NullPointerException e){
+
+                String rate = Double.toString(ratingService.calculateRate(film.getId()));
+
+                if (rate == null) {
                     rate = "N/A";
                 }
 
