@@ -78,6 +78,13 @@ public abstract class Multimedia {
     public Set<Category> getCategories() {
         return categories;
     }
+    public String getStringCategorie(){
+        String x="";
+        for(Category c : categories){
+            x+=c.getCategorie()+"/";
+        }
+        return x;
+    }
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
