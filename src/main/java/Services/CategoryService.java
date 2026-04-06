@@ -14,7 +14,7 @@ public class CategoryService {
             categoryDAO.save(category);
         });
     }
-    public List<Category> listALL(List<Long> ids) {
+    public List<Category> listALL() {
        return TraHelper.read(em ->  {
             CategoryDAO categoryDAO = new CategoryDAO(em);
             return categoryDAO.listALL();
