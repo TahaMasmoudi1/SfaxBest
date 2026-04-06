@@ -22,7 +22,6 @@ public class SearchViewController {
     @FXML private TextField searchField;
     @FXML private ComboBox<String> yearFilter;
     @FXML private ComboBox<String> categoryFilter;
-    @FXML private TilePane resultsGrid;
     @FXML private VBox resultsContainer;
 
 
@@ -63,19 +62,22 @@ public class SearchViewController {
 
         categoryFilter.setOnAction(event -> applyFilters(films));
         yearFilter.setOnAction(event -> applyFilters(films));
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> applyFilters(films));
 
     }
     private void applyFilters(List<Film> films) {
         String selectedCategory = categoryFilter.getValue();
         String selectedYear = yearFilter.getValue();
+        String searchText = searchField.getText() == null ? "" : searchField.getText().toLowerCase().trim();
 
         List<Film> filteredList = films.stream()
                 .filter(film -> {
 
                     boolean matchesCategory = selectedCategory.equals("All Categories") || film.getCategories().stream().anyMatch(category -> category.getCategorie().equals(selectedCategory));
                     boolean matchesYear = selectedYear.equals("All Years") || String.valueOf(film.getReleaseYear()).equals(selectedYear);
+                    boolean matchesSearch = searchText.isEmpty() || film.getTitle().toLowerCase().contains(searchText);
 
-                    return matchesCategory && matchesYear;
+                    return matchesCategory && matchesYear && matchesSearch;
                 })
                 .toList();
         renderMovies(filteredList);
