@@ -43,7 +43,7 @@
          </ImageView>
 
             <!-- Dashboard -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToDashbaord" styleClass="sidebar-button" text="⬛  Dashboard" textFill="WHITE" VBox.vgrow="NEVER" />
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToDashbaord" styleClass="sidebar-button" text="▸  Dashboard" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <!-- Content submenu -->
             <VBox spacing="0" styleClass="submenu">
@@ -57,14 +57,8 @@
                 </VBox>
             </VBox>
 
-            <!-- Multimedia -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Multimedia" textFill="WHITE" VBox.vgrow="NEVER" />
-
             <!-- Comments — ACTIVE -->
             <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Comments" VBox.vgrow="NEVER" />
-
-            <!-- Users -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Users" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <Region VBox.vgrow="ALWAYS" />
          <BorderPane.margin>

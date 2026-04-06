@@ -40,7 +40,7 @@
             </Separator>
 
 
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#gotoDashboard" styleClass="sidebar-button" text="⬛  Dashboard" textFill="WHITE" VBox.vgrow="NEVER">
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#gotoDashboard" styleClass="sidebar-button" text="▸  Dashboard" textFill="WHITE" VBox.vgrow="NEVER">
             <VBox.margin>
                <Insets top="-10.0" />
             </VBox.margin></Button>
@@ -58,13 +58,7 @@
             </VBox>
 
 
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Multimedia" textFill="WHITE" VBox.vgrow="NEVER" />
-
-
             <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToComments" styleClass="sidebar-button" text="▸  Comments" textFill="WHITE" VBox.vgrow="NEVER" />
-
-
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Users" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <Region VBox.vgrow="ALWAYS" />
 
@@ -77,9 +71,9 @@
 
 
                     <HBox alignment="CENTER_LEFT" spacing="10.0">
-                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #f0f0f0; -fx-font-family: 'Trebuchet MS';" text="Films" />
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #f0f0f0; -fx-font-family: 'Trebuchet MS';" text="Series" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label style="-fx-font-size: 12px; -fx-text-fill: #555555; -fx-font-family: 'Trebuchet MS';" text="Manage your film library" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #555555; -fx-font-family: 'Trebuchet MS';" text="Manage your serie library" />
                     </HBox>
 
 

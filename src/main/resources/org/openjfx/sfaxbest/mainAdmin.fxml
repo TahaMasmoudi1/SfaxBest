@@ -12,12 +12,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="860.0" stylesheets="@../../../Styles/Admin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.FilmController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="960.0" stylesheets="@../../../Styles/Admin.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.FilmController">
 
     <left>
         <VBox alignment="TOP_CENTER" maxWidth="238.0" minWidth="238.0" prefHeight="560.0" prefWidth="238.0" spacing="0" styleClass="sidebar" BorderPane.alignment="TOP_LEFT">
@@ -58,20 +59,14 @@
             </VBox>
 
 
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Multimedia" textFill="WHITE" VBox.vgrow="NEVER" />
-
-
             <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToComments" styleClass="sidebar-button" text="▸  Comments" textFill="WHITE" VBox.vgrow="NEVER" />
-
-
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Users" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <Region VBox.vgrow="ALWAYS" />
 
         </VBox>
     </left>
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" minWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
               <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="14.0" styleClass="content">
       
@@ -110,59 +105,79 @@
                       <Button onAction="#editFilms" styleClass="secondary-button" text="✎  Edit" />
                       <Button onAction="#handleDelete" styleClass="danger-button" text="✕  Delete" />
                   </HBox>
-      
-                  <VBox fx:id="form" alignment="TOP_CENTER" prefHeight="621.0" prefWidth="566.0" spacing="10.0" styleClass="form-box" visible="false">
-      
-      
-                      <Label styleClass="form-section-label" text="TITLE" />
-                      <TextField fx:id="tfTitle" promptText="Enter film title" />
-      
-      
-                      <Label styleClass="form-section-label" text="DESCRIPTION" />
-                      <TextArea fx:id="taDescription" prefRowCount="3" promptText="Enter description" />
-      
+               <ScrollPane fx:id="scrollForm" fitToHeight="true" fitToWidth="true" minWidth="200.0" vbarPolicy="NEVER" visible="false">
+                  <content>
+                     <VBox fx:id="form" alignment="TOP_CENTER" prefHeight="621.0" prefWidth="566.0" spacing="10.0" styleClass="form-box" visible="false">
+                        <children>
+                           <Label styleClass="form-section-label" text="TITLE" />
+                           <TextField fx:id="tfTitle" promptText="Enter film title" />
+                           <Label styleClass="form-section-label" text="DESCRIPTION" />
+                           <TextArea fx:id="taDescription" prefRowCount="3" promptText="Enter description" />
+                           <HBox spacing="12.0">
+                              <children>
+                                 <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="form-section-label" text="RELEASE YEAR" />
+                                       <TextField fx:id="tfReleaseYear" promptText="e.g. 2024" />
+                                    </children>
+                                 </VBox>
+                                 <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                       <Label styleClass="form-section-label" text="DURATION (min)" />
+                                       <TextField fx:id="tfDuration" promptText="e.g. 120" />
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <Label styleClass="form-section-label" text="TRAILER" />
+                           <HBox alignment="CENTER_LEFT" spacing="8.0">
+                              <children>
+                                 <TextField fx:id="tfTrailer" editable="false" promptText="Trailer file path" HBox.hgrow="ALWAYS" />
+                                 <Button styleClass="browse-button" text="Browse…" />
+                              </children>
+                           </HBox>
+                           <Label styleClass="form-section-label" text="BANNER" />
+                           <HBox alignment="CENTER_LEFT" spacing="8.0">
+                              <children>
+                                 <TextField fx:id="tfBanner" editable="false" promptText="Banner file path" HBox.hgrow="ALWAYS" />
+                                 <Button styleClass="browse-button" text="Browse…" />
+                              </children>
+                           </HBox>
+                           <Label styleClass="form-section-label" text="VIDEO" />
+                           <HBox alignment="CENTER_LEFT" spacing="8.0">
+                              <children>
+                                 <TextField fx:id="tfVideo" editable="false" promptText="Video file path" HBox.hgrow="ALWAYS" />
+                                 <Button styleClass="browse-button" text="Browse…" />
+                              </children>
+                           </HBox>
+                            <Label styleClass="form-section-label" text="POSTER" />
+                           <HBox alignment="CENTER_LEFT" spacing="8.0">
+                              <children>
+                                 <TextField fx:id="tfPoster" editable="false" promptText="Poster file path" HBox.hgrow="ALWAYS" />
+                                 <Button styleClass="browse-button" text="Browse…" />
+                              </children>
+                           </HBox>
+                            <Label styleClass="form-section-label" text="CATEGORIES" />
+                            <GridPane fx:id="checkboxGrid" alignment="CENTER" hgap="30.0" vgap="40.0">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                </padding>
+                            </GridPane>
+                           <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                              <VBox.margin>
+                                 <Insets top="8.0" />
+                              </VBox.margin>
+                              <children>
+                                 <Button fx:id="edit2btn" onAction="#editFilms" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
+                                 <Button fx:id="add2btn" onAction="#adding" styleClass="primary-button" text="＋  Add Film" visible="false" />
+                                 <Button styleClass="danger-button" text="✕  Delete" />
 
-                      <HBox spacing="12.0">
-                          <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                              <Label styleClass="form-section-label" text="RELEASE YEAR" />
-                              <TextField fx:id="tfReleaseYear" promptText="e.g. 2024" />
-                          </VBox>
-                          <VBox spacing="6.0" HBox.hgrow="ALWAYS">
-                              <Label styleClass="form-section-label" text="DURATION (min)" />
-                              <TextField fx:id="tfDuration" promptText="e.g. 120" />
-                          </VBox>
-                      </HBox>
-      
-      
-                      <Label styleClass="form-section-label" text="TRAILER" />
-                      <HBox alignment="CENTER_LEFT" spacing="8.0">
-                          <TextField fx:id="tfTrailer" editable="false" promptText="Trailer file path" HBox.hgrow="ALWAYS" />
-                          <Button styleClass="browse-button" text="Browse…" />
-                      </HBox>
-      
-      
-                      <Label styleClass="form-section-label" text="BANNER" />
-                      <HBox alignment="CENTER_LEFT" spacing="8.0">
-                          <TextField fx:id="tfBanner" editable="false" promptText="Banner file path" HBox.hgrow="ALWAYS" />
-                          <Button styleClass="browse-button" text="Browse…" />
-                      </HBox>
-      
-                      <Label styleClass="form-section-label" text="VIDEO" />
-                      <HBox alignment="CENTER_LEFT" spacing="8.0">
-                          <TextField fx:id="tfVideo" editable="false" promptText="Video file path" HBox.hgrow="ALWAYS" />
-                          <Button styleClass="browse-button" text="Browse…" />
-                      </HBox>
-                      
-                      <HBox alignment="CENTER_RIGHT" spacing="10.0">
-                          <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                          <Button fx:id="edit2btn" onAction="#editFilms" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
-                          <Button fx:id="add2btn" onAction="#adding" styleClass="primary-button" text="＋  Add Film" visible="false" />
-                          <Button styleClass="danger-button" text="✕  Delete" />
-                      </HBox>
-      
-                  </VBox>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                  </content>
+               </ScrollPane>
       
               </VBox>
          </content>
