@@ -101,4 +101,10 @@ public class FilmService {
             return filmDAO.listFilmsSearchWithCategory(search, categoryIds, offset, limit);
         });
     }
+    public List<Film> listFilmByCategoryName(String category, int offset,int limit) {
+        return TraHelper.read(em -> {
+            FilmDAO filmDAO = new FilmDAO(em);
+            return filmDAO.listByCategoryName(category, offset, limit);
+        });
+    }
 }
