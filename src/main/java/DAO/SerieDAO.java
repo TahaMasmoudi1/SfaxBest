@@ -127,7 +127,7 @@ public class SerieDAO {
                         Serie.class)
                 .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    public double countSeries(){
-        return em.createQuery("select count (s) from Serie s", double.class).getSingleResult();
+    public Long countSeries(){
+        return em.createQuery("select count (s) from Serie s", Long.class).getSingleResult();
     }
 }

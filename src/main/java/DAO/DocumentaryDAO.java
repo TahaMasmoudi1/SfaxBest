@@ -86,8 +86,8 @@ public class DocumentaryDAO {
                 .setMaxResults(limit)
                 .getResultList();
     }
-    public double countDocumentary(){
-        return em.createQuery("select count (d) from Documentary d", double.class).getSingleResult();
+    public Long countDocumentary(){
+        return em.createQuery("select count (d) from Documentary d", Long.class).getSingleResult();
     }
     public List<Documentary> listByCategoryName(String categoryName, int offset, int limit) {
         return em.createQuery(
@@ -98,7 +98,7 @@ public class DocumentaryDAO {
                         Documentary.class)
                 .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    public double countFilms(){
-        return em.createQuery("select count (f) from Film f", double.class).getSingleResult();
+    public Long countFilms(){
+        return em.createQuery("select count (f) from Film f", Long.class).getSingleResult();
     }
 }

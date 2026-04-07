@@ -228,6 +228,8 @@ public class FilmController {
             String poster = tfPoster.getText();
 
             loadFilms();
+            filmService.update(selectedFilm.getId(),title,description,trailer,banner,releaseDate, duration, video, getSelectedLabels(), poster);
         }
+
     }
 }

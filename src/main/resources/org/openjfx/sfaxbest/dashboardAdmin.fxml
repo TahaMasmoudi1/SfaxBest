@@ -46,7 +46,7 @@
          </ImageView>
 
             <!-- Dashboard — active page -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="⬛  Dashboard" textFill="WHITE" VBox.vgrow="NEVER" />
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Dashboard" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <!-- Content submenu -->
             <VBox spacing="0.0" styleClass="submenu">
@@ -60,14 +60,8 @@
                 </VBox>
             </VBox>
 
-            <!-- Multimedia -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Multimedia" textFill="WHITE" VBox.vgrow="NEVER" />
-
             <!-- Comments -->
             <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToComments" styleClass="sidebar-button" text="▸  Comments" textFill="WHITE" VBox.vgrow="NEVER" />
-
-            <!-- Users -->
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="sidebar-button" text="▸  Users" textFill="WHITE" VBox.vgrow="NEVER" />
 
             <Region VBox.vgrow="ALWAYS" />
 
@@ -96,22 +90,22 @@
 
                 <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card-accent" HBox.hgrow="ALWAYS">
                     <Label styleClass="stat-label" text="TOTAL FILMS" />
-                    <Label styleClass="stat-number-red" text="—" />
+                    <Label fx:id="statTotalFilms" styleClass="stat-number-red" text="—" />
                 </VBox>
 
                 <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
                     <Label styleClass="stat-label" text="SERIES" />
-                    <Label styleClass="stat-number" text="—" />
+                    <Label fx:id="statSeries" styleClass="stat-number" text="—" />
                 </VBox>
 
                 <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
                     <Label styleClass="stat-label" text="SUBSCRIBERS" />
-                    <Label styleClass="stat-number" text="—" />
+                    <Label fx:id="statSubscribers" styleClass="stat-number" text="—" />
                 </VBox>
 
                 <VBox maxWidth="1.7976931348623157E308" styleClass="stat-card" HBox.hgrow="ALWAYS">
-                    <Label styleClass="stat-label" text="COMMENTS" />
-                    <Label styleClass="stat-number" text="—" />
+                    <Label styleClass="stat-label" text="DOCUMENTRY" />
+                    <Label fx:id="statComments" styleClass="stat-number" text="—" />
                 </VBox>
 
             </HBox>

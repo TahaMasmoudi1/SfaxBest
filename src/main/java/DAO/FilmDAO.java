@@ -85,8 +85,8 @@ public class FilmDAO {
                         Film.class)
                 .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    public double countFilms(){
-        return em.createQuery("select count (f) from Film f", double.class).getSingleResult();
+    public Long countFilms(){
+        return em.createQuery("select count (f) from Film f", Long.class).getSingleResult();
     }
     public List<Object[]> getTopByViews(int limit){
 

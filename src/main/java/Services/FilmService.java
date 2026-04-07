@@ -107,11 +107,11 @@ public class FilmService {
             return filmDAO.listByCategoryName(category, offset, limit);
         });
     }
-    public double countFilms(){
+    public int countFilms(){
         return TraHelper.read(em ->  {
             FilmDAO filmDAO = new FilmDAO(em);
             return filmDAO.countFilms();
-        });
+        }).intValue();
     }
     public List<Object[]> getTopByViews(int limit){
         return TraHelper.read(em -> {
