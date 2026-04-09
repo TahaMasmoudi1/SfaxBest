@@ -31,6 +31,7 @@ public class loginController {
         App.setRoot("signup");
     }
 
+
     @FXML
     private void login() throws IOException {
         //na3mlou verif 3ali da5lou el utilsateur lezemna data base besh najem ne5dem
@@ -54,6 +55,7 @@ public class loginController {
                App.setRoot("dashborad");
            }
            if(user.getRole()== UserRole.USER){
+               MainViewController.instance.setCurrentUser(user);
                App.setRoot("main-view");
 
            }

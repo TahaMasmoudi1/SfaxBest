@@ -61,22 +61,6 @@ public class DashboardController {
         statComments.setText(String.valueOf(documentry));
     }
 
-
-    // ═══════════════════════════════════════════════════════
-    //  PIE CHART — Content by category
-    //
-    //  What your service must return:
-    //    Map<String, Integer>
-    //      key   = category name  (e.g. "Horror", "Comedy")
-    //      value = number of titles in that category
-    //
-    //  Example service call:
-    //    FilmService.getCountByCategory()  → Map<String, Integer>
-    //
-    //  Example map:
-    //    { "Horror" -> 36, "Comedy" -> 14, "Drama" -> 80 }
-    // ═══════════════════════════════════════════════════════
-
     private void loadCategoryChart() {
         Map<String, Integer> data = multimediaService.countFilmsByCategory();
 
@@ -87,27 +71,6 @@ public class DashboardController {
 
         categoryPieChart.setData(pieData);
     }
-
-
-    // ═══════════════════════════════════════════════════════
-    //  BAR CHART — Top films by views
-    //
-    //  What your service must return:
-    //    List<Object[2]>  where each entry is:
-    //      [0] = String  — film title
-    //      [1] = int     — view count
-    //
-    //  OR more cleanly, a List of a small DTO:
-    //    List<FilmViewStat>  where FilmViewStat has:
-    //      String title
-    //      int    views
-    //
-    //  Example service call:
-    //    FilmService.getTopByViews(5)  → List<FilmViewStat>
-    //
-    //  Example list:
-    //    [ ("Batman", 2000), ("Matrix", 1800), ("Avatar", 1700) ]
-    // ═══════════════════════════════════════════════════════
 
     private void loadTopMoviesChart() {
        List<Object[]> stats = filmService.getTopByViews(1000000);
@@ -124,21 +87,6 @@ public class DashboardController {
         topMoviesBarChart.getData().add(series);
     }
 
-
-    // ═══════════════════════════════════════════════════════
-    //  LINE CHART — New subscribers over time
-    //
-    //  What your service must return:
-    //    Map<String, Integer>  — ordered (use LinkedHashMap!)
-    //      key   = time label  (e.g. "Mon", "Jan", "2024-01")
-    //      value = number of new subscribers in that period
-    //
-    //  Example service call:
-    //    UserService.getNewSubscribersPerDay(7)  → LinkedHashMap<String, Integer>
-    //
-    //  Example map (must preserve insertion order → LinkedHashMap):
-    //    { "Mon" -> 20, "Tue" -> 35, "Wed" -> 15, "Thu" -> 40, "Fri" -> 28 }
-    // ═══════════════════════════════════════════════════════
 
     private void loadSubscribersChart() {
         Map<String, Long> data = userService.countSubscribersByWeekDays();
