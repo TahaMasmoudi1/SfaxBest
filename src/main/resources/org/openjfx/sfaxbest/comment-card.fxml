@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Label?>
 
 
-<HBox fx:id="commentContainer" spacing="15" styleClass="comment-card" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.CommentCardController">
+<HBox spacing="15" stylesheets="@../../../Styles/movie-style.css" styleClass="comment-card" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.CommentCardController">
 
     <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
@@ -27,7 +27,7 @@
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="reportButton" styleClass="report-button" text="⚠ Report" onAction="#handleReport" />
+            <Button styleClass="report-button" text="⚠ Report" onAction="#handleReport" />
         </HBox>
 
         <Label fx:id="contentLabel" styleClass="comment-content" wrapText="true"

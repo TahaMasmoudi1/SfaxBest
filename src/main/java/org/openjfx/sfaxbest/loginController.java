@@ -55,8 +55,9 @@ public class loginController {
                App.setRoot("dashborad");
            }
            if(user.getRole()== UserRole.USER){
-               MainViewController.instance.setCurrentUser(user);
                App.setRoot("main-view");
+
+               MainViewController.instance.setCurrentUser(user);
 
            }
        }

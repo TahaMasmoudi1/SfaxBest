@@ -124,17 +124,4 @@ public class SearchViewController {
         loadMovies(films);
     }
 
-    @FXML
-    private void onSearchChanged() {
-        filter();
-    }
-
-    @FXML
-    private void onFilterChanged() {
-        filter();
-    }
-
-    private void filter() {
-
-    }
 }

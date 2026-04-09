@@ -1,19 +1,23 @@
 package org.openjfx.sfaxbest;
 
+import Services.CommentService;
 import Services.FilmService;
 import Services.RatingService;
-import Services.UserService;
-import entities.CastMember;
-import entities.Film;
-import entities.VideoCast;
+import entities.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +25,8 @@ import java.util.stream.Collectors;
 
 public class MovieViewController {
 
-    private UserService userService = new UserService();
+    User user = MainViewController.instance.getCurrentUser();
+    CommentService commentService=new CommentService();
 
     @FXML
     public void initialize (){
@@ -45,9 +50,7 @@ public class MovieViewController {
             star.setOnMouseClicked(e -> {
                 currentRating = starValue;
                 System.out.println("User locked in: " + currentRating + " stars");
-                ratingService.add(userService);
-                //TODO: save rating to DB
-
+                ratingService.add(user.getId(), currentFilm.getId(), (byte) currentRating);
             });
         }
 
@@ -75,20 +78,22 @@ public class MovieViewController {
         List<Film> films = filmService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
-            currentFilm = filmService.listFilmDetails(film.getId());
             if (film.getTitle().equals(title)) {
+                currentFilm = filmService.listFilmDetails(film.getId());
+
                 Set<CastMember> castMembers = currentFilm.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
                 for (CastMember castMember : castMembers) {
                     fullNames.add(castMember.getName() + " " + castMember.getLastName());
                 }
-                String cast = fullNames.stream().collect(Collectors.joining(" "));
+                String cast = fullNames.stream().collect(Collectors.joining(" | "));
                 String rate;
-               try{
-                   rate = Double.toString(ratingService.calculateRate(film.getId()));
-               }catch (NullPointerException e){
-                   rate = "N/A";
-               }
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
                 setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),rate,Integer.toString(film.getDurationSeconds()/60),cast, film.getDescription());
+                loadComments();
                 break;
             }
         }
@@ -96,10 +101,39 @@ public class MovieViewController {
     @FXML TextArea commentInput;
     @FXML
     private void addComment(){
-        String comment = commentInput.getText();
+        //TODO: rate limit comments
+        commentService.add(user.getId(), currentFilm.getId(), commentInput.getText());
+    }
+    @FXML VBox commentsContainer;
+    private void loadComments(){
+        try {
+            List<Comment> comments = commentService.findAllByMultimedia(currentFilm.getId());
+            for (Comment comment : comments) {
 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("comment-card.fxml"));
+                Node cardNode = loader.load();
 
+                CommentCardController cardController = loader.getController();
 
+                String avatarPath = getClass().getResource(comment.getUser().getAvatarUrl()).toExternalForm();
+
+                if (avatarPath == null) {
+                    avatarPath = getClass().getResource("Default_pfp.jpg").toExternalForm();
+                }
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(ZoneId.systemDefault());
+                Instant commentTime = comment.getCommentDate();
+                String formattedCommentTime = formatter.format(commentTime);
+
+                cardController.setData(new Image(avatarPath),comment.getUser().getUsername(), formattedCommentTime,comment.getContent(),comment.getId());
+
+                commentsContainer.getChildren().add(cardNode);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Could not load comments");
+        }
     }
 
 

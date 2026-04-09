@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class MainViewController {
 
+    public static User currentUser;
     //Side menu logic
     @FXML
     private VBox VBsideMenu;
@@ -62,20 +63,10 @@ public class MainViewController {
 
     @FXML Label usernameLabel;
     @FXML ImageView userAvatarImageView;
-    User currentUser = new User();
 
     @FXML public void initialize() {
 
         instance = this;
-
-        usernameLabel.setText(currentUser.getUsername());
-
-        try{
-            userAvatarImageView.setImage(new Image(getClass().getResource(currentUser.getAvatarUrl()).toExternalForm()));
-        }catch(NullPointerException e){
-            System.out.println("No avatar available");
-        }
-
 
         switchView("home-view.fxml");
     }
@@ -138,6 +129,22 @@ public class MainViewController {
     }
 
     public void setCurrentUser(User user){
-        currentUser=user;
+        currentUser = user;
+
+        try {
+            usernameLabel.setText(user.getUsername());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("failed to load username");
+        }
+        try{
+            userAvatarImageView.setImage(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
+        }catch(NullPointerException e){
+            System.out.println("No avatar available");
+        }
+    }
+    public User getCurrentUser(){
+        return currentUser;
     }
 }
