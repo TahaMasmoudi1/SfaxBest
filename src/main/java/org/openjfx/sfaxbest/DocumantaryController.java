@@ -14,9 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class DocumantaryController {
     @FXML
@@ -180,6 +178,7 @@ public class DocumantaryController {
         movieTable.setOnMouseClicked(event -> {
             Documentary newSelection = movieTable.getSelectionModel().getSelectedItem();
             if (newSelection != null) {
+                populateCheckboxes(newSelection.getCategories().stream().toList());
                 tfTitle.setText(newSelection.getTitle());
                 taDescription.setText(newSelection.getDescription());
                 tfReleaseYear.setText(String.valueOf(newSelection.getReleaseYear()));
@@ -195,6 +194,8 @@ public class DocumantaryController {
     public void addDocumantary() {
         movieTable.setOnMouseClicked(event -> {
         });
+        clearAllSelections();
+
         tfTitle.clear();
         tfBanner.clear();
         tfTrailer.clear();
@@ -252,6 +253,9 @@ public class DocumantaryController {
             int duration = Integer.parseInt(tfDuration.getText());
             String video = tfVideo.getText();
             String poster = tfPoster.getText();
+            documentaryService.update(selectedFilm.getId(),title,description,trailer,banner,releaseDate, duration, video, getSelectedLabels(), poster);
+
+            populateCheckboxes(selectedFilm.getCategories().stream().toList());
 
             loadFilms();
         }

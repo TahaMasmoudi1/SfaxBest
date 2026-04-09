@@ -157,7 +157,7 @@
                                             <Insets top="8.0" />
                                         </VBox.margin>
                                         <children>
-                                            <Button fx:id="edit2btn" onAction="#editDocumantary" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
+                                            <Button fx:id="edit2btn" onAction="#editing" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
                                             <Button fx:id="add2btn" onAction="#adding" styleClass="primary-button" text="＋  Add Documentary" visible="false" />
                                             <Button styleClass="danger-button" text="✕  Delete" />
                                         </children>
