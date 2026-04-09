@@ -2,11 +2,16 @@ package org.openjfx.sfaxbest;
 
 import Services.UserService;
 
+import entities.User;
+import entities.UserRole;
+import exceptions.AuthException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -30,11 +35,11 @@ public class loginController {
     private void login() throws IOException {
         //na3mlou verif 3ali da5lou el utilsateur lezemna data base besh najem ne5dem
         //ba3ed el verif na3mlou setroot lel dashborad
-        //APP.setRoot("dashborad");
-        App.setRoot("mainAdmin");
 
 
-        /*hidelabel(lblLoginError);
+
+
+        hidelabel(lblLoginError);
         String username = tfUsername.getText();
         String password = pfPassword.getText();
         User user = null;
@@ -49,12 +54,13 @@ public class loginController {
                    stage.setWidth(1100);
                    stage.setHeight(600);
                });
-               App.setRoot("mainAdmin");
+               App.setRoot("dashborad");
            }
-           if(user.getRole()==UserRole.USER){
-               //App.setRoot("mainUser");
+           if(user.getRole()== UserRole.USER){
+               App.setRoot("main-view");
+
            }
-       }*/
+       }
 
 
     }

@@ -155,18 +155,18 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="action-bar">
 
                 <!-- Warn button -->
-                <Button fx:id="edit2btn" mnemonicParsing="false" styleClass="warn-button" text="⚠  Warn User" />
+                <Button fx:id="warnbtn" mnemonicParsing="false" onAction="#warning" styleClass="warn-button" text="⚠  Warn User" />
 
                 <!-- Ban button -->
-                <Button fx:id="add2btn" mnemonicParsing="false" styleClass="ban-button" text="🚫  Ban User" />
+                <Button fx:id="banbtn" mnemonicParsing="false" styleClass="ban-button" text="🚫  Ban User" />
 
                 <!-- Dismiss button -->
-                <Button mnemonicParsing="false" styleClass="dismiss-button" text="✓  Dismiss Report" />
+                <Button fx:id="missbtn" mnemonicParsing="false" onAction="#dissmiss" styleClass="dismiss-button" text="✓  Dismiss Report" />
 
                 <Region HBox.hgrow="ALWAYS" />
 
                 <!-- Delete comment -->
-                <Button mnemonicParsing="false" styleClass="delete-button" text="✕  Delete Comment" />
+                <Button fx:id="deletebtn" mnemonicParsing="false" onAction="#handleDelete" styleClass="delete-button" text="✕  Delete Comment" />
 
             </HBox>
 

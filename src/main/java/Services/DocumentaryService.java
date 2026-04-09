@@ -215,7 +215,7 @@ public class DocumentaryService {
     }
 
 
-    public double countDocumentary(){
+    public int countDocumentary(){
 
         return TraHelper.read(em -> {
 
@@ -223,18 +223,18 @@ public class DocumentaryService {
 
             return documentaryDAO.countDocumentary();
 
-        });
+        }).intValue();
 
     }
 
 
-    public double countFilms(){
+    public int countFilms(){
 
         return TraHelper.read(em -> {
 
             DocumentaryDAO documentaryDAO=new DocumentaryDAO(em);
 
-            return documentaryDAO.countFilms();
+            return documentaryDAO.countFilms().intValue();
 
         });
 

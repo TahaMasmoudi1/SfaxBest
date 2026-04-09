@@ -41,7 +41,7 @@
             </Separator>
 
 
-            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToDashbaord" styleClass="sidebar-button" text="⬛  Dashboard" textFill="WHITE" VBox.vgrow="NEVER">
+            <Button alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToDashbaord" styleClass="sidebar-button" text="▸   Dashboard" textFill="WHITE" VBox.vgrow="NEVER">
             <VBox.margin>
                <Insets top="-10.0" />
             </VBox.margin></Button>
@@ -168,7 +168,7 @@
                                  <Insets top="8.0" />
                               </VBox.margin>
                               <children>
-                                 <Button fx:id="edit2btn" onAction="#editFilms" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
+                                 <Button fx:id="edit2btn" onAction="#editing" styleClass="secondary-button" text="✎  Save Changes" visible="false" />
                                  <Button fx:id="add2btn" onAction="#adding" styleClass="primary-button" text="＋  Add Film" visible="false" />
                                  <Button styleClass="danger-button" text="✕  Delete" />
 

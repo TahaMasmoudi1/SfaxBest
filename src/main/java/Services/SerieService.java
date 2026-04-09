@@ -220,7 +220,7 @@ public class SerieService {
     }
 
 
-    public double countSerie(){
+    public int countSerie(){
 
         return TraHelper.read(em ->  {
 
@@ -228,7 +228,7 @@ public class SerieService {
 
             return serieDAO.countSeries();
 
-        });
+        }).intValue();
 
     }
 

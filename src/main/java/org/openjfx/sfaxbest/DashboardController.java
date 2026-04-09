@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import Services.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,34 +16,28 @@ import java.util.Map;
 
 public class DashboardController {
 
-    // ═══════════════════════════════════════════════════════
-    //  FXML INJECTIONS
-    // ═══════════════════════════════════════════════════════
-
     @FXML private PieChart categoryPieChart;
     @FXML private BarChart<String, Number> topMoviesBarChart;
     @FXML private LineChart<String, Number> subscribersLineChart;
 
-    // Stat card labels — add fx:id to these in your FXML if you want live counts
     @FXML private Label statTotalFilms;
     @FXML private Label statSeries;
     @FXML private Label statSubscribers;
     @FXML private Label statComments;
 
+    private FilmService filmService = new FilmService();
+    private SerieService serieService = new SerieService();
+    private UserService userService = new UserService();
+    private DocumentaryService  documentaryService = new DocumentaryService();
+    private MultimediaService multimediaService = new MultimediaService();
 
-    // ═══════════════════════════════════════════════════════
-    //  NAVIGATION
-    // ═══════════════════════════════════════════════════════
+
 
     @FXML public void goToSeries()      throws IOException { App.setRoot("seriesAdmin"); }
     @FXML public void goToDocumantary() throws IOException { App.setRoot("documantaryAdmin"); }
     @FXML public void goToFilms()       throws IOException { App.setRoot("mainAdmin"); }
     @FXML public void goToComments()    throws IOException { App.setRoot("commentAdmin"); }
 
-
-    // ═══════════════════════════════════════════════════════
-    //  INITIALIZE
-    // ═══════════════════════════════════════════════════════
 
     @FXML
     public void initialize() {
@@ -53,34 +48,17 @@ public class DashboardController {
     }
 
 
-    // ═══════════════════════════════════════════════════════
-    //  STAT CARDS
-    //
-    //  What your service must return:
-    //    • int  — total count of films
-    //    • int  — total count of series
-    //    • int  — total count of users / subscribers
-    //    • int  — total count of comments
-    //
-    //  Example service call:
-    //    FilmService.getTotalCount()        → int
-    //    SeriesService.getTotalCount()      → int
-    //    UserService.getTotalCount()        → int
-    //    CommentService.getTotalCount()     → int
-    // ═══════════════════════════════════════════════════════
 
     private void loadStatCards() {
-        // Replace these with your real service calls
-        // e.g.  int films = FilmService.getTotalCount();
-        int films       = 0;  // FilmService.getTotalCount()
-        int series      = 0;  // SeriesService.getTotalCount()
-        int subscribers = 0;  // UserService.getTotalCount()
-        int comments    = 0;  // CommentService.getTotalCount()
+        int films       = filmService.countFilms();
+        int series      =  serieService.countSerie();
+        int subscribers = userService.countUsers();
+        int documentry   =  documentaryService.countDocumentary() ;
 
-        if (statTotalFilms   != null) statTotalFilms.setText(String.valueOf(films));
-        if (statSeries       != null) statSeries.setText(String.valueOf(series));
-        if (statSubscribers  != null) statSubscribers.setText(String.valueOf(subscribers));
-        if (statComments     != null) statComments.setText(String.valueOf(comments));
+        statTotalFilms.setText(String.valueOf(films));
+        statSeries.setText(String.valueOf(series));
+        statSubscribers.setText(String.valueOf(subscribers));
+        statComments.setText(String.valueOf(documentry));
     }
 
 
@@ -100,12 +78,7 @@ public class DashboardController {
     // ═══════════════════════════════════════════════════════
 
     private void loadCategoryChart() {
-        // Replace with: Map<String, Integer> data = FilmService.getCountByCategory();
-        Map<String, Integer> data = Map.of(
-                "Horror",  36,
-                "Comedy",  14,
-                "Drama",   80
-        );
+        Map<String, Integer> data = multimediaService.countFilmsByCategory();
 
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
         data.forEach((category, count) ->
@@ -137,22 +110,15 @@ public class DashboardController {
     // ═══════════════════════════════════════════════════════
 
     private void loadTopMoviesChart() {
-        // Replace with: List<FilmViewStat> stats = FilmService.getTopByViews(5);
-        List<Object[]> stats = List.of(
-                new Object[]{"Batman",    2000},
-                new Object[]{"Matrix",    1800},
-                new Object[]{"Avatar",    1700},
-                new Object[]{"Inception", 1600},
-                new Object[]{"Titanic",   1500}
-        );
+       List<Object[]> stats = filmService.getTopByViews(1000000);
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Views");
 
         for (Object[] entry : stats) {
-            String title = (String)  entry[0];
-            int    views = (Integer) entry[1];
-            series.getData().add(new XYChart.Data<>(title, views));
+            String title = (String) entry[0];
+            Number views = (Number) entry[1];
+            series.getData().add(new XYChart.Data<>(title, views.intValue()));
         }
 
         topMoviesBarChart.getData().add(series);
@@ -175,14 +141,7 @@ public class DashboardController {
     // ═══════════════════════════════════════════════════════
 
     private void loadSubscribersChart() {
-        // Replace with: Map<String, Integer> data = UserService.getNewSubscribersPerDay(7);
-        // IMPORTANT: use LinkedHashMap to keep day order
-        Map<String, Integer> data = new java.util.LinkedHashMap<>();
-        data.put("Mon", 20);
-        data.put("Tue", 35);
-        data.put("Wed", 15);
-        data.put("Thu", 40);
-        data.put("Fri", 28);
+        Map<String, Long> data = userService.countSubscribersByWeekDays();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("New Subscribers");

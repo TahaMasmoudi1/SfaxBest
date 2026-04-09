@@ -124,11 +124,11 @@ public class UserService {
             return userDAO.countSubscribersByWeekDays();
         });
     }
-    public double countUsers(){
+    public int countUsers(){
         return TraHelper.read(em ->   {
             UserDAO userDAO=new UserDAO(em);
             return userDAO.countUsers();
-        });
+        }).intValue();
     }
 
 }

@@ -89,7 +89,7 @@ public class UserDAO  {
         List<Object[]> results = em.createQuery(
                 "select FUNCTION('DAYNAME', u.createdAt), count(u) " +
                         "from User u " +
-                        "group by FUNCTION('DAYNAME', s.createdAt)",
+                        "group by FUNCTION('DAYNAME', u.createdAt)",
                 Object[].class
         ).getResultList();
 
@@ -99,7 +99,7 @@ public class UserDAO  {
 
         return map;
     }
-    public double countUsers(){
+    public Long countUsers(){
         return em.createQuery("select count(u) from User u", Long.class).getSingleResult();
     }
 

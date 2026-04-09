@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import entities.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -118,5 +119,9 @@ public class MainViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    User currentUser = new User();
+    public void setCurrentUser(User user){
+        currentUser=user;
     }
 }

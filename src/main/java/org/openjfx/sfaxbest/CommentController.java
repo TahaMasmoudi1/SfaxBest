@@ -2,13 +2,14 @@ package org.openjfx.sfaxbest;
 
 import Services.CommentService;
 import entities.Comment;
+import entities.Film;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CommentController {
     @FXML private TableView<Comment> commentTable;
@@ -37,8 +38,6 @@ public class CommentController {
         App.setRoot("mainAdmin");
     }
     public void initialize() {
-
-
         loadComments();
     }
     public void loadComments() {
@@ -52,5 +51,61 @@ public class CommentController {
         commentTable.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList(
                 commentService.findAll()
         )));
+    }
+    @FXML
+    private void handleDelete() {
+        Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
+
+        if (selectedComment == null) {
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Film");
+        alert.setContentText("Are you sure you want to delete this film?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            commentService.delete(selectedComment.getId());
+            loadComments();
+        }
+    }
+    @FXML
+    private void warning() {
+        Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
+
+        if (selectedComment == null) {
+            return;
+        }
+        //selectedComment.setWarning(true); hethi ta3ti warning lel user ki awel may 7el el compte mte3ou tjih notif
+    }
+    @FXML
+    private void dissmiss() {
+        Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
+
+        if (selectedComment == null) {
+            return;
+        }
+        selectedComment.setNbrSignals(0);//hethi besh tafi el reports mte3ou mathalan fama cas win 3bed juste ta3mel report hakika so tnajem trod el reports lel 0
+    }
+    @FXML
+    private void handleban() {
+        Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
+
+        if (selectedComment == null) {
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("ban?");
+        alert.setContentText("Are you sure you want to ban" +  selectedComment.getUsername() + "?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            //selectedComment.setban(true) a3mel method mta3 ban true ya3ni mbani false la
+            loadComments();
+        }
     }
 }
