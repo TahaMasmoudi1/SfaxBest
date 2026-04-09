@@ -6,6 +6,9 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -57,9 +60,22 @@ public class MainViewController {
 
     public static MainViewController instance;
 
+    @FXML Label usernameLabel;
+    @FXML ImageView userAvatarImageView;
+    User currentUser = new User();
+
     @FXML public void initialize() {
 
         instance = this;
+
+        usernameLabel.setText(currentUser.getUsername());
+
+        try{
+            userAvatarImageView.setImage(new Image(getClass().getResource(currentUser.getAvatarUrl()).toExternalForm()));
+        }catch(NullPointerException e){
+            System.out.println("No avatar available");
+        }
+
 
         switchView("home-view.fxml");
     }
@@ -120,7 +136,7 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
-    User currentUser = new User();
+
     public void setCurrentUser(User user){
         currentUser=user;
     }
