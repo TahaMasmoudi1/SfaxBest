@@ -2,21 +2,17 @@ package org.openjfx.sfaxbest;
 
 import Services.FilmService;
 import Services.RatingService;
+import Services.UserService;
 import entities.CastMember;
 import entities.Film;
 import entities.VideoCast;
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.util.Duration;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +20,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MovieViewController {
+
+    private UserService userService = new UserService();
 
     @FXML
     public void initialize (){
@@ -47,6 +45,7 @@ public class MovieViewController {
             star.setOnMouseClicked(e -> {
                 currentRating = starValue;
                 System.out.println("User locked in: " + currentRating + " stars");
+                ratingService.add(userService);
                 //TODO: save rating to DB
 
             });
@@ -68,10 +67,11 @@ public class MovieViewController {
     }
 
     public Film currentFilm;
+    private RatingService ratingService = new RatingService();
+
 
     public void loadMovie(String title){
         FilmService  filmService = new FilmService();
-        RatingService ratingService = new RatingService();
         List<Film> films = filmService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
@@ -93,6 +93,16 @@ public class MovieViewController {
             }
         }
     }
+    @FXML TextArea commentInput;
+    @FXML
+    private void addComment(){
+        String comment = commentInput.getText();
+
+
+
+    }
+
+
     @FXML ImageView bannerImage;
     @FXML Label titleLabel;
     @FXML Label ratingLabel;

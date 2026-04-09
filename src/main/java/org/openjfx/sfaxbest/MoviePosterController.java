@@ -23,5 +23,6 @@ public class MoviePosterController {
     public void loadMovieView(){
         String title = titleLabel.getText();
         MainViewController.instance.openMovieView(title);
+
     }
 }

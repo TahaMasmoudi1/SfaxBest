@@ -83,9 +83,9 @@ public class MainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Node view = loader.load();
-            mainBorderPane.setCenter(view); // Snaps the new view into the empty center
+            mainBorderPane.setCenter(view);
         } catch (IOException e) {
-            System.err.println("Couldn't load FXML from path: " + fxmlPath);
+            System.out.println("Couldn't load FXML from path: " + fxmlPath);
             e.printStackTrace();
         }
     }
