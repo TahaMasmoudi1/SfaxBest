@@ -14,7 +14,7 @@ public class RatingDAO {
     }
 
     public void save(Rating rating) {
-        em.persist(rating);
+        em.merge(rating);
     }
 
     public void delete(Rating rating) {
