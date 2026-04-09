@@ -152,6 +152,8 @@ public class FilmController {
         add2btn.setManaged(false);
         scrollForm.setManaged(true);
         scrollForm.setVisible(true);
+        clearAllSelections();
+
 
         movieTable.setOnMouseClicked(event -> {
             Film newSelection = movieTable.getSelectionModel().getSelectedItem();
@@ -163,6 +165,7 @@ public class FilmController {
                 tfTrailer.setText(newSelection.getPathTrailer());
                 tfBanner.setText(newSelection.getPathBanner());
                 tfVideo.setText(newSelection.getPathVideo());
+                populateCheckboxes(newSelection.getCategories().stream().toList());
             }
         });
     }
