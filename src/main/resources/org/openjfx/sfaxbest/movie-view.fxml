@@ -60,10 +60,12 @@
             </HBox>
 
             <TextArea fx:id="commentInput" prefHeight="80.0" prefRowCount="3" promptText="Write your review here..." wrapText="true" />
-            <Button styleClass="primary-btn" text="Submit Review" />
+            <Button onMouseClicked="#addComment" styleClass="primary-btn" text="Submit Review" />
 
             <Label styleClass="comments" text="Recent Comments" />
-            <VBox fx:id="commentsList" spacing="10" />
+            <VBox fx:id="commentsContainer" spacing="10" >
+                <!-- comments are loaded dynamically -->
+            </VBox>
 
         </VBox>
     </VBox>

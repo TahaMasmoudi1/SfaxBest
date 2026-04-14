@@ -28,7 +28,7 @@ public class CommentDAO {
         return em.find(Comment.class, id);
     }
     public List<Comment> findAllById(Long idMultimedia) {
-        return  em.createQuery("select c from Comment c where c.multimedia.id=:id " +
+        return  em.createQuery("select c from Comment c join fetch c.user where c.multimedia.id=:id " +
                 "order by c.commentDate", Comment.class)
                 .setParameter("id", idMultimedia).getResultList();
     }

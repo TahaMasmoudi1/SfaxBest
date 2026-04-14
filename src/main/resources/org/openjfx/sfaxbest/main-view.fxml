@@ -85,13 +85,13 @@
 
         <!-- USER INFO -->
         <VBox spacing="10">
-            <ImageView fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar" >
+            <ImageView fx:id="userAvatarImageView" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar" >
                 <image>
-                    <Image url="@../../../Images/dummy_avatar.jpg"/>
+                    <Image url="@../../../Images/Default_pfp.jpg"/>
                 </image>
             </ImageView>
-            <Label styleClass="user-name" text="John Doe" />
-            <Label styleClass="user-role" text="Premium User" />
+            <Label fx:id="usernameLabel" styleClass="user-name"/>
+            <Label styleClass="user-role" text="Regular User" />
         </VBox>
 
         <Separator />

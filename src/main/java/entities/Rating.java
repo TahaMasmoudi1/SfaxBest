@@ -34,6 +34,14 @@ public class Rating {
         this.user = user;
         this.multimedia = multimedia;
         this.rate = rate;
+
+        this.id = new RatingId();
+
+        if (user != null)
+            this.id.setUserId(user.getId());
+
+        if (multimedia != null)
+            this.id.setIdMultimedia(multimedia.getId());
     }
 
     public RatingId getId() {

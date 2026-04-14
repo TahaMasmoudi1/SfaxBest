@@ -37,9 +37,6 @@ public class loginController {
         //na3mlou verif 3ali da5lou el utilsateur lezemna data base besh najem ne5dem
         //ba3ed el verif na3mlou setroot lel dashborad
 
-
-
-
         hidelabel(lblLoginError);
         String username = tfUsername.getText();
         String password = pfPassword.getText();
@@ -58,8 +55,9 @@ public class loginController {
                App.setRoot("dashborad");
            }
            if(user.getRole()== UserRole.USER){
-               MainViewController.instance.setCurrentUser(user);
                App.setRoot("main-view");
+
+               MainViewController.instance.setCurrentUser(user);
 
            }
        }

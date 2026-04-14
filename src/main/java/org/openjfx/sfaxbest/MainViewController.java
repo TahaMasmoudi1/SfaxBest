@@ -6,6 +6,9 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -15,6 +18,7 @@ import java.io.IOException;
 
 public class MainViewController {
 
+    public static User currentUser;
     //Side menu logic
     @FXML
     private VBox VBsideMenu;
@@ -57,6 +61,9 @@ public class MainViewController {
 
     public static MainViewController instance;
 
+    @FXML Label usernameLabel;
+    @FXML ImageView userAvatarImageView;
+
     @FXML public void initialize() {
 
         instance = this;
@@ -84,9 +91,9 @@ public class MainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Node view = loader.load();
-            mainBorderPane.setCenter(view); // Snaps the new view into the empty center
+            mainBorderPane.setCenter(view);
         } catch (IOException e) {
-            System.err.println("Couldn't load FXML from path: " + fxmlPath);
+            System.out.println("Couldn't load FXML from path: " + fxmlPath);
             e.printStackTrace();
         }
     }
@@ -120,8 +127,24 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
-    User currentUser = new User();
+
     public void setCurrentUser(User user){
-        currentUser=user;
+        currentUser = user;
+
+        try {
+            usernameLabel.setText(user.getUsername());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("failed to load username");
+        }
+        try{
+            userAvatarImageView.setImage(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
+        }catch(NullPointerException e){
+            System.out.println("No avatar available");
+        }
+    }
+    public User getCurrentUser(){
+        return currentUser;
     }
 }

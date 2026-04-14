@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+
+<HBox spacing="15" stylesheets="@../../../Styles/movie-style.css" styleClass="comment-card" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.CommentCardController">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Circle fx:id="avatarCircle" radius="22" fill="#444444">
+
+    </Circle>
+
+    <VBox HBox.hgrow="ALWAYS" spacing="8">
+
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label fx:id="usernameLabel" styleClass="comment-username" text="Username" />
+            <Label fx:id="dateLabel" styleClass="comment-date" text="Just now" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button styleClass="report-button" text="⚠ Report" onAction="#handleReport" />
+        </HBox>
+
+        <Label fx:id="contentLabel" styleClass="comment-content" wrapText="true"
+               text="This is a placeholder for the user's comment. It will wrap around if it gets too long." />
+    </VBox>
+</HBox>
