@@ -72,6 +72,9 @@ public class UserService {
             if(user==null){
                 throw new AuthException("Invalid Credentials");
             }
+            if(user.isBanned()){
+                throw new AuthException("User is already banned");
+            }
             if(!Encoder.matches(password,user.getPasswordHash())){
                 throw new AuthException("Invalid Credentials");
             }
@@ -129,6 +132,22 @@ public class UserService {
             UserDAO userDAO=new UserDAO(em);
             return userDAO.countUsers();
         }).intValue();
+    }
+    public boolean  isBanned(long userId){
+        return TraHelper.read(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            return user.isBanned();
+
+        });
+
+    }
+    public void BanUser(long userId){
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            user.setBanned(true);
+        });
     }
 
 }

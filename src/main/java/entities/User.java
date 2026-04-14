@@ -38,6 +38,9 @@ public class User {
     @Column(name="email_verification_expires_at")
     private Instant emailVerificationExpiresAt;
 
+    @Column(nullable = false)
+    private boolean isBanned = false;
+
     public User() {
     }
 
@@ -77,6 +80,14 @@ public class User {
 
     public void setEmailVerificationExpiresAt(Instant emailVerificationExpiresAt) {
         this.emailVerificationExpiresAt = emailVerificationExpiresAt;
+    }
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
 
     public Long getId() {
