@@ -192,5 +192,13 @@ public class UserService {
             user.setBanned(true);
         });
     }
+    public void changeAvatar(String urlAvatar,long userId){
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            user.setAvatarUrl(urlAvatar);
+            userDAO.update(user);
+        });
+    }
 
 }
