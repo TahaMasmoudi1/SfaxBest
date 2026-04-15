@@ -1,6 +1,7 @@
 package org.openjfx.sfaxbest;
 
 import Services.CommentService;
+import Services.FavoriteService;
 import Services.FilmService;
 import Services.RatingService;
 import entities.*;
@@ -27,6 +28,7 @@ public class MovieViewController {
 
     User user = MainViewController.instance.getCurrentUser();
     CommentService commentService=new CommentService();
+    FavoriteService favoriteService=new FavoriteService();
 
     @FXML
     public void initialize (){
@@ -138,6 +140,10 @@ public class MovieViewController {
             e.printStackTrace();
             System.out.println("Could not load comments");
         }
+    }
+    @FXML
+    public void addToFavorites(){
+        favoriteService.add(user.getId(), currentFilm.getId());
     }
 
 

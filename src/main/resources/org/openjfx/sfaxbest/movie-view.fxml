@@ -35,7 +35,7 @@
 
             <HBox spacing="15">
                 <Button styleClass="primary-btn" text="▶ Watch Now" onMouseClicked="#loadMedia"/>
-                <Button  styleClass="primary-btn" text="✚ Add to Watchlist" />
+                <Button  styleClass="primary-btn" text="✚ Add to Watchlist" onMouseClicked="#addToFavorites"/>
             </HBox>
 
             <Label fx:id="castLabel" styleClass="cast-text" text="Cast: Actor 1, Actor 2" />
