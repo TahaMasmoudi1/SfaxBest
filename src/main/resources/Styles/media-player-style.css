@@ -88,8 +88,11 @@
 .bottom-bar {
     -fx-background-color: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
     -fx-padding: 50 30 20 30;
+    -fx-opacity: 0;
 }
-
+.bottom-bar:hover{
+    -fx-opacity: 1;
+}
 /* Typography */
 .now-playing-title {
     -fx-font-size: 24px;
