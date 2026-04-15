@@ -65,12 +65,58 @@ public class UserService {
         });
 
     }
+    public void forgetPassword( String userEmail) {
+        String email = userEmail.trim().toLowerCase();
+        String code= VerificationCode.generateVerificationCode();
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findByEmail(email);
+            if (user == null) {
+                throw new ValidationException("User not found");
+            }
+            if (user.isBanned()){
+                throw new ValidationException("User is already banned");
+            }
+            user.setEmailVerificationHash(Encoder.encode(code));
+            user.setEmailVerificationExpiresAt(Instant.now().plusSeconds(600));
+            userDAO.update(user);
+        });
+        try {
+            emailSender.sendVerificationCode(email,code);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void resetPassword(String userEmail, String password,String code) {
+        String email = userEmail.trim().toLowerCase();
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findByEmail(email);
+            if(user==null){
+                throw new ValidationException("User not found");
+            }
+            if(user.getEmailVerificationExpiresAt()==null||user.getEmailVerificationExpiresAt().isBefore(Instant.now())){
+                throw new ValidationException("Code expired");
+            }
+            if(!Encoder.matches(code,user.getEmailVerificationHash())){
+                throw new ValidationException("Invalid verification code");
+            }
+            user.setPasswordHash(Encoder.encode(password));
+            user.setEmailVerificationHash(null);
+            user.setEmailVerificationExpiresAt(null);
+            userDAO.update(user);
+        });
+    }
     public User login(String username, String password) {
         return TraHelper.read(em -> {
             UserDAO userDAO=new UserDAO(em);
             User user=userDAO.findByUsername(username);
             if(user==null){
                 throw new AuthException("Invalid Credentials");
+            }
+            if(user.isBanned()){
+                throw new AuthException("User is already banned");
             }
             if(!Encoder.matches(password,user.getPasswordHash())){
                 throw new AuthException("Invalid Credentials");
@@ -129,6 +175,30 @@ public class UserService {
             UserDAO userDAO=new UserDAO(em);
             return userDAO.countUsers();
         }).intValue();
+    }
+    public boolean  isBanned(long userId){
+        return TraHelper.read(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            return user.isBanned();
+
+        });
+
+    }
+    public void BanUser(long userId){
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            user.setBanned(true);
+        });
+    }
+    public void changeAvatar(String urlAvatar,long userId){
+        TraHelper.write(em -> {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            user.setAvatarUrl(urlAvatar);
+            userDAO.update(user);
+        });
     }
 
 }
