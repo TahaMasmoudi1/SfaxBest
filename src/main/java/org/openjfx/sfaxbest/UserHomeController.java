@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import Services.UserService;
 import entities.User;
 
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import java.nio.file.StandardCopyOption;
 
 public class UserHomeController {
 
+    UserService userService = new UserService();
     User user = MainViewController.instance.getCurrentUser();
 
     @FXML ImageView avatarImageView;
@@ -52,7 +54,7 @@ public class UserHomeController {
 
                 setAvatar(new Image(destinationPath.toUri().toString()));
 
-                user.setAvatarUrl("/Images/" + fileName);
+                userService.changeAvatar("/Images/" + fileName,user.getId());
 
             }catch (IOException e){
                 e.printStackTrace();
