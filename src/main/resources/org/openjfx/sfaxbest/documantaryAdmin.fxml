@@ -120,31 +120,37 @@
                                     </HBox>
                                     <Label styleClass="form-section-label" text="TRAILER" />
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
-                                        <children>
-                                            <TextField fx:id="tfTrailer" editable="false" promptText="Trailer file path" HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="browse-button" text="Browse…" />
-                                        </children>
+                                        <TextField fx:id="tfTrailer" editable="false"
+                                                   promptText="Trailer file path" HBox.hgrow="ALWAYS" />
+                                        <Button styleClass="browse-button" text="Browse…"
+                                                onAction="#browseTrailer" />
                                     </HBox>
+
+                                    <!-- BANNER -->
                                     <Label styleClass="form-section-label" text="BANNER" />
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
-                                        <children>
-                                            <TextField fx:id="tfBanner" editable="false" promptText="Banner file path" HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="browse-button" text="Browse…" />
-                                        </children>
+                                        <TextField fx:id="tfBanner" editable="false"
+                                                   promptText="Banner file path" HBox.hgrow="ALWAYS" />
+                                        <Button styleClass="browse-button" text="Browse…"
+                                                onAction="#browseBanner" />
                                     </HBox>
+
+                                    <!-- VIDEO -->
                                     <Label styleClass="form-section-label" text="VIDEO" />
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
-                                        <children>
-                                            <TextField fx:id="tfVideo" editable="false" promptText="Video file path" HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="browse-button" text="Browse…" />
-                                        </children>
+                                        <TextField fx:id="tfVideo" editable="false"
+                                                   promptText="Video file path" HBox.hgrow="ALWAYS" />
+                                        <Button styleClass="browse-button" text="Browse…"
+                                                onAction="#browseVideo" />
                                     </HBox>
+
+                                    <!-- POSTER -->
                                     <Label styleClass="form-section-label" text="POSTER" />
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
-                                        <children>
-                                            <TextField fx:id="tfPoster" editable="false" promptText="Poster file path" HBox.hgrow="ALWAYS" />
-                                            <Button styleClass="browse-button" text="Browse…" />
-                                        </children>
+                                        <TextField fx:id="tfPoster" editable="false"
+                                                   promptText="Poster file path" HBox.hgrow="ALWAYS" />
+                                        <Button styleClass="browse-button" text="Browse…"
+                                                onAction="#browsePoster" />
                                     </HBox>
                                     <Label styleClass="form-section-label" text="CATEGORIES" />
                                     <GridPane fx:id="checkboxGrid" alignment="CENTER" hgap="30.0" vgap="40.0">

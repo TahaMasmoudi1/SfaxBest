@@ -12,7 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -118,15 +121,15 @@ public class DocumantaryController {
         movieTable.setItems(FXCollections.observableArrayList(documentaryService.listAllWithCategories()));
     }
 
-    public void populateCheckboxes(List<Category> labels) {
+    public void populateCheckboxes(List<Category> allCategories) {
         checkboxGrid.getChildren().clear();
         selectedLabels.clear();
 
-        for (int i = 0; i < labels.size(); i++) {
-            Category cat = labels.get(i);
-            CheckBox cb = new CheckBox(cat.getCategorie());
+        for (int i = 0; i < allCategories.size(); i++) {
+            Category cat    = allCategories.get(i);
+            CheckBox cb     = new CheckBox(cat.getCategorie());
 
-            cb.selectedProperty().addListener((observable, wasSelected, isNowSelected) -> {
+            cb.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
                 if (isNowSelected) {
                     selectedLabels.add(cat.getId());
                 } else {
@@ -134,9 +137,39 @@ public class DocumantaryController {
                 }
             });
 
-            int column = i % COLUMNS_COUNT;
-            int row = i / COLUMNS_COUNT;
-            checkboxGrid.add(cb, column, row);
+            checkboxGrid.add(cb, i % COLUMNS_COUNT, i / COLUMNS_COUNT);
+        }
+    }
+    public void populateCheckboxesWithSelection(List<Category> allCategories,
+                                                List<Category> documentaryCategories) {
+        checkboxGrid.getChildren().clear();
+        selectedLabels.clear();
+
+
+        List<Long> filmCatIds =documentaryCategories.stream()
+                .map(Category::getId)
+                .toList();
+
+        for (int i = 0; i < allCategories.size(); i++) {
+            Category cat = allCategories.get(i);
+            CheckBox cb  = new CheckBox(cat.getCategorie());
+
+
+            boolean alreadySelected = filmCatIds.contains(cat.getId());
+            cb.setSelected(alreadySelected);
+            if (alreadySelected) {
+                selectedLabels.add(cat.getId());
+            }
+
+            cb.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+                if (isNowSelected) {
+                    selectedLabels.add(cat.getId());
+                } else {
+                    selectedLabels.remove(cat.getId());
+                }
+            });
+
+            checkboxGrid.add(cb, i % COLUMNS_COUNT, i / COLUMNS_COUNT);
         }
     }
 
@@ -174,19 +207,26 @@ public class DocumantaryController {
         add2btn.setManaged(false);
         scrollForm.setManaged(true);
         scrollForm.setVisible(true);
-
+        clearAllSelections();
         movieTable.setOnMouseClicked(event -> {
-            Documentary newSelection = movieTable.getSelectionModel().getSelectedItem();
-            if (newSelection != null) {
-                populateCheckboxes(newSelection.getCategories().stream().toList());
-                tfTitle.setText(newSelection.getTitle());
-                taDescription.setText(newSelection.getDescription());
-                tfReleaseYear.setText(String.valueOf(newSelection.getReleaseYear()));
-                tfDuration.setText(String.valueOf(newSelection.getDurationSeconds()));
-                tfTrailer.setText(newSelection.getPathTrailer());
-                tfBanner.setText(newSelection.getPathBanner());
-                tfVideo.setText(newSelection.getPathVideo());
-            }
+            Documentary selected = movieTable.getSelectionModel().getSelectedItem();
+            if (selected == null) return;
+
+
+            tfTitle.setText(selected.getTitle());
+            taDescription.setText(selected.getDescription());
+            tfReleaseYear.setText(String.valueOf(selected.getReleaseYear()));
+            tfDuration.setText(String.valueOf(selected.getDurationSeconds()));
+            tfTrailer.setText(selected.getPathTrailer());
+            tfBanner.setText(selected.getPathBanner());
+            tfVideo.setText(selected.getPathVideo());
+            tfPoster.setText(selected.getPathPoster() != null
+                    ? selected.getPathPoster() : "");
+
+            populateCheckboxesWithSelection(
+                    categoryService.listALL(),
+                    selected.getCategories().stream().toList()
+            );
         });
     }
 
@@ -204,7 +244,7 @@ public class DocumantaryController {
         tfReleaseYear.clear();
         taDescription.clear();
         tfPoster.clear();
-        clearAllSelections();
+        populateCheckboxes(categoryService.listALL());
 
         form.setManaged(true);
         form.setVisible(true);
@@ -259,5 +299,50 @@ public class DocumantaryController {
 
             loadFilms();
         }
+
+    }
+    private String pickFile(String title, FileChooser.ExtensionFilter... filters) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle(title);
+        chooser.getExtensionFilters().addAll(filters);
+
+        Window owner = movieTable.getScene() != null
+                ? movieTable.getScene().getWindow()
+                : null;
+
+        File chosen = chooser.showOpenDialog(owner);
+        return chosen != null ? chosen.getAbsolutePath() : null;
+    }
+
+    @FXML
+    public void browseTrailer() {
+        String path = pickFile("Select Trailer",
+                new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mkv", "*.avi", "*.mov"),
+                new FileChooser.ExtensionFilter("All Files",   "*.*"));
+        if (path != null) tfTrailer.setText(path);
+    }
+
+    @FXML
+    public void browseBanner() {
+        String path = pickFile("Select Banner",
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.webp"),
+                new FileChooser.ExtensionFilter("All Files",   "*.*"));
+        if (path != null) tfBanner.setText(path);
+    }
+
+    @FXML
+    public void browseVideo() {
+        String path = pickFile("Select Video",
+                new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.mkv", "*.avi", "*.mov"),
+                new FileChooser.ExtensionFilter("All Files",   "*.*"));
+        if (path != null) tfVideo.setText(path);
+    }
+
+    @FXML
+    public void browsePoster() {
+        String path = pickFile("Select Poster",
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.webp"),
+                new FileChooser.ExtensionFilter("All Files",   "*.*"));
+        if (path != null) tfPoster.setText(path);
     }
 }
