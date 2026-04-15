@@ -30,6 +30,9 @@ public class Favorite {
     public Favorite(User user, Multimedia multimedia) {
         this.user = user;
         this.multimedia = multimedia;
+        this.id = new FavoriteId();
+        this.id.setUserId(user.getId());
+        this.id.setIdMultimedia(multimedia.getId());
     }
 
     public FavoriteId getId() {
