@@ -41,12 +41,19 @@ public class UserHomeController {
 
         if (selectedFile != null) {
             try {
+
                 String fileName = selectedFile.getName();
+
                 File imagesFolder = new File("src/main/resources/Images");
+
                 Path destinationPath = Path.of(imagesFolder.getAbsolutePath(), fileName);
+
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
                 setAvatar(new Image(destinationPath.toUri().toString()));
-                user.setAvatarUrl("/Images" + fileName);
+
+                user.setAvatarUrl("/Images/" + fileName);
+
             }catch (IOException e){
                 e.printStackTrace();
             }
