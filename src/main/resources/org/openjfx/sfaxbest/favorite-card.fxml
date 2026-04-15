@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+
+
+<StackPane stylesheets="@../../../Styles/user-home-style.css" styleClass="movie-card" alignment="TOP_RIGHT" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.FavoriteCardController">
+        <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
+        <Button text="✕" styleClass="remove-btn">
+            <StackPane.margin>
+                <Insets top="5" right="5"/>
+            </StackPane.margin>
+        </Button>
+</StackPane>
+

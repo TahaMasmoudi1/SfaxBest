@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import jakarta.persistence.criteria.Root;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ public class App extends Application {
         stage.setMinHeight(600);
         stage.setMinWidth(1000);
         stage.setScene(scene);
+        stage.setTitle("SfaxBest");
         stage.show();
     }
 

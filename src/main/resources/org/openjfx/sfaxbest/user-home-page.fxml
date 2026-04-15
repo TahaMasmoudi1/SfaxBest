@@ -16,14 +16,14 @@
 
         <HBox spacing="20" alignment="CENTER_LEFT">
             <StackPane>
-                <ImageView fx:id="avatarImage" fitWidth="120" fitHeight="120" preserveRatio="false" />
+                <ImageView fx:id="avatarImageView" fitWidth="120" fitHeight="120" preserveRatio="false" />
                 <Circle fx:id="avatarClip" radius="60" />
             </StackPane>
 
             <VBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="usernameLabel" text="John Doe" styleClass="username-text" />
                 <Label fx:id="emailLabel" text="johndoe@email.com" styleClass="email-text" />
-                <Button text="Edit Profile" styleClass="edit-btn" />
+                <Button text="Change Avatar" styleClass="edit-btn" onMouseClicked="#changeAvatar"/>
             </VBox>
         </HBox>
 
@@ -33,14 +33,7 @@
             <ScrollPane vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" fitToHeight="true" styleClass="carousel-scroll">
                 <HBox fx:id="favoritesContainer" spacing="15">
 
-                    <StackPane styleClass="movie-card" alignment="TOP_RIGHT">
-                        <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
-                        <Button text="✕" styleClass="remove-btn">
-                            <StackPane.margin>
-                                <Insets top="5" right="5"/>
-                            </StackPane.margin>
-                        </Button>
-                    </StackPane>
+                    <!-- this content is allocated dynamically -->
 
                 </HBox>
             </ScrollPane>
@@ -52,11 +45,7 @@
             <ScrollPane vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" fitToHeight="true" styleClass="carousel-scroll">
                 <HBox fx:id="historyContainer" spacing="15">
 
-                    <VBox spacing="5" styleClass="movie-card">
-                        <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
-                        <ProgressBar progress="0.6" prefWidth="150" styleClass="netflix-progress" />
-                        <Label text="Interstellar" styleClass="history-title" />
-                    </VBox>
+                    <!-- this content is allocated dynamically -->
 
                 </HBox>
             </ScrollPane>

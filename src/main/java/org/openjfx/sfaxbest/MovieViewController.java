@@ -102,7 +102,11 @@ public class MovieViewController {
     @FXML
     private void addComment(){
         //TODO: rate limit comments
-        commentService.add(user.getId(), currentFilm.getId(), commentInput.getText());
+        String comment = commentInput.getText().trim();
+        if (comment.isEmpty()){
+            return;
+        }
+        commentService.add(user.getId(), currentFilm.getId(), comment);
     }
     @FXML VBox commentsContainer;
     private void loadComments(){

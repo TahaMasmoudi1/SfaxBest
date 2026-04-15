@@ -1,5 +1,6 @@
 package org.openjfx.sfaxbest;
 
+import entities.User;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
