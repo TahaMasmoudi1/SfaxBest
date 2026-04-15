@@ -11,10 +11,10 @@ public class WatchHistoryService {
 
     public int getResumeSecond(long userID, long multimediaID) {
         return TraHelper.read(em -> {
-            WatchHistoryMultimediaDAO dao = new WatchHistoryMultimediaDAO(em);
-            Optional<WatchHistoryMultimedia> wm = dao.findById(userID, multimediaID);
-            if (wm.isEmpty()) return 0;
-            WatchHistoryMultimedia watch = wm.get();
+            WatchHistoryMultimediaDAO watchHistoryMultimediaDAO = new WatchHistoryMultimediaDAO(em);
+            Optional<WatchHistoryMultimedia> watchHistoryMultimedia = watchHistoryMultimediaDAO.findById(userID, multimediaID);
+            if (watchHistoryMultimedia.isEmpty()) return 0;
+            WatchHistoryMultimedia watch = watchHistoryMultimedia.get();
             if (watch.getCompleted()) return 0;
             return watch.getProgressSecond();
                 });
