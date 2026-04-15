@@ -153,7 +153,9 @@ public abstract class Multimedia {
     public void setPathPoster(String pathPoster) {
         this.pathPoster = pathPoster;
     }
-
+    public Integer getDurationSeconds(){
+        return 0;
+    }
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
