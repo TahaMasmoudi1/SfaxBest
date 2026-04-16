@@ -1,8 +1,10 @@
 package DAO;
 
 import entities.WatchHistoryEpisode;
+import entities.WatchHistoryMultimedia;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class WatchHistoryEpisodeDAO {
@@ -38,5 +40,10 @@ public class WatchHistoryEpisodeDAO {
 
     public WatchHistoryEpisode find(WatchHistoryEpisode watchHistoryEpisode) {
         return em.find(WatchHistoryEpisode.class, watchHistoryEpisode.getId());
+    }
+    public List<WatchHistoryEpisode> findByUserId(long idUser) {
+        return em.createQuery("select w from WatchHistoryEpisode" +
+                        " w where w.user.id=:idUser order by w.lastWatchedAt desc", WatchHistoryEpisode.class)
+                .setParameter("idUser",idUser).getResultList();
     }
 }

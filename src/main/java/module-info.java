@@ -18,6 +18,7 @@ module org.openjfx.sfaxbest {
     requires javafx.media;
     requires java.datatransfer;
     requires javafx.graphics;
+    requires org.openjfx.sfaxbest;
 
 
     opens entities to org.hibernate.orm.core, jakarta.persistence,javafx.base;

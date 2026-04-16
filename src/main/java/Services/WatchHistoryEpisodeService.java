@@ -5,6 +5,7 @@ import entities.*;
 import utils.TraHelper;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 public class WatchHistoryEpisodeService {
@@ -49,5 +50,12 @@ public class WatchHistoryEpisodeService {
 
         });
 
+    }
+    public List<Episode> findByUserId(long userID) {
+        return TraHelper.read(em -> {
+            WatchHistoryEpisodeDAO watchHistoryEpisodeDAO = new WatchHistoryEpisodeDAO(em);
+            List<WatchHistoryEpisode> w= watchHistoryEpisodeDAO.findByUserId(userID);
+            return w.stream().map(WatchHistoryEpisode::getEpisode).toList();
+        });
     }
 }
