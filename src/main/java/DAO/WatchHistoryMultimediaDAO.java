@@ -25,10 +25,10 @@ public class WatchHistoryMultimediaDAO {
         em.merge(watchHistoryMultimedia);
     }
     public Optional<WatchHistoryMultimedia> findById(long idUser, long multimediaID) {
-        WatchHistoryMultimedia result = em.createQuery("select w from WatchHistoryMultimedia" +
+        return em.createQuery("select w from WatchHistoryMultimedia" +
                 " w where w.user.id=:idUser and w.multimedia.id=:idMultimedia", WatchHistoryMultimedia.class)
-                .setParameter("idUser",idUser).setParameter("idMultimedia",multimediaID).getSingleResult();
-        return Optional.of(result);
+                .setParameter("idUser",idUser).setParameter("idMultimedia",multimediaID).getResultStream().findFirst();
+
     }
     public WatchHistoryMultimedia find(WatchHistoryMultimedia watchHistoryMultimedia) {
         return em.find(WatchHistoryMultimedia.class, watchHistoryMultimedia.getId());

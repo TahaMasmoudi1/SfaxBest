@@ -27,15 +27,14 @@ public class WatchHistoryEpisodeDAO {
     }
 
     public Optional<WatchHistoryEpisode> findById(long idUser, long episodeID) {
-        WatchHistoryEpisode result = em.createQuery(
+        return em.createQuery(
                         "select w from WatchHistoryEpisode w " +
                                 "where w.user.id = :idUser and w.episode.id = :idEpisode",
                         WatchHistoryEpisode.class)
                 .setParameter("idUser", idUser)
                 .setParameter("idEpisode", episodeID)
-                .getSingleResult();
+                .getResultStream().findFirst();
 
-        return Optional.of(result);
     }
 
     public WatchHistoryEpisode find(WatchHistoryEpisode watchHistoryEpisode) {
