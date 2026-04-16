@@ -91,11 +91,19 @@ public class UserHomeController {
     }
 
     private void setData() {
-        setAvatar(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
+        try {
+            setAvatar(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         usernameLabel.setText(user.getUsername());
         emailLabel.setText(user.getEmail());
     }
     private void setAvatar(Image image) {
-        avatarClip.setFill(new ImagePattern(image));
+        try {
+            avatarClip.setFill(new ImagePattern(image));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
