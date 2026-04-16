@@ -27,7 +27,7 @@
                 <!-- Logo -->
                 <ImageView fitHeight="78.0" fitWidth="200.0">
                     <image>
-                        <Image url="@../../../Images/logo_app.png" />
+                        <Image url="@../../../images/logo_app.png" />
                     </image>
                 </ImageView>
 
@@ -76,7 +76,8 @@
                 </Button>
 
                 <!-- Sign up hyperlink -->
-                <Hyperlink onAction="#switchToSecondary" text="New to SfaxBest ? Sign In" />
+                <Hyperlink onAction="#switchToSecondary" text="New to SfaxBest ? Sign Up" />
+                <Hyperlink  onMouseClicked="#switchToForgot" text="Forgot Password" />
 
             </children>
 

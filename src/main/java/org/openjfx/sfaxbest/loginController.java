@@ -30,6 +30,10 @@ public class loginController {
     private void switchToSecondary() throws IOException {
         App.setRoot("signup");
     }
+    @FXML
+    private void switchToForgot() throws IOException {
+        App.setRoot("forgotPassword");
+    }
 
 
     @FXML
