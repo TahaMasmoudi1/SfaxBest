@@ -29,7 +29,7 @@ public class WatchHistoryEpisodeDAO {
     public Optional<WatchHistoryEpisode> findById(long idUser, long episodeID) {
         return em.createQuery(
                         "select w from WatchHistoryEpisode w " +
-                                "where w.user.id = :idUser and w.episode.id = :idEpisode",
+                                "join fetch w.episode e where w.user.id = :idUser and w.episode.id = :idEpisode ",
                         WatchHistoryEpisode.class)
                 .setParameter("idUser", idUser)
                 .setParameter("idEpisode", episodeID)

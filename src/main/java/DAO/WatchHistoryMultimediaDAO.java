@@ -35,7 +35,7 @@ public class WatchHistoryMultimediaDAO {
     }
     public List<WatchHistoryMultimedia> findByUserId(long idUser) {
         return em.createQuery("select w from WatchHistoryMultimedia" +
-                        " w where w.user.id=:idUser order by w.lastWatchedAt desc", WatchHistoryMultimedia.class)
+                        " w JOIN FETCH w.multimedia m  where w.user.id=:idUser order by w.lastWatchedAt desc", WatchHistoryMultimedia.class)
                 .setParameter("idUser",idUser).getResultList();
     }
 
