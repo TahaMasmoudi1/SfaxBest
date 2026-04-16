@@ -6,9 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 
 <VBox stylesheets="@../../../Styles/user-home-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.HistoryCardController" spacing="5" styleClass="movie-card">
-    <ImageView fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
-    <ProgressBar progress="0.6" prefWidth="150" styleClass="netflix-progress" />
-    <Label text="Interstellar" styleClass="history-title" />
+    <ImageView fx:id="moviePoster" fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" />
+    <ProgressBar fx:id="progressBar" progress="0.6" prefWidth="150" styleClass="netflix-progress" />
+    <Label fx:id="titleLabel" text="Interstellar" styleClass="history-title" />
 </VBox>
 
 

@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -63,10 +65,13 @@ public class MainViewController {
 
     @FXML Label usernameLabel;
     @FXML ImageView userAvatarImageView;
+    @FXML Circle avatarCircle;
 
     @FXML public void initialize() {
 
         instance = this;
+
+        App.maximizeStage();
 
         switchView("home-view.fxml");
     }
@@ -139,7 +144,7 @@ public class MainViewController {
             System.out.println("failed to load username");
         }
         try{
-            userAvatarImageView.setImage(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
+            avatarCircle.setFill(new ImagePattern(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm())));
         }catch(NullPointerException e){
             System.out.println("No avatar available");
         }

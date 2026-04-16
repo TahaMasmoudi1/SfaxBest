@@ -9,6 +9,7 @@
 <?import javafx.geometry.Insets?>
 
 
+<?import javafx.scene.shape.Circle?>
 <StackPane stylesheets="@../../../Styles/main-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.MainViewController">
 
 
@@ -85,11 +86,11 @@
 
         <!-- USER INFO -->
         <VBox spacing="10">
-            <ImageView fx:id="userAvatarImageView" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar" >
-                <image>
-                    <Image url="@../../../Images/Default_pfp.jpg"/>
-                </image>
-            </ImageView>
+            <StackPane alignment="TOP_LEFT">
+                <ImageView fx:id="userAvatarImageView" fitHeight="60" fitWidth="60" preserveRatio="true" styleClass="avatar"/>
+                <Circle fx:id="avatarCircle" radius="36"/>
+            </StackPane>
+
             <Label fx:id="usernameLabel" styleClass="user-name"/>
             <Label styleClass="user-role" text="Regular User" />
         </VBox>

@@ -148,7 +148,7 @@
     -fx-pref-width: 30px;
     -fx-pref-height: 30px;
     -fx-cursor: hand;
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.5;
 }
 .remove-btn:hover {
     -fx-background-color: #E50914; /* Turns red on hover */

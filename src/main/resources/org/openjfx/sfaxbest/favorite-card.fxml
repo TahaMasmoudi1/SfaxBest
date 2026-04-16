@@ -8,8 +8,8 @@
 
 
 <StackPane stylesheets="@../../../Styles/user-home-style.css" styleClass="movie-card" alignment="TOP_RIGHT" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.FavoriteCardController">
-        <ImageView fx:id="posterImageView" fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image"/>
-        <Button text="✕" styleClass="remove-btn" onMouseClicked="#removeFavorite">
+        <ImageView fx:id="posterImageView" fitWidth="150" fitHeight="225" preserveRatio="false" styleClass="poster-image" onMouseClicked="#loadMovie"/>
+        <Button text="x" styleClass="remove-btn" onMouseClicked="#removeFavorite">
             <StackPane.margin>
                 <Insets top="5" right="5"/>
             </StackPane.margin>

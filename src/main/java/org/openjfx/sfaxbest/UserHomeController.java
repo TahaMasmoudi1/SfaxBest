@@ -2,6 +2,7 @@ package org.openjfx.sfaxbest;
 
 import Services.FavoriteService;
 import Services.UserService;
+import Services.WatchHistoryService;
 import entities.Multimedia;
 import entities.User;
 
@@ -28,6 +29,7 @@ public class UserHomeController {
 
     UserService userService = new UserService();
     FavoriteService favoriteService = new FavoriteService();
+    WatchHistoryService watchHistoryService = new WatchHistoryService();
     User user = MainViewController.instance.getCurrentUser();
 
     @FXML ImageView avatarImageView;
@@ -35,11 +37,13 @@ public class UserHomeController {
     @FXML Label usernameLabel;
     @FXML Label emailLabel;
     @FXML HBox favoritesContainer;
+    @FXML HBox historyContainer;
 
 
     public void initialize() {
         setData();
         loadFavorites();
+        loadHistory();
     }
     @FXML
     private void changeAvatar() throws IOException {
@@ -71,24 +75,6 @@ public class UserHomeController {
             }
         }
     }
-    public void loadFavorites(){
-        try{
-            List<Multimedia> favorites = favoriteService.getFavorites(user.getId());
-            for (Multimedia multimedia : favorites){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("favorite-card.fxml"));
-                Node cardNode = loader.load();
-
-                FavoriteCardController cardController = loader.getController();
-
-                cardController.setData(user.getId(), multimedia.getId(), new Image(getClass().getResource(multimedia.getPathPoster()).toExternalForm()));
-
-                favoritesContainer.getChildren().add(cardNode);
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     private void setData() {
         try {
@@ -99,10 +85,48 @@ public class UserHomeController {
         usernameLabel.setText(user.getUsername());
         emailLabel.setText(user.getEmail());
     }
+
     private void setAvatar(Image image) {
         try {
             avatarClip.setFill(new ImagePattern(image));
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadFavorites(){
+        try{
+            List<Multimedia> favorites = favoriteService.getFavorites(user.getId());
+            for (Multimedia multimedia : favorites){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("favorite-card.fxml"));
+                Node cardNode = loader.load();
+
+                FavoriteCardController cardController = loader.getController();
+
+                cardController.setData(user.getId(), multimedia.getId(),multimedia.getTitle(), new Image(getClass().getResource(multimedia.getPathPoster()).toExternalForm()));
+
+                favoritesContainer.getChildren().add(cardNode);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadHistory(){
+        try{
+            List<Multimedia> history = watchHistoryService.findByUserId(user.getId());
+            for (Multimedia userHistory : history){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("history-card.fxml"));
+                Node cardNode = loader.load();
+
+                HistoryCardController cardController = loader.getController();
+
+                cardController.setData(new Image(getClass().getResource(userHistory.getPathPoster()).toExternalForm()),userHistory.getTitle());
+
+                historyContainer.getChildren().add(cardNode);
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

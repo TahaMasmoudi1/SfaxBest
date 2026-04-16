@@ -1,9 +1,6 @@
 package org.openjfx.sfaxbest;
 
-import Services.CommentService;
-import Services.FavoriteService;
-import Services.FilmService;
-import Services.RatingService;
+import Services.*;
 import entities.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +24,10 @@ import java.util.stream.Collectors;
 public class MovieViewController {
 
     User user = MainViewController.instance.getCurrentUser();
+    FilmService  filmService = new FilmService();
     CommentService commentService=new CommentService();
     FavoriteService favoriteService=new FavoriteService();
+    WatchHistoryService watchHistoryService=new WatchHistoryService();
 
     @FXML
     public void initialize (){
@@ -76,7 +75,6 @@ public class MovieViewController {
 
 
     public void loadMovie(String title){
-        FilmService  filmService = new FilmService();
         List<Film> films = filmService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
         for (Film film : films) {
@@ -99,6 +97,7 @@ public class MovieViewController {
                 break;
             }
         }
+        watchHistoryService.saveProgress(user.getId(),currentFilm.getId(),0);
     }
     @FXML TextArea commentInput;
     @FXML
