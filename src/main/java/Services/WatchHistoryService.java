@@ -5,6 +5,7 @@ import entities.*;
 import utils.TraHelper;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 public class WatchHistoryService {
@@ -48,6 +49,13 @@ public class WatchHistoryService {
             dao.update(watch);
 
             });
+        }
+        public List<Multimedia> findByUserId(long userID) {
+        return TraHelper.read(em -> {
+            WatchHistoryMultimediaDAO dao = new WatchHistoryMultimediaDAO(em);
+            List<WatchHistoryMultimedia> w= dao.findByUserId(userID);
+            return w.stream().map(WatchHistoryMultimedia::getMultimedia).toList();
+        });
         }
 
 }

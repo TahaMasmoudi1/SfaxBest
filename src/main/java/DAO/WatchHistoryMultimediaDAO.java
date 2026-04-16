@@ -3,6 +3,7 @@ package DAO;
 import entities.WatchHistoryMultimedia;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class WatchHistoryMultimediaDAO {
@@ -32,5 +33,11 @@ public class WatchHistoryMultimediaDAO {
     public WatchHistoryMultimedia find(WatchHistoryMultimedia watchHistoryMultimedia) {
         return em.find(WatchHistoryMultimedia.class, watchHistoryMultimedia.getId());
     }
+    public List<WatchHistoryMultimedia> findByUserId(long idUser) {
+        return em.createQuery("select w from WatchHistoryMultimedia" +
+                        " w where w.user.id=:idUser order by w.lastWatchedAt desc", WatchHistoryMultimedia.class)
+                .setParameter("idUser",idUser).getResultList();
+    }
+
 
 }
