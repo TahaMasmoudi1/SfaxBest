@@ -32,33 +32,34 @@ public class ForgotPasswordController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        boolean test = true;
+
+
+
 
         if (email.isEmpty()) {
             errorLabel.setText("Please enter email");
-            test = false;
         } else if (!Pattern.matches(patternEmail, email)) {
             errorLabel.setText("Invalid email!");
-            test = false;
+
         }else if (password.isEmpty()) {
             errorLabel.setText( "Please enter password");
-            test = false;
+
         } else if (!Pattern.matches(patternPassword, password)) {
             errorLabel.setText("Invalid password");
-            test = false;
+
         } else if (confirmPassword.isEmpty()) {
             errorLabel.setText("Please confirm your password");
-            test = false;
+
         } else if (!password.equals(confirmPassword)) {
             errorLabel.setText("Passwords do not match");
-            test = false;
-        }
-        if (test) {
+
+        }else{
             userService.forgetPassword(email);
             emailV = email;
             passwordV = password;
             App.setRoot("verificationPasswordCode");
         }
+
     }
     public String getEmailV() {
         return emailV;
