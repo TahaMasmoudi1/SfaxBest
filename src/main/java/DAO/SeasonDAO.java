@@ -49,5 +49,8 @@ public class SeasonDAO {
 
         return count > 0;
     }
+    public Season findByIdWithEpisodes(long id) {
+        return em.createQuery("SELECT s from Season s LEFT join FETCH s.episodes where s.id= :id", Season.class).setParameter("id", id).getSingleResult();
+    }
 
 }

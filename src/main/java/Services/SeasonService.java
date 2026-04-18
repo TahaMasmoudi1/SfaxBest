@@ -57,10 +57,10 @@ public class SeasonService {
         });
 
     }
-    public Season findById(long idSeason)  {
+    public Season findByIdWithEpisodes(long idSeason)  {
         return TraHelper.read(em -> {
             SeasonDAO seasonDAO = new SeasonDAO(em);
-            return seasonDAO.findById(idSeason);
+            return seasonDAO.findByIdWithEpisodes(idSeason);
         });
     }
 
