@@ -1,9 +1,22 @@
+/* ═══════════════════════════════════════════════════════════
+   SfaxBest — Admin Panel  |  Admin.css
+   Theme  : Near-black · Charcoal · Netflix Red
+   Style  : Modern SaaS dashboard — precise, confident, clean
+═══════════════════════════════════════════════════════════ */
 
-.root,.scroll-pane {
+
+/* ┌───────────────────────────────────────────────────────┐
+   │  ROOT                                                 │
+   └───────────────────────────────────────────────────────┘ */
+.root {
     -fx-background-color: #111111;
     -fx-font-family: 'Trebuchet MS';
 }
 
+
+/* ┌───────────────────────────────────────────────────────┐
+   │  SIDEBAR                                              │
+   └───────────────────────────────────────────────────────┘ */
 .sidebar {
     -fx-background-color: #0d0d0d;
     -fx-padding: 0;
@@ -12,7 +25,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.60), 18, 0, 4, 0);
 }
 
-
+/* avatar label "Admin" */
 .sidebar .label {
     -fx-text-fill: #e0e0e0;
     -fx-font-size: 15px;
@@ -20,7 +33,7 @@
     -fx-font-family: 'Trebuchet MS';
 }
 
-
+/* horizontal rule under avatar */
 .sidebar .separator {
     -fx-padding: 2 0 2 0;
 }
@@ -30,7 +43,7 @@
 }
 
 
-
+/* ── Sidebar top-level buttons ── */
 .sidebar-button {
     -fx-background-color: transparent;
     -fx-text-fill: #9a9a9a;
@@ -55,6 +68,7 @@
     -fx-text-fill: #e50914;
 }
 
+/* active / selected state — red left bar trick */
 .sidebar-button:selected {
     -fx-background-color: linear-gradient(to right, rgba(229,9,20,0.18), transparent);
     -fx-text-fill: #e50914;
@@ -63,6 +77,7 @@
 }
 
 
+/* ── Submenu container ── */
 .submenu {
     -fx-background-color: #0a0a0a;
     -fx-border-color: transparent transparent transparent #1e1e1e;
@@ -70,6 +85,7 @@
     -fx-padding: 2 0 6 0;
 }
 
+/* ── Submenu buttons ── */
 .submenu-button {
     -fx-background-color: transparent;
     -fx-text-fill: #707070;
@@ -91,13 +107,18 @@
 }
 
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  CONTENT AREA                                         │
+   └───────────────────────────────────────────────────────┘ */
 .content {
     -fx-background-color: #141414;
     -fx-padding: 24 28 24 28;
 }
 
 
+/* ┌───────────────────────────────────────────────────────┐
+   │  TABLE VIEW                                           │
+   └───────────────────────────────────────────────────────┘ */
 .movie-table {
     -fx-background-color: #181818;
     -fx-background-radius: 8;
@@ -107,6 +128,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 16, 0, 0, 4);
 }
 
+/* column header strip */
 .movie-table .column-header-background {
     -fx-background-color: #1f1f1f;
     -fx-background-radius: 8 8 0 0;
@@ -127,6 +149,7 @@
     -fx-padding: 0 8 0 8;
 }
 
+/* rows */
 .table-row-cell {
     -fx-background-color: #181818;
     -fx-border-color: transparent transparent #1f1f1f transparent;
@@ -147,6 +170,7 @@
     -fx-border-color: transparent transparent #3a3a3a transparent;
 }
 
+/* cells */
 .table-cell {
     -fx-text-fill: #cccccc;
     -fx-font-size: 13px;
@@ -159,32 +183,27 @@
     -fx-text-fill: #f0f0f0;
 }
 
+/* scrollbar inside table */
 .movie-table .scroll-bar:vertical,
-.movie-table .scroll-bar:horizontal,
-.scroll-pane .scroll-bar:vertical,
-.scroll-pane .scroll-bar:horizontal
-{
+.movie-table .scroll-bar:horizontal {
     -fx-background-color: #181818;
 }
 
 .movie-table .scroll-bar:vertical .thumb,
-.movie-table .scroll-bar:horizontal .thumb,
-.scroll-pane .scroll-bar:vertical .thumb,
-.scroll-pane .scroll-bar:horizontal .thumb{
+.movie-table .scroll-bar:horizontal .thumb {
     -fx-background-color: #333333;
     -fx-background-radius: 4;
 }
 
 .movie-table .scroll-bar:vertical .thumb:hover,
-.movie-table .scroll-bar:horizontal .thumb:hover,
-.scroll-pane .scroll-bar:vertical .thumb:hover,
-.scroll-pane .scroll-bar:horizontal .thumb:hover{
+.movie-table .scroll-bar:horizontal .thumb:hover {
     -fx-background-color: #e50914;
 }
 
 
-
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  FORM FIELDS                                          │
+   └───────────────────────────────────────────────────────┘ */
 .text-field {
     -fx-control-inner-background: #1e1e1e;
     -fx-background-color: #1e1e1e;
@@ -247,7 +266,9 @@
 }
 
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  LABELS (general content area)                        │
+   └───────────────────────────────────────────────────────┘ */
 .label {
     -fx-text-fill: #aaaaaa;
     -fx-font-family: 'Trebuchet MS';
@@ -255,6 +276,11 @@
 }
 
 
+/* ┌───────────────────────────────────────────────────────┐
+   │  BUTTONS                                              │
+   └───────────────────────────────────────────────────────┘ */
+
+/* Add / confirm — green-toned */
 .primary-button {
     -fx-background-color: #1a7a3c;
     -fx-text-fill: #ffffff;
@@ -280,6 +306,7 @@
     -fx-scale-y: 0.978;
 }
 
+/* Edit — steel blue */
 .secondary-button {
     -fx-background-color: #1a3a6e;
     -fx-text-fill: #ffffff;
@@ -305,6 +332,7 @@
     -fx-scale-y: 0.978;
 }
 
+/* Delete — red */
 .danger-button {
     -fx-background-color: #8a0010;
     -fx-text-fill: #ffffff;
@@ -330,6 +358,7 @@
     -fx-scale-y: 0.978;
 }
 
+/* Browse buttons (small, inline) */
 .browse-button {
     -fx-background-color: #252525;
     -fx-text-fill: #aaaaaa;
@@ -349,7 +378,9 @@
     -fx-border-color: #555555;
 }
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  ACTION BAR  (HBox holding Add/Edit/Delete)           │
+   └───────────────────────────────────────────────────────┘ */
 .action-bar {
     -fx-background-color: #181818;
     -fx-background-radius: 8;
@@ -360,7 +391,9 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0, 0, 2);
 }
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  FORM CONTAINER VBox                                  │
+   └───────────────────────────────────────────────────────┘ */
 .form-box {
     -fx-background-color: #181818;
     -fx-background-radius: 10;
@@ -371,6 +404,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.40), 14, 0, 0, 4);
 }
 
+/* section heading inside form */
 .form-section-label {
     -fx-font-family: 'Trebuchet MS';
     -fx-font-size: 11px;
@@ -380,7 +414,9 @@
 }
 
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  DASHBOARD — STAT CARDS                               │
+   └───────────────────────────────────────────────────────┘ */
 .stat-card {
     -fx-background-color: #1a1a1a;
     -fx-background-radius: 10;
@@ -425,6 +461,9 @@
 }
 
 
+/* ┌───────────────────────────────────────────────────────┐
+   │  DASHBOARD — CHART CARDS                              │
+   └───────────────────────────────────────────────────────┘ */
 .chart-card {
     -fx-background-color: #181818;
     -fx-background-radius: 10;
@@ -442,6 +481,7 @@
     -fx-text-fill: #666666;
 }
 
+/* ── Bar Chart ── */
 .bar-chart {
     -fx-background-color: transparent;
     -fx-padding: 0;
@@ -489,6 +529,7 @@
     -fx-font-family: 'Trebuchet MS';
 }
 
+/* ── Pie Chart ── */
 .pie-chart {
     -fx-background-color: transparent;
     -fx-padding: 0;
@@ -522,6 +563,7 @@
 .pie-chart .default-color4.chart-pie { -fx-pie-color: #555555; }
 .pie-chart .default-color5.chart-pie { -fx-pie-color: #222222; }
 
+/* ── Line Chart ── */
 .line-chart {
     -fx-background-color: transparent;
     -fx-padding: 0;
@@ -577,6 +619,7 @@
     -fx-font-family: 'Trebuchet MS';
 }
 
+/* ── Shared axis line / tick ── */
 .bar-chart .axis-tick-mark,
 .line-chart .axis-tick-mark,
 .bar-chart .axis-minor-tick-mark,
@@ -589,13 +632,16 @@
     -fx-stroke: #2a2a2a;
 }
 
+/* scrollbar in charts if any */
 .chart .scroll-bar:vertical .thumb,
 .chart .scroll-bar:horizontal .thumb {
     -fx-background-color: #333333;
     -fx-background-radius: 4;
 }
 
-
+/* ┌───────────────────────────────────────────────────────┐
+   │  DASHBOARD — SECTION HEADING ROW                      │
+   └───────────────────────────────────────────────────────┘ */
 .section-heading {
     -fx-font-family: 'Trebuchet MS';
     -fx-font-size: 19px;
@@ -607,4 +653,53 @@
     -fx-font-family: 'Trebuchet MS';
     -fx-font-size: 11px;
     -fx-text-fill: #444444;
+}
+
+
+/* ┌───────────────────────────────────────────────────────┐
+   │  CHECKBOXES  (category grid in forms)                 │
+   └───────────────────────────────────────────────────────┘ */
+.check-box {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-family: 'Trebuchet MS';
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.check-box .box {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333333;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 14px;
+}
+
+.check-box:hover .box {
+    -fx-border-color: #666666;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #e50914;
+    -fx-border-color: #e50914;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+    -fx-shape: "M 0,4 L 1.5,5.5 L 5,1";
+}
+
+.check-box:selected {
+    -fx-text-fill: #f0f0f0;
+}
+
+/* ┌───────────────────────────────────────────────────────┐
+   │  3-LEVEL SECTION LABELS                               │
+   └───────────────────────────────────────────────────────┘ */
+.level-heading {
+    -fx-font-family: 'Trebuchet MS';
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #888888;
+    -fx-padding: 0 0 2 0;
 }
