@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.MoviePosterController" styleClass="poster-card" onMouseClicked="#loadMovieView">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.SeriesPosterController" styleClass="poster-card" onMouseClicked="#loadSeriesView">
 
     <ImageView fx:id="posterImage" fitWidth="160" fitHeight="240" preserveRatio="false" styleClass="poster-image"/>
 
@@ -17,6 +19,9 @@
 
     </VBox>
     <!-- badge -->
-    <Label text="🎬" styleClass="media-badge" StackPane.alignment="BOTTOM_LEFT"/>
+    <Label fx:id="typeBadge" text="📺" styleClass="media-badge" StackPane.alignment="BOTTOM_LEFT"/>
 
 </StackPane>
+
+
+

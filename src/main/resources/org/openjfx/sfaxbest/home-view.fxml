@@ -74,7 +74,7 @@
                 </ScrollPane>
             </VBox>
 
-            <!-- ========== TRENDING SERIES ========== -->
+            <!-- ========== action ========== -->
 
             <VBox spacing="10">
 
@@ -83,6 +83,61 @@
                 <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
 
                     <HBox fx:id="ActionPosterRow" prefHeight="240" spacing="20">
+
+                        <!-- the content is allocated dynamically-->
+
+                    </HBox>
+                </ScrollPane>
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label styleClass="section-title" text="Comedy" />
+
+                <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
+
+                    <HBox fx:id="comedyPosterRow" prefHeight="240" spacing="20">
+
+                        <!-- the content is allocated dynamically-->
+
+                    </HBox>
+                </ScrollPane>
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label styleClass="section-title" text="Adventure" />
+
+                <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
+
+                    <HBox fx:id="adventurePosterRow" prefHeight="240" spacing="20">
+
+                        <!-- the content is allocated dynamically-->
+
+                    </HBox>
+                </ScrollPane>
+            </VBox>
+
+            <VBox spacing="10">
+
+                <Label styleClass="section-title" text="Horror" />
+
+                <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
+
+                    <HBox fx:id="horrorPosterRow" prefHeight="240" spacing="20">
+
+                        <!-- the content is allocated dynamically-->
+
+                    </HBox>
+                </ScrollPane>
+            </VBox>
+            <VBox spacing="10">
+
+                <Label styleClass="section-title" text="Series" />
+
+                <ScrollPane hbarPolicy="AS_NEEDED" pannable="true" prefHeight="280" vbarPolicy="NEVER">
+
+                    <HBox fx:id="seriesPosterRow" prefHeight="240" spacing="20">
 
                         <!-- the content is allocated dynamically-->
 

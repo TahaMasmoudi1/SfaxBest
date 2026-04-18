@@ -2,8 +2,10 @@ package org.openjfx.sfaxbest;
 
 import Services.FilmService;
 import Services.RatingService;
+import Services.SerieService;
 import entities.Category;
 import entities.Film;
+import entities.Serie;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,19 +35,30 @@ public class HomeViewController {
 
     @FXML private HBox PopularPosterRow;
     @FXML private HBox ActionPosterRow;
+    @FXML private HBox comedyPosterRow;
+    @FXML private HBox adventurePosterRow;
+    @FXML private HBox horrorPosterRow;
+    @FXML private HBox seriesPosterRow;
 
     RatingService ratingService = new RatingService();
+    FilmService filmService = new FilmService();
+    SerieService serieService = new SerieService();
     @FXML
     public void initialize() {
 
-        FilmService filmService = new FilmService();
+        List<Film> allFilms = filmService.listAllWithCategories();
+        List<Film> actionFilms = filmService.listFilmByCategoryName("Action",0,20);
+        List<Film> comedyFilms = filmService.listFilmByCategoryName("Comedy",0,20);
+        List<Film> adventureFilms = filmService.listFilmByCategoryName("Adventure",0,20);
+        List<Film> horrorFilms = filmService.listFilmByCategoryName("Horror",0,20);
+        List<Serie> series = serieService.listAllWithCategories();
 
-        List<Film> films = filmService.listAllWithCategories();
-        //For testing
-
-
-        loadBrowseRow(films);
-        loadActionRow(films);
+        loadBrowseRow(allFilms);
+        loadActionRow(actionFilms);
+        loadComedyRow(comedyFilms);
+        loadAdventureRow(adventureFilms);
+        loadHorrorRow(horrorFilms);
+        loadSeriesRow(series);
 
         String path = getClass().getResource("/videos/gladiator_trailer.mp4").toExternalForm();
 
@@ -141,8 +154,144 @@ public class HomeViewController {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Couldn't load Trending posters");
+            System.out.println("Couldn't load action");
         }
     }
+    private void loadComedyRow(List<Film> films) {
+        try{
+            for (Film  film : films) {
+                Set<Category> genres = film.getCategories();
+                Set<String> categories = new HashSet<>();
+
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
+
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
+                Node cardNode = loader.load();
+
+                MoviePosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
+
+                cardController.setData(film.getTitle(),joinedCategories,rate,new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+
+                comedyPosterRow.getChildren().add(cardNode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load comedy");
+        }
+    }
+
+    private void loadAdventureRow(List<Film> films) {
+        try{
+            for (Film  film : films) {
+                Set<Category> genres = film.getCategories();
+                Set<String> categories = new HashSet<>();
+
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
+
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
+                Node cardNode = loader.load();
+
+                MoviePosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
+
+                cardController.setData(film.getTitle(),joinedCategories,rate,new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+
+                adventurePosterRow.getChildren().add(cardNode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load adventure");
+        }
+    }
+
+    private void loadHorrorRow(List<Film> films) {
+        try{
+            for (Film  film : films) {
+                Set<Category> genres = film.getCategories();
+                Set<String> categories = new HashSet<>();
+
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
+
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
+                Node cardNode = loader.load();
+
+                MoviePosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(film.getId()));
+                }catch (NullPointerException e){
+                    rate = "N/A";
+                }
+
+                cardController.setData(film.getTitle(),joinedCategories,rate,new Image(getClass().getResource(film.getPathPoster()).toExternalForm()));
+
+                horrorPosterRow.getChildren().add(cardNode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load Trending horror");
+        }
+    }
+
+    private void loadSeriesRow(List<Serie> series) {
+        try{
+            for (Serie serie : series) {
+                Set<Category> genres = serie.getCategories();
+                Set<String> categories = new HashSet<>();
+
+
+                for(Category category : genres){
+                    categories.add(category.getCategorie());
+                }
+                String joinedCategories = String.join(" | ", categories) ;
+
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("series-poster-card.fxml"));
+                Node cardNode = loader.load();
+
+                SeriesPosterController cardController = loader.getController();
+                String rate;
+                try{
+                    rate = Double.toString(ratingService.calculateRate(serie.getId()));
+                }catch (Exception e){
+                    rate = "N/A";
+                }
+
+                cardController.setData(serie.getTitle(),joinedCategories,rate,new Image(getClass().getResource(serie.getPathPoster()).toExternalForm()));
+
+                seriesPosterRow.getChildren().add(cardNode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load series");
+        }
+    }
+
 
 }

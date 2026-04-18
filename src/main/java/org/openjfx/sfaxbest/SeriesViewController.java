@@ -5,6 +5,7 @@ import entities.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -12,7 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.util.StringConverter;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -21,13 +24,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MovieViewController {
+public class SeriesViewController {
 
-    User user = MainViewController.instance.getCurrentUser();
-    FilmService  filmService = new FilmService();
+   User user = MainViewController.instance.getCurrentUser();
+
+    RatingService ratingService = new RatingService();
+    SerieService serieService = new SerieService();
     CommentService commentService=new CommentService();
     FavoriteService favoriteService=new FavoriteService();
-    WatchHistoryService watchHistoryService=new WatchHistoryService();
+
+    public Serie currentSerie;
 
     @FXML
     public void initialize (){
@@ -51,10 +57,9 @@ public class MovieViewController {
             star.setOnMouseClicked(e -> {
                 currentRating = starValue;
                 System.out.println("User locked in: " + currentRating + " stars");
-                ratingService.add(user.getId(), currentFilm.getId(), (byte) currentRating);
+                ratingService.add(user.getId(), currentSerie.getId(), (byte) currentRating);
             });
         }
-
     }
 
     private void updateStarsVisual(int highlightCount) {
@@ -70,35 +75,61 @@ public class MovieViewController {
         }
     }
 
-    public Film currentFilm;
-    private RatingService ratingService = new RatingService();
-
-
-    public void loadMovie(String title){
-        List<Film> films = filmService.listAllWithCategories();
+    public void loadSeries(String title){
+        List<Serie> series = serieService.listAllWithCategories();
         Set<String> fullNames = new HashSet<>();
-        for (Film film : films) {
-            if (film.getTitle().equals(title)) {
-                currentFilm = filmService.listFilmDetails(film.getId());
+        for (Serie serie : series) {
+            if (serie.getTitle().equals(title)) {
+                currentSerie = serieService.listSerieDetails(serie.getId());
 
-                Set<CastMember> castMembers = currentFilm.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
+                Set<CastMember> castMembers = currentSerie.getVideoCasts().stream().map(VideoCast::getCastMember).collect(Collectors.toSet());
                 for (CastMember castMember : castMembers) {
                     fullNames.add(castMember.getName() + " " + castMember.getLastName());
                 }
                 String cast = fullNames.stream().collect(Collectors.joining(" | "));
                 String rate;
                 try{
-                    rate = Double.toString(ratingService.calculateRate(film.getId()));
-                }catch (NullPointerException e){
+                    rate = Double.toString(ratingService.calculateRate(currentSerie.getId()));
+                }catch (Exception e){
                     rate = "N/A";
                 }
-                setData(new Image(getClass().getResource((film.getPathBanner())).toExternalForm()),film.getTitle(),rate,Integer.toString(film.getDurationSeconds()/60),cast, film.getDescription());
+                List<Season> seasons = currentSerie.getSeasons();
+
+                setData(new Image(getClass().getResource((serie.getPathBanner())).toExternalForm()),serie.getTitle(),rate,Integer.toString(serie.getDurationSeconds()/60),cast, serie.getDescription(),seasons);
                 loadComments();
                 break;
             }
         }
-        watchHistoryService.saveProgress(user.getId(),currentFilm.getId(),0);
     }
+
+
+    @FXML HBox episodesPosterRow;
+    private void loadEpisodes(Season season) {
+        try {
+            List<Episode> episodes = season.getEpisodes();
+            for (Episode episode : episodes) {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
+                Node cardNode = loader.load();
+
+                MoviePosterController cardController = loader.getController();
+                String rate;
+                try {
+                    rate = Double.toString(ratingService.calculateRate(episode.getId()));
+                } catch (NullPointerException e) {
+                    rate = "N/A";
+                }
+
+                cardController.setData(episode.getTitre(), "N/A", rate, new Image(getClass().getResource(episode.getThumbnailUrl()).toExternalForm()));
+
+                episodesPosterRow.getChildren().add(cardNode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Couldn't load episodes");
+        }
+    }
+
     @FXML TextArea commentInput;
     @FXML
     private void addComment(){
@@ -107,19 +138,12 @@ public class MovieViewController {
         if (comment.isEmpty()){
             return;
         }
-        commentService.add(user.getId(), currentFilm.getId(), comment);
-        try{
-            commentsContainer.getChildren().clear();
-            loadComments();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        commentService.add(user.getId(), currentSerie.getId(), comment);
     }
     @FXML VBox commentsContainer;
-
     private void loadComments(){
         try {
-            List<Comment> comments = commentService.findAllByMultimedia(currentFilm.getId());
+            List<Comment> comments = commentService.findAllByMultimedia(currentSerie.getId());
             for (Comment comment : comments) {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("comment-card.fxml"));
@@ -149,11 +173,11 @@ public class MovieViewController {
     }
     @FXML
     public void addToFavorites(){
-        favoriteService.add(user.getId(), currentFilm.getId());
+       favoriteService.add(user.getId(), currentSerie.getId());
     }
 
-
     @FXML ImageView bannerImage;
+    @FXML ComboBox seasonFilter;
     @FXML Label titleLabel;
     @FXML Label ratingLabel;
     @FXML Label durationLabel;
@@ -162,7 +186,7 @@ public class MovieViewController {
 
 
     @FXML
-    private void setData(Image banner, String title, String rating, String duration, String cast, String description) {
+    private void setData(Image banner, String title, String rating, String duration, String cast, String description,List<Season> seasons) {
 
         bannerImage.setImage(banner);
         titleLabel.setText(title);
@@ -170,10 +194,28 @@ public class MovieViewController {
         durationLabel.setText(duration + " min");
         castLabel.setText("Cast members : " + cast);
         descriptionLabel.setText(description);
+        seasonFilter.getItems().addAll(seasons);
+        seasonFilter.setConverter(new StringConverter<Season>() {
+            @Override
+            public String toString(Season season) {
+                if (season == null) return "";
+                return "Season " + season.getnSeason();
+            }
+            @Override
+            public Season fromString(String string) {
+                return null;
+            }
+        });
+        if (!seasons.isEmpty()) {
+            seasonFilter.getSelectionModel().selectFirst();
+        }
+        seasonFilter.getSelectionModel().selectedItemProperty().addListener((obs, oldSeason, newSeason) -> {
+            if (newSeason != null) {
+                loadEpisodes((Season) newSeason);
+            }
+        });
+
 
     }
-    @FXML
-    private void loadMedia(){
-        MainViewController.instance.openMediaPlayerView(getClass().getResource(currentFilm.getPathVideo()).toExternalForm());
-    }
+
 }

@@ -117,6 +117,21 @@ public class MainViewController {
             e.printStackTrace();
         }
     }
+    public void openSeriesView(String title){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("series-view.fxml"));
+            Node view = loader.load();
+
+            SeriesViewController movieController = loader.getController();
+
+            movieController.loadSeries(title);
+
+            mainBorderPane.setCenter(view);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void openMediaPlayerView(String path){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("media-player-view.fxml"));

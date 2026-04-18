@@ -154,7 +154,7 @@
 
 /* THE ALTERNATING BACKGROUNDS */
 .card-odd {
-    -fx-background-color: #202020; /* Original Dark */
+    -fx-background-color: #202020; /* Dark */
 }
 
 .card-even {
