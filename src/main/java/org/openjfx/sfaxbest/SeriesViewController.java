@@ -199,7 +199,7 @@ public class SeriesViewController {
             @Override
             public String toString(Season season) {
                 if (season == null) return "";
-                return "Season " + season.getnSeason();
+                return "Season " + season.getNSeason();
             }
             @Override
             public Season fromString(String string) {
