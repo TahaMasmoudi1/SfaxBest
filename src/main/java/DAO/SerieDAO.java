@@ -72,7 +72,7 @@ public class SerieDAO {
     public Serie listSerieDetails(long id) {
         return em.createQuery(
                         "select distinct s from Serie s " +
-                                "left join fetch  s.videoCasts vc left join fetch  vc.castMember cm" +
+                                "left join fetch  s.videoCasts vc left join fetch  vc.castMember cm " +
                                 "left join fetch  s.categories c where s.id=:id ",
                         Serie.class
                 )
