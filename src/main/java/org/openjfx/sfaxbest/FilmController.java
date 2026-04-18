@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import utils.FormValidator;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,6 +45,14 @@ public class FilmController {
     @FXML private Button edit2btn;
     @FXML private ScrollPane scrollForm;
     @FXML private GridPane checkboxGrid;
+    @FXML private Label errTitle;
+    @FXML private Label errDescription;
+    @FXML private Label errReleaseYear;
+    @FXML private Label errDuration;
+    @FXML private Label errTrailer;
+    @FXML private Label errBanner;
+    @FXML private Label errVideo;
+    @FXML private Label errPoster;
 
     private static final int COLUMNS_COUNT = 3;
     private final List<Long> selectedLabels = new ArrayList<>();
@@ -290,6 +299,7 @@ public class FilmController {
 
     @FXML
     public void adding() {
+        if (!validateForm()) return;
         String title = tfTitle.getText();
         String description = taDescription.getText();
         int releaseDate = Integer.parseInt(tfReleaseYear.getText());
@@ -306,7 +316,9 @@ public class FilmController {
     @FXML
     public void editing() {
         Film selectedFilm = movieTable.getSelectionModel().getSelectedItem();
+
         if (selectedFilm != null) {
+            if (!validateForm()) return;
             String title = tfTitle.getText();
             String description = taDescription.getText();
             int releaseDate = Integer.parseInt(tfReleaseYear.getText());
@@ -321,5 +333,17 @@ public class FilmController {
             loadFilms();
         }
 
+    }
+    private boolean validateForm() {
+        boolean ok = true;
+        ok &= FormValidator.requireNonEmpty(tfTitle,       errTitle,       "Title is required.");
+        ok &= FormValidator.requireNonEmpty(taDescription, errDescription, "Description is required.");
+        ok &= FormValidator.requirePositiveInt(tfReleaseYear, errReleaseYear, "Must be a valid year (e.g. 2023).");
+        ok &= FormValidator.requirePositiveInt(tfDuration,    errDuration,    "Must be a positive number (minutes).");
+        ok &= FormValidator.requireNonEmpty(tfBanner,  errBanner,  "Banner path is required.");
+        ok &= FormValidator.requireNonEmpty(tfTrailer, errTrailer, "Trailer path is required.");
+        ok &= FormValidator.requireNonEmpty(tfVideo,   errVideo,   "Video path is required.");
+        ok &= FormValidator.requireNonEmpty(tfPoster,  errPoster,  "Poster path is required.");
+        return ok;
     }
 }

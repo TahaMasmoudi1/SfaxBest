@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <!--
     SfaxBest — Comment Moderation Panel
@@ -23,7 +13,7 @@
     Added: search bar, filter pills, detail panel, moderation buttons.
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="860.0" stylesheets="@../../../Styles/comment.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.CommentController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="860.0" stylesheets="@../../../Styles/comment.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.CommentController">
 
     <!-- ════════════════════════════════════════════
          LEFT — SIDEBAR
@@ -154,11 +144,8 @@
             <!-- ── Moderation action bar ── -->
             <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="action-bar">
 
-                <!-- Warn button -->
-                <Button fx:id="warnbtn" mnemonicParsing="false" onAction="#warning" styleClass="warn-button" text="⚠  Warn User" />
-
                 <!-- Ban button -->
-                <Button fx:id="banbtn" mnemonicParsing="false" styleClass="ban-button" text="🚫  Ban User" />
+                <Button fx:id="banbtn" mnemonicParsing="false" onAction="#handleban" styleClass="ban-button" text="🚫  Ban User" />
 
                 <!-- Dismiss button -->
                 <Button fx:id="missbtn" mnemonicParsing="false" onAction="#dissmiss" styleClass="dismiss-button" text="✓  Dismiss Report" />

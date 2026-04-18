@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import utils.FormValidator;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,14 @@ public class SerieController {
 
     private static Serie  selectedSerie;
     private static Season selectedSeason;
+    @FXML private Label errEpNumber;
+    @FXML private Label errEpTitle;
+    @FXML private Label errEpDuration;
+    @FXML private Label errEpVideo;
+
+    @FXML private Label errSeasonNumber;
+    @FXML private Label errSeasonBanner;
+    @FXML private Label errSeasonTrailer;
 
     @FXML private TableView<Serie>            movieTable;
     @FXML private TableColumn<Serie, Long>    colId;
@@ -53,6 +62,12 @@ public class SerieController {
     @FXML private Button    edit2btn;
     @FXML private GridPane  checkboxGrid;
     @FXML private ScrollPane scrollForm;
+    @FXML private Label errTitle;
+    @FXML private Label errDescription;
+    @FXML private Label errReleaseYear;
+    @FXML private Label errBanner;
+    @FXML private Label errTrailer;
+    @FXML private Label errPoster;
 
     @FXML private TableView<Season>            seasonTable;
     @FXML private TableColumn<Season, Long>    colSeasonId;
@@ -148,17 +163,31 @@ public class SerieController {
             loadSeasons();
         }
     }
+    private boolean validateSerieForm() {
+        boolean ok = true;
+        ok &= FormValidator.requireNonEmpty(tfTitle,       errTitle,       "Title is required.");
+        ok &= FormValidator.requireNonEmpty(taDescription, errDescription, "Description is required.");
+        ok &= FormValidator.requirePositiveInt(tfReleaseYear, errReleaseYear, "Must be a valid year (e.g. 2023).");
+        ok &= FormValidator.requireNonEmpty(tfBanner,  errBanner,  "Banner path is required.");
+        ok &= FormValidator.requireNonEmpty(tfTrailer, errTrailer, "Trailer path is required.");
+        ok &= FormValidator.requireNonEmpty(tfPoster,  errPoster,  "Poster path is required.");
+        return ok;
+    }
+
 
     private void initEpisodesPage() {
 
         hideForm(episodeForm);
         hideBtns(addEpBtn, editEpBtn);
+
         if (selectedSeason != null) {
+
+            selectedSeason = SeasonService.findByIdWithEpisodes(selectedSeason.getId());
+
             if (lblSeasonName != null) {
-                lblSeasonName.setText(
-                        "Season " + selectedSeason.getNSeason()
-                );
+                lblSeasonName.setText("Season " + selectedSeason.getNSeason());
             }
+
             loadEpisodes();
         }
     }
@@ -193,7 +222,7 @@ public class SerieController {
         colEpResume.setCellValueFactory(new PropertyValueFactory<>("resume"));
         colEpVideo.setCellValueFactory(new PropertyValueFactory<>("videoPath"));
         colEpThumbnail.setCellValueFactory(new PropertyValueFactory<>("thumbnailUrl"));
-        episodeTable.setItems(FXCollections.observableArrayList(selectedSeason.getEpisodes()));
+        if (selectedSeason != null) episodeTable.setItems(FXCollections.observableArrayList(selectedSeason.getEpisodes()));
     }
 
     @FXML
@@ -223,6 +252,7 @@ public class SerieController {
 
     @FXML
     public void addingSerieAction() {
+        if (!validateSerieForm()) return;
         serieService.save(
                 tfTitle.getText(),
                 taDescription.getText(),
@@ -242,6 +272,7 @@ public class SerieController {
     public void editingSerieAction() {
         Serie sel = movieTable.getSelectionModel().getSelectedItem();
         if (sel == null) return;
+        if (!validateSerieForm()) return;
         serieService.update(
                 sel.getId(),
                 tfTitle.getText(),
@@ -266,6 +297,14 @@ public class SerieController {
         serieService.delete(sel.getId());
         loadSerie();
     }
+    private boolean validateSeasonForm() {
+        boolean ok = true;
+        ok &= FormValidator.requirePositiveInt(tfSeasonNumber,  errSeasonNumber,  "Must be a positive number.");
+        ok &= FormValidator.requireNonEmpty(tfSeasonBanner,     errSeasonBanner,  "Banner path is required.");
+        ok &= FormValidator.requireNonEmpty(tfSeasonTrailer,    errSeasonTrailer, "Trailer path is required.");
+        return ok;
+    }
+
 
     @FXML
     public void addSeasonAction() {
@@ -284,17 +323,22 @@ public class SerieController {
         showBtn(editSeasonBtn);
         hideBtn(addSeasonBtn);
     }
+    private boolean validateEpForm() {
+        boolean ok = true;
+        ok &= FormValidator.requirePositiveInt(tfEpNumber,   errEpNumber,   "Must be a positive number.");
+        ok &= FormValidator.requireNonEmpty(tfEpTitle,       errEpTitle,    "Title is required.");
+        ok &= FormValidator.requirePositiveInt(tfEpDuration, errEpDuration, "Must be a positive number (seconds).");
+        ok &= FormValidator.requireNonEmpty(tfEpVideo,       errEpVideo,    "Video path is required.");
+        return ok;
+    }
 
     @FXML
     public void addingSeasonAction() {
-
+        if (!validateSeasonForm()) return;
         int seasonNum =
                 parseIntSafe(tfSeasonNumber.getText());
 
-        System.out.println(
-                "Serie=" + selectedSerie.getId()
-                        + " Season=" + seasonNum
-        );
+
 
         SeasonService.addSeasonToSerie(
                 selectedSerie.getId(),
@@ -316,6 +360,7 @@ public class SerieController {
     public void editingSeasonAction() {
         Season sel = seasonTable.getSelectionModel().getSelectedItem();
         if (sel == null) return;
+        if (!validateSeasonForm()) return;
         SeasonService.update(
                 sel.getId(),
                 parseIntSafe(tfSeasonNumber.getText()),
@@ -357,6 +402,7 @@ public class SerieController {
 
     @FXML
     public void addingEpAction() {
+        if (!validateEpForm()) return;
         EpisodeService.addEpisodeToSeason(
                 selectedSeason.getId(),
                 parseIntSafe(tfEpNumber.getText()),
@@ -366,7 +412,7 @@ public class SerieController {
                 tfEpThumbnail.getText(),
                 tfEpVideo.getText()
         );
-        //selectedSeason = SeasonService.findById(selectedSeason.getId());
+        selectedSeason = SeasonService.findByIdWithEpisodes(selectedSeason.getId());
         loadEpisodes();
         hideForm(episodeForm);
     }
@@ -375,6 +421,7 @@ public class SerieController {
     public void editingEpAction() {
         Episode sel = episodeTable.getSelectionModel().getSelectedItem();
         if (sel == null) return;
+        if (!validateEpForm()) return;
         EpisodeService.update(
                 sel.getId(),
                 parseIntSafe(tfEpNumber.getText()),
@@ -384,7 +431,7 @@ public class SerieController {
                 tfEpThumbnail.getText(),
                 tfEpVideo.getText()
         );
-        //selectedSeason = SeasonService.findById(selectedSeason.getId());
+        selectedSeason = SeasonService.findByIdWithEpisodes(selectedSeason.getId());
         loadEpisodes();
         hideForm(episodeForm);
     }
@@ -395,7 +442,7 @@ public class SerieController {
         if (sel == null) return;
         if (!confirm("Delete Episode", "Delete Episode " + sel.getNEpisode() + " — " + sel.getTitre() + "?")) return;
         EpisodeService.delete(sel.getId(), sel.getSeason().getId());
-        //selectedSeason = SeasonService.findById(selectedSeason.getId());
+        selectedSeason = SeasonService.findByIdWithEpisodes(selectedSeason.getId());
         loadEpisodes();
     }
 
@@ -456,7 +503,6 @@ public class SerieController {
     @FXML public void browseTrailer()       { String p = pickFile("Trailer",        VIDEO_FILTER, ALL_FILTER); if (p != null) tfTrailer.setText(p); }
     @FXML public void browseBanner()        { String p = pickFile("Banner",         IMAGE_FILTER, ALL_FILTER); if (p != null) tfBanner.setText(p); }
     @FXML public void browsePoster()        { String p = pickFile("Poster",         IMAGE_FILTER, ALL_FILTER); if (p != null) tfPoster.setText(p); }
-    @FXML public void browseVideo()         { String p = pickFile("Video",          VIDEO_FILTER, ALL_FILTER); if (p != null) tfVideo.setText(p); }
     @FXML public void browseSeasonBanner()  { String p = pickFile("Season Banner",  IMAGE_FILTER, ALL_FILTER); if (p != null) tfSeasonBanner.setText(p); }
     @FXML public void browseSeasonTrailer() { String p = pickFile("Season Trailer", VIDEO_FILTER, ALL_FILTER); if (p != null) tfSeasonTrailer.setText(p); }
     @FXML public void browseEpVideo()       { String p = pickFile("Episode Video",  VIDEO_FILTER, ALL_FILTER); if (p != null) tfEpVideo.setText(p); }

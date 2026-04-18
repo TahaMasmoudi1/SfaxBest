@@ -106,20 +106,24 @@
                             <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                                 <Label styleClass="form-section-label" text="EPISODE #"/>
                                 <TextField fx:id="tfEpNumber" promptText="e.g. 1"/>
+                                <Label fx:id="errEpNumber" styleClass="error-label" visible="false" managed="false"/>
                             </VBox>
                             <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                                 <Label styleClass="form-section-label" text="DURATION (s)"/>
                                 <TextField fx:id="tfEpDuration" promptText="e.g. 2700"/>
+                                <Label fx:id="errEpDuration" styleClass="error-label" visible="false" managed="false"/>
                             </VBox>
                         </HBox>
                         <Label styleClass="form-section-label" text="TITLE"/>
                         <TextField fx:id="tfEpTitle" promptText="Episode title"/>
+                        <Label fx:id="errEpTitle" styleClass="error-label" visible="false" managed="false"/>
                         <Label styleClass="form-section-label" text="RESUME"/>
                         <TextArea fx:id="taEpResume" prefRowCount="3" promptText="Short synopsis"/>
                         <Label styleClass="form-section-label" text="VIDEO FILE"/>
                         <HBox spacing="8.0" alignment="CENTER_LEFT">
                             <TextField fx:id="tfEpVideo" editable="false"
                                        promptText="Video path" HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="errEpVideo" styleClass="error-label" visible="false" managed="false"/>
                             <Button styleClass="browse-button" text="Browse…" onAction="#browseEpVideo"/>
                         </HBox>
                         <Label styleClass="form-section-label" text="THUMBNAIL"/>

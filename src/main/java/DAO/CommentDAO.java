@@ -33,8 +33,13 @@ public class CommentDAO {
                 .setParameter("id", idMultimedia).getResultList();
     }
     public List<Comment> findAll() {
-        return  em.createQuery("select c from Comment c " +
-                        "order by c.commentDate", Comment.class).getResultList();
+        return em.createQuery(
+                "SELECT c FROM Comment c " +
+                        "JOIN FETCH c.user " +
+                        "JOIN FETCH c.multimedia",
+                Comment.class
+        ).getResultList();
     }
+
 
 }

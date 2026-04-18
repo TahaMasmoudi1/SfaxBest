@@ -1,6 +1,7 @@
 package org.openjfx.sfaxbest;
 
 import Services.CommentService;
+import Services.UserService;
 import entities.Comment;
 import entities.Film;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ public class CommentController {
     @FXML private TableColumn<Comment, String> colComment;
     @FXML private TableColumn<Comment, Integer> colNumberRep;
     private CommentService  commentService= new CommentService();
+    UserService userService= new UserService();
     @FXML
     public void goToSeries() throws IOException {
         App.setRoot("seriesAdmin");
@@ -61,8 +63,8 @@ public class CommentController {
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Film");
-        alert.setContentText("Are you sure you want to delete this film?");
+        alert.setTitle("Delete comment");
+        alert.setContentText("Are you sure you want to delete this comment?");
 
         Optional<ButtonType> result = alert.showAndWait();
 
@@ -71,15 +73,7 @@ public class CommentController {
             loadComments();
         }
     }
-    @FXML
-    private void warning() {
-        Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
 
-        if (selectedComment == null) {
-            return;
-        }
-        //selectedComment.setWarning(true); hethi ta3ti warning lel user ki awel may 7el el compte mte3ou tjih notif
-    }
     @FXML
     private void dissmiss() {
         Comment selectedComment = commentTable.getSelectionModel().getSelectedItem();
@@ -87,7 +81,9 @@ public class CommentController {
         if (selectedComment == null) {
             return;
         }
-        selectedComment.setNbrSignals(0);//hethi besh tafi el reports mte3ou mathalan fama cas win 3bed juste ta3mel report hakika so tnajem trod el reports lel 0
+        commentService.dismiss(selectedComment.getId());
+        loadComments();
+        //hethi besh tafi el reports mte3ou mathalan fama cas win 3bed juste ta3mel report hakika so tnajem trod el reports lel 0
     }
     @FXML
     private void handleban() {
@@ -104,8 +100,10 @@ public class CommentController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            //selectedComment.setban(true) a3mel method mta3 ban true ya3ni mbani false la
-            loadComments();
+            userService.BanUser(selectedComment.getId());
+            // a3mel method mta3 ban true ya3ni mbani false la
+
         }
+        loadComments();
     }
 }

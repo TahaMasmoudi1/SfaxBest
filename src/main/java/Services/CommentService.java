@@ -56,5 +56,13 @@ public class CommentService {
             return commentDAO.findAll();
         });
     }
+    public void dismiss(Long idComment) {
+        TraHelper.write(em -> {
+            CommentDAO commentDAO = new CommentDAO(em);
+            Comment comment=commentDAO.findById(idComment);
+            comment.setNbrSignals(0);
+
+        });
+    }
 
 }

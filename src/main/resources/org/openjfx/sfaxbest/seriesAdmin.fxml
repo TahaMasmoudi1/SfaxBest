@@ -89,29 +89,34 @@
                             <VBox fx:id="form" alignment="TOP_CENTER"  spacing="10.0" styleClass="form-box" visible="false">
                                 <Label styleClass="form-section-label" text="TITLE" />
                                 <TextField fx:id="tfTitle" promptText="Enter serie title" />
+                                <Label fx:id="errTitle" styleClass="error-label" visible="false" managed="false"/>
                                 <Label styleClass="form-section-label" text="DESCRIPTION" />
                                 <TextArea fx:id="taDescription" prefRowCount="3" promptText="Enter description" />
+                                <Label fx:id="errDescription" styleClass="error-label" visible="false" managed="false"/>
                                 <HBox spacing="12.0">
                                     <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                                         <Label styleClass="form-section-label" text="RELEASE YEAR" />
                                         <TextField fx:id="tfReleaseYear" promptText="e.g. 2023" />
+                                        <Label fx:id="errReleaseYear" styleClass="error-label" visible="false" managed="false"/>
                                     </VBox>
-                                    <TextField fx:id="tfDuration"  visible="false" />
-                                    <TextField fx:id="tfVideo"  visible="false" />
+
                                 </HBox>
                                 <Label styleClass="form-section-label" text="TRAILER" />
                                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                                     <TextField fx:id="tfTrailer" editable="false" promptText="Trailer path" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="errTrailer" styleClass="error-label" visible="false" managed="false"/>
                                     <Button onAction="#browseTrailer" styleClass="browse-button" text="Browse…" />
                                 </HBox>
                                 <Label styleClass="form-section-label" text="BANNER" />
                                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                                     <TextField fx:id="tfBanner" editable="false" promptText="Banner path" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="errBanner" styleClass="error-label" visible="false" managed="false"/>
                                     <Button onAction="#browseBanner" styleClass="browse-button" text="Browse…" />
                                 </HBox>
                                 <Label styleClass="form-section-label" text="POSTER" />
                                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                                     <TextField fx:id="tfPoster" editable="false" promptText="Poster path" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="errPoster" styleClass="error-label" visible="false" managed="false"/>
                                     <Button onAction="#browsePoster" styleClass="browse-button" text="Browse…" />
                                 </HBox>
                                 <Label styleClass="form-section-label" text="CATEGORIES" />
