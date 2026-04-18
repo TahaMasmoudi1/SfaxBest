@@ -92,7 +92,7 @@ public class DocumentaryDAO {
     public List<Documentary> listByCategoryName(String categoryName, int offset, int limit) {
         return em.createQuery(
                         "select distinct d from Documentary d " +
-                                "join d.categories c " +
+                                "join fetch d.categories c " +
                                 "where lower(c.categorie) = lower(:categoryName) " +
                                 "order by d.releaseYear desc",
                         Documentary.class)

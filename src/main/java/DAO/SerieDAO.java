@@ -118,16 +118,18 @@ public class SerieDAO {
                 .setMaxResults(limit)
                 .getResultList();
     }
+
     public List<Serie> listByCategoryName(String categoryName, int offset, int limit) {
         return em.createQuery(
                         "select distinct s from Serie s " +
-                                "join s.categories c " +
+                                "join fetch s.categories c " +
                                 "where lower(c.categorie) = lower(:categoryName) " +
                                 "order by s.releaseYear desc",
                         Serie.class)
                 .setParameter("categoryName", categoryName).setFirstResult(offset).setMaxResults(limit).getResultList();
     }
-    public Long countSeries(){
+
+    public Long countSeries() {
         return em.createQuery("select count (s) from Serie s", Long.class).getSingleResult();
     }
 }
