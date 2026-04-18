@@ -78,7 +78,7 @@
             <Button onMouseClicked="#addComment" styleClass="primary-btn" text="Submit Review" />
 
             <Label styleClass="comments" text="Recent Comments" />
-            <VBox fx:id="commentsContainer" spacing="10" >
+            <VBox fx:id="commentsContainer" style="-fx-background-color:#202020; " spacing="10" >
                 <!-- comments are loaded dynamically -->
             </VBox>
 

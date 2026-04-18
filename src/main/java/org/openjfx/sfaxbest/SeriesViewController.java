@@ -95,6 +95,7 @@ public class SeriesViewController {
                 }
                 List<Season> seasons = currentSerie.getSeasons();
 
+
                 setData(new Image(getClass().getResource((serie.getPathBanner())).toExternalForm()),serie.getTitle(),rate,Integer.toString(serie.getDurationSeconds()/60),cast, serie.getDescription(),seasons);
                 loadComments();
                 break;
@@ -104,9 +105,10 @@ public class SeriesViewController {
 
 
     @FXML HBox episodesPosterRow;
+    SeasonService seasonService = new SeasonService();
     private void loadEpisodes(Season season) {
         try {
-            List<Episode> episodes = season.getEpisodes();
+            List<Episode> episodes = seasonService.findByIdWithEpisodes(season.getId()).getEpisodes();
             for (Episode episode : episodes) {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));

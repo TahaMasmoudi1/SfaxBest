@@ -7,7 +7,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.shape.Circle?>
 
-<ScrollPane fitToWidth="true"  styleClass="user-root"  stylesheets="@../../../Styles/user-home-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.UserHomeController" prefHeight="Infinity" prefWidth="Infinity" >
+<ScrollPane fitToWidth="true"  styleClass="user-root" stylesheets="@../../../Styles/user-home-style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.openjfx.sfaxbest.UserHomeController" prefHeight="Infinity" prefWidth="Infinity" >
 
     <VBox spacing="40">
         <padding>

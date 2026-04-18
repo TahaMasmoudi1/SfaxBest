@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 
 
-<StackPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.SeriesPosterController" styleClass="poster-card" onMouseClicked="#loadSeriesView">
+<StackPane stylesheets="@../../../Styles/home-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.SeriesPosterController" styleClass="poster-card" onMouseClicked="#loadSeriesView">
 
     <ImageView fx:id="posterImage" fitWidth="160" fitHeight="240" preserveRatio="false" styleClass="poster-image"/>
 
