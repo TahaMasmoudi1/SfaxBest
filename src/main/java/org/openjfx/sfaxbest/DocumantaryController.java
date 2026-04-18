@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import utils.FormValidator;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,14 @@ public class DocumantaryController {
     @FXML private ScrollPane scrollForm;
     @FXML private GridPane checkboxGrid;
     @FXML private TextField tfPoster;
+    @FXML private Label errTitle;
+    @FXML private Label errDescription;
+    @FXML private Label errReleaseYear;
+    @FXML private Label errDuration;
+    @FXML private Label errTrailer;
+    @FXML private Label errBanner;
+    @FXML private Label errVideo;
+    @FXML private Label errPoster;
     private static final int COLUMNS_COUNT = 3;
     private final List<Long> selectedLabels = new ArrayList<>();
     private DocumentaryService documentaryService = new DocumentaryService();
@@ -208,9 +217,11 @@ public class DocumantaryController {
         scrollForm.setManaged(true);
         scrollForm.setVisible(true);
         clearAllSelections();
+        clearAllErrors();
         movieTable.setOnMouseClicked(event -> {
             Documentary selected = movieTable.getSelectionModel().getSelectedItem();
             if (selected == null) return;
+
 
 
             tfTitle.setText(selected.getTitle());
@@ -235,7 +246,7 @@ public class DocumantaryController {
         movieTable.setOnMouseClicked(event -> {
         });
         clearAllSelections();
-
+        clearAllErrors();
         tfTitle.clear();
         tfBanner.clear();
         tfTrailer.clear();
@@ -268,6 +279,7 @@ public class DocumantaryController {
 
     @FXML
     public void adding() {
+        if (!validateForm()) return;
         String title = tfTitle.getText();
         String description = taDescription.getText();
         int releaseDate = Integer.parseInt(tfReleaseYear.getText());
@@ -285,6 +297,7 @@ public class DocumantaryController {
     public void editing() {
         Documentary selectedFilm = movieTable.getSelectionModel().getSelectedItem();
         if (selectedFilm != null) {
+            if (!validateForm()) return;
             String title = tfTitle.getText();
             String description = taDescription.getText();
             int releaseDate = Integer.parseInt(tfReleaseYear.getText());
@@ -344,5 +357,27 @@ public class DocumantaryController {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.webp"),
                 new FileChooser.ExtensionFilter("All Files",   "*.*"));
         if (path != null) tfPoster.setText(path);
+    }
+    private boolean validateForm() {
+        boolean ok = true;
+        ok &= FormValidator.requireNonEmpty(tfTitle,       errTitle,       "Title is required.");
+        ok &= FormValidator.requireNonEmpty(taDescription, errDescription, "Description is required.");
+        ok &= FormValidator.requirePositiveInt(tfReleaseYear, errReleaseYear, "Must be a valid year (e.g. 2023).");
+        ok &= FormValidator.requirePositiveInt(tfDuration,    errDuration,    "Must be a positive number (minutes).");
+        ok &= FormValidator.requireNonEmpty(tfBanner,  errBanner,  "Banner path is required.");
+        ok &= FormValidator.requireNonEmpty(tfTrailer, errTrailer, "Trailer path is required.");
+        ok &= FormValidator.requireNonEmpty(tfVideo,   errVideo,   "Video path is required.");
+        ok &= FormValidator.requireNonEmpty(tfPoster,  errPoster,  "Poster path is required.");
+        return ok;
+    }
+    private void clearAllErrors() {
+        FormValidator.clearError(tfTitle,       errTitle);
+        FormValidator.clearError(taDescription, errDescription);
+        FormValidator.clearError(tfReleaseYear, errReleaseYear);
+        FormValidator.clearError(tfDuration,    errDuration);
+        FormValidator.clearError(tfBanner,      errBanner);
+        FormValidator.clearError(tfTrailer,     errTrailer);
+        FormValidator.clearError(tfVideo,       errVideo);
+        FormValidator.clearError(tfPoster,      errPoster);
     }
 }

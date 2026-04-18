@@ -100,20 +100,24 @@
                                 <children>
                                     <Label styleClass="form-section-label" text="TITLE" />
                                     <TextField fx:id="tfTitle" promptText="Enter documentary title" />
+                                    <Label fx:id="errTitle" styleClass="error-label" visible="false" managed="false"/>
                                     <Label styleClass="form-section-label" text="DESCRIPTION" />
                                     <TextArea fx:id="taDescription" prefRowCount="3" promptText="Enter description" />
+                                    <Label fx:id="errDescription" styleClass="error-label" visible="false" managed="false"/>
                                     <HBox spacing="12.0">
                                         <children>
                                             <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                     <Label styleClass="form-section-label" text="RELEASE YEAR" />
                                                     <TextField fx:id="tfReleaseYear" promptText="e.g. 2024" />
+                                                    <Label fx:id="errReleaseYear" styleClass="error-label" visible="false" managed="false"/>
                                                 </children>
                                             </VBox>
                                             <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                     <Label styleClass="form-section-label" text="DURATION (min)" />
                                                     <TextField fx:id="tfDuration" promptText="e.g. 120" />
+                                                    <Label fx:id="errDuration" styleClass="error-label" visible="false" managed="false"/>
                                                 </children>
                                             </VBox>
                                         </children>
@@ -122,6 +126,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
                                         <TextField fx:id="tfTrailer" editable="false"
                                                    promptText="Trailer file path" HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="errTrailer" styleClass="error-label" visible="false" managed="false"/>
                                         <Button styleClass="browse-button" text="Browse…"
                                                 onAction="#browseTrailer" />
                                     </HBox>
@@ -131,6 +136,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
                                         <TextField fx:id="tfBanner" editable="false"
                                                    promptText="Banner file path" HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="errBanner" styleClass="error-label" visible="false" managed="false"/>
                                         <Button styleClass="browse-button" text="Browse…"
                                                 onAction="#browseBanner" />
                                     </HBox>
@@ -140,6 +146,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
                                         <TextField fx:id="tfVideo" editable="false"
                                                    promptText="Video file path" HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="errVideo" styleClass="error-label" visible="false" managed="false"/>
                                         <Button styleClass="browse-button" text="Browse…"
                                                 onAction="#browseVideo" />
                                     </HBox>
@@ -149,6 +156,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="8.0">
                                         <TextField fx:id="tfPoster" editable="false"
                                                    promptText="Poster file path" HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="errPoster" styleClass="error-label" visible="false" managed="false"/>
                                         <Button styleClass="browse-button" text="Browse…"
                                                 onAction="#browsePoster" />
                                     </HBox>
