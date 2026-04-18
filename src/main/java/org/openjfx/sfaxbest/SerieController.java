@@ -167,7 +167,8 @@ public class SerieController {
         colSeasonNumber.setCellValueFactory(new PropertyValueFactory<>("nSeason"));
         colSeasonBanner.setCellValueFactory(new PropertyValueFactory<>("pathBannerSeason"));
         colSeasonTrailer.setCellValueFactory(new PropertyValueFactory<>("pathTrailerSeason"));
-        if(selectedSeason != null) seasonTable.setItems(FXCollections.observableArrayList(selectedSerie.getSeasons()));
+        System.out.println(selectedSerie.getDescription());
+        if(selectedSerie != null) seasonTable.setItems(FXCollections.observableArrayList(selectedSerie.getSeasons()));
     }
 
     public void loadEpisodes() {
@@ -188,8 +189,8 @@ public class SerieController {
         showForm(form);
         showBtn(add2btn);
         hideBtn(edit2btn);
-        scrollForm.setManaged(false);
-        scrollForm.setVisible(false);
+        scrollForm.setManaged(true);
+        scrollForm.setVisible(true);
         movieTable.setOnMouseClicked(null);
     }
 
@@ -219,6 +220,8 @@ public class SerieController {
         );
         loadSerie();
         hideForm(form);
+        scrollForm.setManaged(false);
+        scrollForm.setVisible(false);
     }
 
     @FXML
@@ -237,6 +240,8 @@ public class SerieController {
         );
         loadSerie();
         hideForm(form);
+        scrollForm.setManaged(false);
+        scrollForm.setVisible(false);
     }
 
     @FXML
@@ -268,14 +273,27 @@ public class SerieController {
 
     @FXML
     public void addingSeasonAction() {
-        System.out.println(selectedSerie.getId());
+
+        int seasonNum =
+                parseIntSafe(tfSeasonNumber.getText());
+
+        System.out.println(
+                "Serie=" + selectedSerie.getId()
+                        + " Season=" + seasonNum
+        );
+
         SeasonService.addSeasonToSerie(
                 selectedSerie.getId(),
-                parseIntSafe(tfSeasonNumber.getText()),
+                seasonNum,
                 tfSeasonBanner.getText(),
                 tfSeasonTrailer.getText()
         );
-        selectedSerie = serieService.listSerieDetails(selectedSerie.getId());
+
+        selectedSerie =
+                serieService.listSerieDetails(
+                        selectedSerie.getId()
+                );
+
         loadSeasons();
         hideForm(seasonForm);
     }
