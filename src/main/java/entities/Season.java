@@ -48,11 +48,11 @@ public class Season {
         this.serie = serie;
     }
 
-    public Integer getnSeason() {
+    public Integer getNSeason() {
         return nSeason;
     }
 
-    public void setnSeason(Integer nSeason) {
+    public void setNSeason(Integer nSeason) {
         this.nSeason = nSeason;
     }
 
