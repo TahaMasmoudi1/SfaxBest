@@ -156,7 +156,7 @@ public class SerieController {
         if (selectedSeason != null) {
             if (lblSeasonName != null) {
                 lblSeasonName.setText(
-                        "Season " + selectedSeason.getnSeason()
+                        "Season " + selectedSeason.getNSeason()
                 );
             }
             loadEpisodes();
@@ -331,7 +331,7 @@ public class SerieController {
     public void handleDeleteSeason() {
         Season sel = seasonTable.getSelectionModel().getSelectedItem();
         if (sel == null) return;
-        if (!confirm("Delete Season", "Delete Season " + sel.getnSeason() + " and all its episodes?")) return;
+        if (!confirm("Delete Season", "Delete Season " + sel.getNSeason() + " and all its episodes?")) return;
         SeasonService.delete(sel.getId());
         selectedSerie = serieService.listSerieDetails(selectedSerie.getId());
         loadSeasons();
@@ -479,7 +479,7 @@ public class SerieController {
     }
 
     private void fillSeasonFields(Season s) {
-        tfSeasonNumber.setText(s.getnSeason() != null ? String.valueOf(s.getnSeason()) : "");
+        tfSeasonNumber.setText(s.getNSeason() != null ? String.valueOf(s.getNSeason()) : "");
         tfSeasonBanner.setText(orEmpty(s.getPathBannerSeason()));
         tfSeasonTrailer.setText(orEmpty(s.getPathTrailerSeason()));
     }
