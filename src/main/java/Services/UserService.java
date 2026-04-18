@@ -4,10 +4,12 @@ import DAO.UserDAO;
 import Security.Encoder;
 import Security.VerificationCode;
 import entities.User;
+import entities.UserRole;
 import exceptions.AuthException;
 import exceptions.ValidationException;
 import utils.TraHelper;
 
+import javax.management.relation.Role;
 import java.time.Instant;
 import java.util.LinkedHashMap;
 
@@ -198,6 +200,19 @@ public class UserService {
             User user=userDAO.findById(userId);
             user.setAvatarUrl(urlAvatar);
             userDAO.update(user);
+        });
+    }
+    public boolean isAdmin(long userId){
+        return TraHelper.read(em ->  {
+            UserDAO userDAO=new UserDAO(em);
+            User user=userDAO.findById(userId);
+            if(user==null){
+                throw new ValidationException("User not found");
+            }
+            if (user.getRole()== UserRole.ADMIN) {
+                return true;
+            }
+            return false;
         });
     }
 
