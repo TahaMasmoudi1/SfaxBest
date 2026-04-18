@@ -4,6 +4,7 @@ import DAO.CategoryDAO;
 import DAO.SerieDAO;
 import entities.Serie;
 import jakarta.persistence.NoResultException;
+import org.hibernate.Hibernate;
 import utils.TraHelper;
 
 import java.util.List;
@@ -114,8 +115,11 @@ public class SerieService {
         return TraHelper.read(em -> {
 
             SerieDAO serieDAO = new SerieDAO(em);
-
-            return serieDAO.listSerieDetails(id);
+            Serie serie =serieDAO.listSerieDetails(id);
+            Hibernate.initialize(serie.getSeasons());
+            Hibernate.initialize(serie.getCategories());
+            Hibernate.initialize(serie.getVideoCasts());
+            return  serie;
 
         });
 

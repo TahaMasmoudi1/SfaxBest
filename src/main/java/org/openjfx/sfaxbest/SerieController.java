@@ -134,19 +134,33 @@ public class SerieController {
     }
 
     private void initSeasonsPage() {
+
         hideForm(seasonForm);
         hideBtns(addSeasonBtn, editSeasonBtn);
-        if (lblSerieName != null && selectedSerie != null)
-            lblSerieName.setText(selectedSerie.getTitle());
-        if (selectedSerie != null) loadSeasons();
+
+        if (selectedSerie != null) {
+            selectedSerie = serieService.listSerieDetails(selectedSerie.getId());
+            if (lblSerieName != null) {
+                lblSerieName.setText(
+                        selectedSerie.getTitle()
+                );
+            }
+            loadSeasons();
+        }
     }
 
     private void initEpisodesPage() {
+
         hideForm(episodeForm);
         hideBtns(addEpBtn, editEpBtn);
-        if (lblSeasonName != null && selectedSeason != null)
-            lblSeasonName.setText("Season " + selectedSeason.getnSeason());
-        if (selectedSeason != null) loadEpisodes();
+        if (selectedSeason != null) {
+            if (lblSeasonName != null) {
+                lblSeasonName.setText(
+                        "Season " + selectedSeason.getnSeason()
+                );
+            }
+            loadEpisodes();
+        }
     }
 
     public void loadSerie() {
