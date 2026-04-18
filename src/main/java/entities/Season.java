@@ -52,7 +52,7 @@ public class Season {
         return nSeason;
     }
 
-    public void setnSeason(Integer nSeason) {
+    public void setNSeason(Integer nSeason) {
         this.nSeason = nSeason;
     }
 

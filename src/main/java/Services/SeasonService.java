@@ -1,6 +1,5 @@
 package Services;
 
-import DAO.CategoryDAO;
 import DAO.SeasonDAO;
 import DAO.SerieDAO;
 import entities.Season;
@@ -45,7 +44,7 @@ public class SeasonService {
             if (season == null) {
                 throw new NoResultException("Serie Not Found");
             }
-            season.setnSeason(nSeason);
+            season.setNSeason(nSeason);
             season.setPathBannerSeason(pathBannerSeason);
             season.setPathTrailerSeason(pathTrailerSeason);
         });
@@ -57,6 +56,12 @@ public class SeasonService {
             return seasonDAO.listAll(idSerie, offset, limit);
         });
 
+    }
+    public Season findById(long idSeason)  {
+        return TraHelper.read(em -> {
+            SeasonDAO seasonDAO = new SeasonDAO(em);
+            return seasonDAO.findById(idSeason);
+        });
     }
 
 }
