@@ -35,5 +35,19 @@ public class SeasonDAO {
                         " s.serie.id=:idSerie order by s.nSeason desc", Season.class).setParameter("idSerie", idSerie)
                 .setFirstResult(offset).setMaxResults(limit).getResultList();
     }
+    public boolean existsSeason(long serieId, int nSeason) {
+
+        Long count = em.createQuery(
+                        "SELECT COUNT(s) FROM Season s " +
+                                "WHERE s.serie.id = :serieId " +
+                                "AND s.nSeason = :nSeason",
+                        Long.class
+                )
+                .setParameter("serieId", serieId)
+                .setParameter("nSeason", nSeason)
+                .getSingleResult();
+
+        return count > 0;
+    }
 
 }
