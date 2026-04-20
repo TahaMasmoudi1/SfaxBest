@@ -9,12 +9,16 @@ import java.util.Set;
 
 @Entity
 @Table(name = "multimedia")
+
+@Inheritance(strategy = InheritanceType.JOINED)
+
 @DiscriminatorColumn(
         name = "media_type",
         discriminatorType = DiscriminatorType.STRING
 )
-@Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class Multimedia {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -39,12 +43,15 @@ public abstract class Multimedia {
     @Column(name = "path_banner")
     private String pathBanner;
 
-    @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
-
+    @Column(
+            name = "created_at",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private Instant createdAt;
 
     @ManyToMany(fetch = FetchType.LAZY)
-
     @JoinTable(
             name = "multimedia_category",
             joinColumns = @JoinColumn(name = "id_multimedia"),
@@ -52,24 +59,46 @@ public abstract class Multimedia {
     )
     private Set<Category> categories = new HashSet<>();
 
-    @OneToMany(mappedBy = "multimedia", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(
+            mappedBy = "multimedia",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private Set<VideoCast> videoCasts = new HashSet<>();
 
-    @Column
-    private String media_type;
 
+    // ✅ SAFE media_type getter (computed, not stored)
+    @Transient
     public String getMedia_type() {
-        return media_type;
+
+        if (this instanceof Film) {
+            return "FILM";
+        }
+
+        if (this instanceof Serie) {
+            return "SERIES";
+        }
+
+        if (this instanceof Documentary) {
+            return "DOCUMENTARY";
+        }
+
+        return "UNKNOWN";
     }
 
-    public void setMedia_type(String media_type) {
-        this.media_type = media_type;
-    }
 
     public Multimedia() {
     }
 
-    public Multimedia(String title, String description, Integer releaseYear, String pathTrailer, String pathBanner,String pathPoster) {
+    public Multimedia(
+            String title,
+            String description,
+            Integer releaseYear,
+            String pathTrailer,
+            String pathBanner,
+            String pathPoster
+    ) {
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
@@ -78,28 +107,8 @@ public abstract class Multimedia {
         this.pathPoster = pathPoster;
     }
 
-    public Set<VideoCast> getVideoCasts() {
-        return videoCasts;
-    }
 
-    public void setVideoCasts(Set<VideoCast> videoCasts) {
-        this.videoCasts = videoCasts;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-    public String getStringCategorie(){
-        String x="";
-        for(Category c : categories){
-            x+=c.getCategorie()+"/";
-        }
-        return x;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
+    // ---------------- GETTERS / SETTERS ----------------
 
     public Long getId() {
         return id;
@@ -149,6 +158,14 @@ public abstract class Multimedia {
         this.pathBanner = pathBanner;
     }
 
+    public String getPathPoster() {
+        return pathPoster;
+    }
+
+    public void setPathPoster(String pathPoster) {
+        this.pathPoster = pathPoster;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -157,20 +174,53 @@ public abstract class Multimedia {
         this.createdAt = createdAt;
     }
 
-    public String getPathPoster() {
-        return pathPoster;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setPathPoster(String pathPoster) {
-        this.pathPoster = pathPoster;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
-    public Integer getDurationSeconds(){
+
+    public Set<VideoCast> getVideoCasts() {
+        return videoCasts;
+    }
+
+    public void setVideoCasts(Set<VideoCast> videoCasts) {
+        this.videoCasts = videoCasts;
+    }
+
+
+    // Optional helper
+    public String getStringCategorie() {
+
+        String x = "";
+
+        for (Category c : categories) {
+            x += c.getCategorie() + "/";
+        }
+
+        return x;
+    }
+
+
+    // Default duration (override in Film/Episode)
+    public Integer getDurationSeconds() {
         return 0;
     }
+
+
+    // ---------------- EQUALS / HASH ----------------
+
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+
+        if (this == o) return true;
+
+        if (!(o instanceof Multimedia)) return false;
+
         Multimedia that = (Multimedia) o;
+
         return Objects.equals(id, that.id);
     }
 
@@ -179,18 +229,14 @@ public abstract class Multimedia {
         return Objects.hash(id);
     }
 
+
     @Override
     public String toString() {
+
         return "Multimedia{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
                 ", releaseYear=" + releaseYear +
-                ", pathPoster='" + pathPoster + '\'' +
-                ", pathTrailer='" + pathTrailer + '\'' +
-                ", pathBanner='" + pathBanner + '\'' +
-                ", createdAt=" + createdAt +
-                ", categories=" + categories +
                 '}';
     }
 }
