@@ -20,12 +20,20 @@ public class MediaPlayerController {
 
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = true;
-    @FXML private StackPane playerRoot;
-    @FXML Label currentTimeLabel;
-    @FXML Slider timeSlider;
-    @FXML Slider volumeSlider;
-    @FXML Button playPauseBtn;
-    @FXML MediaView mediaView;
+    @FXML
+    private StackPane playerRoot;
+    @FXML
+    Label currentTimeLabel;
+    @FXML
+    Slider timeSlider;
+    @FXML
+    Slider volumeSlider;
+    @FXML
+    Button playPauseBtn;
+    @FXML
+    MediaView mediaView;
+    @FXML
+    Label totalTimeLabel;
 
 
     public void initialize() {
@@ -43,41 +51,84 @@ public class MediaPlayerController {
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             mediaPlayer.setVolume(newVal.doubleValue());
         });
-        mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
-            timeSlider.setValue(newTime.toSeconds());
-            currentTimeLabel.setText(formatTime(newTime));
+        mediaPlayer.setOnReady(() -> {
+
+            Duration totalDuration = mediaPlayer.getTotalDuration();
+
+            timeSlider.setMax(totalDuration.toSeconds());
+
+            totalTimeLabel.setText(
+                    formatTime(totalDuration)
+            );
         });
+
+
+// Update slider while playing
+        mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+                    if (!timeSlider.isValueChanging()) {
+                        timeSlider.setValue(newTime.toSeconds());}
+                    currentTimeLabel.setText(
+                            formatTime(newTime)
+                    );
+                }
+        );
+        timeSlider.valueChangingProperty().addListener((obs, wasChanging, isChanging) -> {
+                    if (!isChanging) {
+                        mediaPlayer.seek(Duration.seconds(timeSlider.getValue()));
+                    }
+                }
+        );
+        timeSlider.setOnMousePressed(e -> mediaPlayer.seek(Duration.seconds(timeSlider.getValue())
+                )
+        );
+
+        timeSlider.setOnMouseDragged(e ->
+                mediaPlayer.seek(
+                        Duration.seconds(timeSlider.getValue())));
         mediaView.setMediaPlayer(mediaPlayer);
     }
 
 
-    @FXML public void playNextEpisode(){}
-    @FXML public void cancelBingeWatch(){}
+    @FXML
+    public void playNextEpisode() {
+    }
 
-    @FXML public void togglePlayPause(){
+    @FXML
+    public void cancelBingeWatch() {
+    }
+
+    @FXML
+    public void togglePlayPause() {
         if (isPlaying) {
             mediaPlayer.pause();
             isPlaying = false;
             playPauseBtn.setText("▶");
-        }else  {
+        } else {
             mediaPlayer.play();
             isPlaying = true;
             playPauseBtn.setText("⏸");
         }
     }
-    @FXML public void seekBack(){
+
+    @FXML
+    public void seekBack() {
         if (mediaPlayer != null) {
             Duration currentTime = mediaPlayer.getCurrentTime();
             mediaPlayer.seek(currentTime.subtract(Duration.seconds(10)));
         }
     }
-    @FXML public void seekForward(){
+
+    @FXML
+    public void seekForward() {
         if (mediaPlayer != null) {
             Duration currentTime = mediaPlayer.getCurrentTime();
             mediaPlayer.seek(currentTime.add(Duration.seconds(10)));
         }
     }
-    @FXML public void toggleFullscreen(){}
+
+    @FXML
+    public void toggleFullscreen() {
+    }
 
     private String formatTime(Duration duration) {
         int totalSeconds = (int) Math.floor(duration.toSeconds());

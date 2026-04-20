@@ -17,7 +17,7 @@
 
         <StackPane fx:id="bannerContainer" prefHeight="400.0">
 
-            <ImageView fx:id="bannerImage" preserveRatio="false"/>
+            <ImageView fx:id="bannerImage" preserveRatio="false" fitWidth="1200" fitHeight="600"/>
             <StackPane style="-fx-background-color: linear-gradient(to bottom, transparent 60%, #202020 100%);" />
 
         </StackPane>

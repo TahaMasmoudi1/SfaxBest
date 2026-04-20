@@ -196,8 +196,11 @@ public class SeriesViewController {
         durationLabel.setText(duration + " min");
         castLabel.setText("Cast members : " + cast);
         descriptionLabel.setText(description);
-        seasonFilter.getItems().addAll(seasons);
-        seasonFilter.setConverter(new StringConverter<Season>() {
+        seasonFilter.getItems().setAll(
+                seasons.stream()
+                        .distinct()
+                        .toList()
+        );        seasonFilter.setConverter(new StringConverter<Season>() {
             @Override
             public String toString(Season season) {
                 if (season == null) return "";
@@ -213,6 +216,7 @@ public class SeriesViewController {
         }
         seasonFilter.getSelectionModel().selectedItemProperty().addListener((obs, oldSeason, newSeason) -> {
             if (newSeason != null) {
+                episodesPosterRow.getChildren().clear();
                 loadEpisodes((Season) newSeason);
             }
         });

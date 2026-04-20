@@ -55,6 +55,17 @@ public abstract class Multimedia {
     @OneToMany(mappedBy = "multimedia", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<VideoCast> videoCasts = new HashSet<>();
 
+    @Column
+    private String media_type;
+
+    public String getMedia_type() {
+        return media_type;
+    }
+
+    public void setMedia_type(String media_type) {
+        this.media_type = media_type;
+    }
+
     public Multimedia() {
     }
 

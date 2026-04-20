@@ -9,6 +9,7 @@ import entities.User;
 import utils.TraHelper;
 
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class RatingService {
     public void add(Long idUser,Long idMultimedia,Byte rate){
@@ -47,6 +48,11 @@ public class RatingService {
     }
     public Double calculateRate(Long idMultimedia){
         List<Rating> ratings=this.findAll( idMultimedia);
-        return ratings.stream().mapToInt(Rating::getRate).average().getAsDouble();
+        OptionalDouble avg =
+                ratings.stream()
+                        .mapToDouble(Rating::getRate)
+                        .average();
+
+        return avg.orElse(0.0);
     }
 }

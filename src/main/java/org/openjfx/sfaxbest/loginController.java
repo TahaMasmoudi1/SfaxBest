@@ -56,7 +56,7 @@ public class loginController {
                    stage.setWidth(1100);
                    stage.setHeight(600);
                });
-               App.setRoot("dashborad");
+               App.setRoot("mainAdmin");
            }
            if(user.getRole()== UserRole.USER){
                App.setRoot("main-view");

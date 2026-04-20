@@ -17,7 +17,6 @@ public class ForgotPasswordController {
     UserService userService =  new UserService();
     private final String patternEmail = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
     private final String patternPassword = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$";
-
     @FXML TextField emailTextField;
     @FXML Label errorLabel;
     @FXML PasswordField passwordField;
@@ -58,6 +57,7 @@ public class ForgotPasswordController {
             emailV = email;
             passwordV = password;
             App.setRoot("verificationPasswordCode");
+
         }
 
     }
