@@ -104,7 +104,7 @@ public class UserHomeController {
 
                 FavoriteCardController cardController = loader.getController();
 
-                cardController.setData(user.getId(), multimedia.getId(),multimedia.getTitle(), new Image(getClass().getResource(multimedia.getPathPoster()).toExternalForm()));
+                cardController.setData(multimedia, user.getId(), multimedia.getId(),multimedia.getTitle(), new Image(getClass().getResource(multimedia.getPathPoster()).toExternalForm()));
 
                 favoritesContainer.getChildren().add(cardNode);
             }
