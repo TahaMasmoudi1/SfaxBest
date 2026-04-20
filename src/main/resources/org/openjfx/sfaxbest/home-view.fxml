@@ -49,7 +49,7 @@
                     <!-- Movie info -->
                     <VBox spacing="10" alignment="BOTTOM_LEFT" styleClass="trailer-info" StackPane.alignment="BOTTOM_LEFT" >
 
-                        <Label fx:id="trailerTitle" styleClass="hero-title" text="Watch now"/>
+                        <Label fx:id="trailerTitle" onMouseClicked="#loadTrailer" styleClass="hero-title" text="Watch now"/>
 
                     </VBox>
 

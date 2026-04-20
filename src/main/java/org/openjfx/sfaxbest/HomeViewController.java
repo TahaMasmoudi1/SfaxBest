@@ -91,6 +91,10 @@ public class HomeViewController {
 
     }
 
+    @FXML
+    private void loadTrailer(){
+        MainViewController.instance.openMovieView("Gladiator Fight Scene");
+    }
 
     private void loadBrowseRow(List<Film> films) {
         try{

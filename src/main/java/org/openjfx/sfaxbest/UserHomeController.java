@@ -44,6 +44,7 @@ public class UserHomeController {
         setData();
         loadFavorites();
         loadHistory();
+        setAvatar(new Image(getClass().getResource(user.getAvatarUrl()).toExternalForm()));
     }
     @FXML
     private void changeAvatar() throws IOException {
