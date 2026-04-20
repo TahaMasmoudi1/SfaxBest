@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.image.ImageView?>
+
+
+<StackPane stylesheets="@../../../Styles/home-style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.sfaxbest.EpisodePosterController" styleClass="poster-card" onMouseClicked="#loadEpisode">
+
+    <ImageView fx:id="posterImage" fitWidth="160" fitHeight="240" preserveRatio="false" styleClass="poster-image"/>
+
+    <VBox fx:id="overlay" styleClass="media-poster-overlay" >
+
+        <Label fx:id="titleLabel" styleClass="media-info-overlay"/>
+        <Label fx:id="genreLabel" styleClass="media-info-overlay"/>
+        <Label fx:id="ratingLabel" styleClass="media-info-overlay"/>
+
+    </VBox>
+
+</StackPane>
+
+

@@ -111,10 +111,10 @@ public class SeriesViewController {
             List<Episode> episodes = seasonService.findByIdWithEpisodes(season.getId()).getEpisodes();
             for (Episode episode : episodes) {
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("movie-poster-card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("episode-poster-card.fxml"));
                 Node cardNode = loader.load();
 
-                MoviePosterController cardController = loader.getController();
+                EpisodePosterController cardController = loader.getController();
                 String rate;
                 try {
                     rate = Double.toString(ratingService.calculateRate(episode.getId()));
@@ -122,7 +122,7 @@ public class SeriesViewController {
                     rate = "N/A";
                 }
 
-                cardController.setData(episode.getTitre(), "N/A", rate, new Image(getClass().getResource(episode.getThumbnailUrl()).toExternalForm()));
+                cardController.setData(episode,episode.getTitre(), "N/A", rate, new Image(getClass().getResource(episode.getThumbnailUrl()).toExternalForm()));
 
                 episodesPosterRow.getChildren().add(cardNode);
             }
